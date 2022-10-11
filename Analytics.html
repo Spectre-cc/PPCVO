@@ -12,14 +12,24 @@
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
-        <div class="wrapper d-flex">
-            <div class="sidenav position-fixed container-fluid bg-success text-center col-2" style="height: 100vh;" style="height:100%">
-                <h1 class="position-fixed">1</h1>
+        <div class="wrapper d-flex h-100">
+            <!-- Sidebar -->
+            <div class="sidenav container-fluid text-center col-2 h-auto pt-4" style="height: 100%;">
+                <div class="container text-center">
+                    <img class="sidebar-logo img-fluid" src="style/assets/images/PPCVIO-Logo-wht.png" alt="" >
+                </div>
+                <div class="container text-start px-4">
+                    <hr class="horizontal-rule">
+                    <a href="" class="navlinks link-light">Analytics</a><br>
+                    <a href="" class="navlinks link-light">Clients</a><br>
+                    <a href="" class="navlinks link-light">Animal Records</a><br>
+                    <hr class="horizontal-rule">
+                    <a href="" class="navlinks link-light">Users</a><br>
+                    <a href="" class="navlinks link-light">Log Out</a>
+                </div>
             </div>
-            <div class="col-2" style="height: 100vh;">
-                <h1>1</h1>
-            </div>
-            <div class="content container bg-light rounded-4 m-lg-2 text-center" style="height: 100vh;">
+            <!-- Sidebar -->
+            <div class="content container bg-light rounded-4 m-lg-2 min-vh-100 text-center">
                 <h1>2</h1>
             </div>
         </div>

@@ -11,6 +11,20 @@ body{
     width: 15vw;
     height: auto;
 }
+.sidebar-logo{
+    width: 10vw;
+    height: auto;
+    border-radius: 100%;
+}
+.navlinks{
+    text-decoration: none;
+}
+.sidenav{
+    background-color: #2BC543;
+}
+.horizontal-rule{
+    border: 0.2vh solid #EFEFEF;
+}
 .inputbox{
     background-color: #C2C2C2;
 }
