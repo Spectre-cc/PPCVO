@@ -2,6 +2,8 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 }
 .material-symbols-outlined {
   font-variation-settings:
@@ -26,6 +28,7 @@ body{
 .navlinks{
     text-decoration: none;
     font-size: large;
+    font-weight: 500;
 }
 .sidenav{
     background-color: #2BC543;
@@ -35,4 +38,8 @@ body{
 }
 .inputbox{
     background-color: #C2C2C2;
+}
+.client-record{
+    font-size:x-large;
+    font-weight: 500;
 }
