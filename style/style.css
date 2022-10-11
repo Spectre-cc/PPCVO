@@ -33,13 +33,29 @@ body{
 .sidenav{
     background-color: #2BC543;
 }
-.horizontal-rule{
-    border: 0.2vh solid #EFEFEF;
-}
 .inputbox{
     background-color: #C2C2C2;
+    border:  1px #2E2E2E solid ;
 }
 .client-record{
     font-size:x-large;
     font-weight: 500;
+}
+th{
+    font-size: large;
+    font-weight:600;
+}
+th,td{
+    overflow-wrap: break-word;
+}
+
+/* Table Style */
+.smallcell{
+    max-width: 8vw;
+}
+.medcell{
+    max-width: 10vw;
+}
+.largecell{
+    max-width: 20vw;
 }
