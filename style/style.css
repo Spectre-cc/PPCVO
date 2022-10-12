@@ -4,6 +4,7 @@
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    font-size: medium;
 }
 .material-symbols-outlined {
   font-variation-settings:
@@ -51,11 +52,22 @@ th,td{
 
 /* Table Style */
 .smallcell{
+    min-width: 8vw;
     max-width: 8vw;
 }
 .medcell{
+    min-width: 10vw;
     max-width: 10vw;
 }
 .largecell{
-    max-width: 20vw;
+    min-width: 15vw;
+    max-width: 15vw;
 }
+.autocell{
+    min-width: 30vw;
+    max-width: 50vw;
+}
+.celltextsmall{
+    font-size: small;
+}
+
