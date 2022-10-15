@@ -8,3 +8,5 @@
     <script src="https://kit.fontawesome.com/27a19cbf0b.js" crossorigin="anonymous"></script>
     <!-- Local stylesheet -->
     <link rel="stylesheet" href="inc\style\style.css">
+    <!-- Icon -->
+    <link rel="icon" type="image/x-icon" href="inc\style\assets\icon\PPCVIO.ico">
