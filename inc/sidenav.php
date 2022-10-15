@@ -1,7 +1,7 @@
             <!-- Sidebar -->
             <div class="sidenav container-fluid text-center col-2 h-auto pt-4" style="height: 100%;">
                 <div class="container text-center">
-                    <img class="sidebar-logo img-fluid" src="style/assets/images/PPCVIO-Logo-wht.png" alt="" >
+                    <img class="sidebar-logo img-fluid" src="inc\style\assets\images\PPCVIO-Logo-wht.png" alt="" >
                 </div>
                 <div class="container list-group text-start px-4">
                     <hr class="horizontal-rule p-0 mt-2 mb-2">

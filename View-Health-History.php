@@ -1,37 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BS5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Material Icons CDN -->
-    <script src="https://kit.fontawesome.com/27a19cbf0b.js" crossorigin="anonymous"></script>
-    <!-- Local stylesheet -->
-    <link rel="stylesheet" href="/style/style.css">
+    <?php require('inc\links.php'); ?>
     <title>Health History</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex h-100">
-            <!-- Sidebar -->
-            <div class="sidenav container-fluid text-center col-2 h-auto pt-4" style="height: 100%;">
-                <div class="container text-center">
-                    <img class="sidebar-logo img-fluid" src="style/assets/images/PPCVIO-Logo-wht.png" alt="" >
-                </div>
-                <div class="container list-group text-start px-4">
-                    <hr class="horizontal-rule p-0 mt-2 mb-2">
-                    <a href="" class="navlinks link-light mt-2 mb-2"><i class="fa-solid fa-chart-line"></i> Analytics</a>
-                    <a href="" class="navlinks link-light mb-2"><i class="fa-solid fa-address-book"></i> Clients</a>
-                    <a href="" class="navlinks link-light"><i class="fa-solid fa-paw"></i> Animal Records</a>
-                    <hr class="horizontal-rule p-0 mt-2 mb-2">
-                    <a href="" class="navlinks link-light"><i class="fa-solid fa-user"></i> Users</a>
-                    <a href="" class="navlinks link-light mt-2"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
-                </div>
-            </div>
-            <!-- Sidebar -->
+            <?php require('inc\sidenav.php'); ?>
             <div class="content container bg-light rounded-4 m-lg-2 min-vh-100 min-w-100">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container pt-4">

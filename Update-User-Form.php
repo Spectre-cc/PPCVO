@@ -1,42 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BS5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Material Icons CDN -->
-    <script src="https://kit.fontawesome.com/27a19cbf0b.js" crossorigin="anonymous"></script>
-    <!-- Local stylesheet -->
-    <link rel="stylesheet" href="/style/style.css">
-    <title>Add User</title>
+    <?php require('inc\links.php'); ?>
+    <title>Update User</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex h-100">
-            <!-- Sidebar -->
-            <div class="sidenav container-fluid text-center col-2 h-auto pt-4" style="height: 100%;">
-                <div class="container text-center">
-                    <img class="sidebar-logo img-fluid" src="style/assets/images/PPCVIO-Logo-wht.png" alt="" >
-                </div>
-                <div class="container list-group text-start px-4">
-                    <hr class="horizontal-rule p-0 mt-2 mb-2">
-                    <a href="" class="navlinks link-light mt-2 mb-2"><i class="fa-solid fa-chart-line"></i> Analytics</a>
-                    <a href="" class="navlinks link-light mb-2"><i class="fa-solid fa-address-book"></i> Clients</a>
-                    <a href="" class="navlinks link-light"><i class="fa-solid fa-paw"></i> Animal Records</a>
-                    <hr class="horizontal-rule p-0 mt-2 mb-2">
-                    <a href="" class="navlinks link-light"><i class="fa-solid fa-user"></i> Users</a>
-                    <a href="" class="navlinks link-light mt-2"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
-                </div>
-            </div>
-            <!-- Sidebar -->
+            <?php require('inc\sidenav.php'); ?>
             <div class="content container bg-light rounded-4 m-lg-2 min-vh-100">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <form action="" class="container-fluid p-4 w-50 h-auto">
                         <div class="container text-center">
-                            <h2>Add User</h2>
+                            <h2>Update User</h2>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="name">Name</label>
@@ -59,7 +35,7 @@
                             <textarea name="address" id="address" cols="10" rows="4" class="form-control m-0 inputbox" placeholder="Enter address..."></textarea>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="submit" value="Accept">
+                            <input class="btn btn-primary w-50" type="submit" id="submit" value="Update">
                         </div>
                     </form>
                 </div>
