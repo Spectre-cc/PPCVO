@@ -2,36 +2,36 @@
 <html lang="en">
 <head>
     <?php require('inc\links.php'); ?>
-    <title>Add User</title>
+    <title>Add Personnel</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex h-100">
-            <?php require('inc\sidenav.php'); ?>
+            <?php require('inc\sidenav-admin.php'); ?>
             <div class="content container bg-light rounded-4 m-lg-2 min-vh-100">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
-                    <form action="" class="container-fluid p-4 w-50 h-auto">
+                    <form method="POST" action="functions/adduser-personnel.php" class="container-fluid p-4 w-50 h-auto">
                         <div class="container text-center">
-                            <h2>Add User</h2>
+                            <h2>Add Personnel</h2>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="name">Name</label>
-                            <input class="form-control m-0 inputbox" type="text" id="name" placeholder="Enter full name..." required>
+                            <input class="form-control m-0 inputbox" type="text" name="name" id="name" placeholder="Enter full name..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="email">Email</label>
-                            <input class="form-control m-0 inputbox" type="email" id="email" placeholder="Enter email..." required>
+                            <input class="form-control m-0 inputbox" type="email" name="email" id="email" placeholder="Enter email..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="password">Password</label>
-                            <input class="form-control m-0 inputbox" type="password" id="password" placeholder="Enter password..." required>
+                            <input class="form-control m-0 inputbox" type="password" name="password" id="password" placeholder="Enter password..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="contactnumber">Contact Number</label>
-                            <input class="form-control m-0 inputbox" type="number" id="contactnumber" placeholder="Enter contact number..." required>
+                            <input class="form-control m-0 inputbox" type="text" name="contactnumber" id="contactnumber" placeholder="Enter contact number..." required>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="submit" value="Accept">
+                            <input class="btn btn-success w-50" type="submit" name="submit" id="submit" value="Accept">
                         </div>
                     </form>
                 </div>

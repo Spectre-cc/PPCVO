@@ -9,7 +9,7 @@
                     <a href="View-Client-List.php" class="navlinks link-light mb-2"><i class="fa-solid fa-address-book"></i> Clients</a>
                     <a href="" class="navlinks link-light"><i class="fa-solid fa-paw"></i> Animal Records</a>
                     <hr class="horizontal-rule p-0 mt-2 mb-2">
-                    <a href="LogIn.php" class="navlinks link-light mt-2"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+                    <a href="functions/logout.php" class="navlinks link-light mt-2"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
                 </div>
             </div>
             <!-- Sidebar -->
