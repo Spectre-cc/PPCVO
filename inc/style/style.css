@@ -32,7 +32,11 @@ body{
     font-weight: 500;
 }
 .sidenav{
-    background-color: #2BC543;
+    background-color: #12569C;
+}
+.horizontal-rule{
+    border-top: 2px solid #fac236;
+    opacity: 100%;
 }
 .inputbox{
     background-color: #C2C2C2;
