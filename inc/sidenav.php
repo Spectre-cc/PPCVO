@@ -7,7 +7,7 @@
                     <hr class="horizontal-rule p-0 mt-2 mb-2">
                     <a href="Analytics.php" class="navlinks link-light mt-2 mb-2"><i class="fa-solid fa-chart-line"></i> Analytics</a>
                     <a href="View-Client-List.php" class="navlinks link-light mb-2"><i class="fa-solid fa-address-book"></i> Clients</a>
-                    <a href="" class="navlinks link-light"><i class="fa-solid fa-paw"></i> Animal Records</a>
+                    <a href="Send-Email.php" class="navlinks link-light"><i class="fa-solid fa-envelope"></i> Send Announcement</a>
                     <hr class="horizontal-rule p-0 mt-2 mb-2">
                     <a href="functions/logout.php" class="navlinks link-light mt-2"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
                 </div>

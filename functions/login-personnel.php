@@ -49,4 +49,8 @@
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
   }
+  else{
+    header('Location: ../LogIn-Personnel.php');
+    exit();
+  }
 ?>
