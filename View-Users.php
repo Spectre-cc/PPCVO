@@ -22,16 +22,14 @@
                                         <th class="medcell text-bg-dark">Email</th>
                                         <th class="medcell text-bg-dark">Password</th>
                                         <th class="largecell text-bg-dark">Contact Number</th>
-                                        <th class="largecell text-bg-dark">Address</th>
                                         <th class="medcell bg-dark"></th>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="medcell">Buck</td>
-                                            <td class="medcell">Cat</td>
-                                            <td class="medcell">Persian</td>
-                                            <td class="medcell">Black</td>
-                                            <td class="smallcell">Male</td>
+                                            <td class="medcell">Kris Martin</td>
+                                            <td class="medcell">example@email.com</td>
+                                            <td class="medcell">mypassword</td>
+                                            <td class="largecell">09*********</td>
                                             <td class="med d-flex justify-content-center align-items-center" >
                                                 <button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button> 
                                                 <button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>

@@ -34,7 +34,9 @@
                                         <th class="medcell text-bg-dark">Breed</th>
                                         <th class="medcell text-bg-dark">Color</th>
                                         <th class="smallcell text-bg-dark">Sex</th>
-                                        <th class="smallcell text-bg-dark">Age</th>
+                                        <th class="medcell text-bg-dark">Date of Birth</th>
+                                        <th class="medcell text-bg-dark">Registration Date</th>
+                                        <th class="medcell text-bg-dark">Vaccination Date</th>
                                         <th class="autocell bg-dark"></th>
                                     </thead>
                                     <tbody>
@@ -44,7 +46,9 @@
                                             <td class="medcell">Persian</td>
                                             <td class="medcell">Black</td>
                                             <td class="smallcell">Male</td>
-                                            <td class="smallcell">3 months</td>
+                                            <td class="medcell">0/00/0000</td>
+                                            <td class="medcell">0/00/0000</td>
+                                            <td class="medcell">0/00/0000</td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
                                                 <button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button> 
                                                 <button class="btn btn-primary mx-1"><i class="fa-solid fa-notes-medical"></i> View Health History</button> 

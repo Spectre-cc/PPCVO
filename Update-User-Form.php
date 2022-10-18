@@ -30,10 +30,6 @@
                             <label for="" class="form-label m-0" for="contactnumber">Contact Number</label>
                             <input class="form-control m-0 inputbox" type="number" id="contactnumber" placeholder="Enter contact number..." required>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="form-label m-0" for="address">Address</label>
-                            <textarea name="address" id="address" cols="10" rows="4" class="form-control m-0 inputbox" placeholder="Enter address..."></textarea>
-                        </div>
                         <div class="form-group pt-3 container-fluid text-center">
                             <input class="btn btn-primary w-50" type="submit" id="submit" value="Update">
                         </div>

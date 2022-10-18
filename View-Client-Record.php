@@ -19,7 +19,7 @@
                                 <u>Birthdate:</u>  09/10/2000 <br>
                                 <u>Contact Number:</u>  09********* <br>
                                 <u>Sex:</u> Male <br>
-                                <u>Address:</u> Tagburos 
+                                <u>Barangay:</u> Tagburos 
                                 </p>
                             </div>
                             <button class="btn btn-primary mt-3 w-50"><i class="fa-solid fa-pen-to-square"></i> Update</button>

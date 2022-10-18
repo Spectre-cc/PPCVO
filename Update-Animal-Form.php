@@ -31,12 +31,24 @@
                             <input class="form-control m-0 inputbox" type="text" id="name" placeholder="Enter color..." required>
                         </div>
                         <div class="form-group">
-                            <label for="" class="form-label m-0" for="age">Age</label>
-                            <input class="form-control m-0 inputbox" type="text" id="age" placeholder="Enter age..." required>
-                        </div>
-                        <div class="form-group">
                             <label for="" class="form-label m-0" for="sex">Sex</label>
                             <input class="form-control m-0 inputbox" type="text" id="sex" placeholder="Enter sex..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label m-0" for="dateofbirth">Date of Birth</label>
+                            <input class="form-control m-0 inputbox" type="date" id="dateofbirth" placeholder="Enter date of birth..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label m-0" for="registrationdate">Registration Date</label>
+                            <input class="form-control m-0 inputbox" type="date" id="registrationdate" placeholder="Enter date of registration..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label m-0" for="registrationnumber">Registration Number</label>
+                            <input class="form-control m-0 inputbox" type="text" id="registrationnumber" placeholder="Enter registration number..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label m-0" for="vaccinationdate">Vaccination Date</label>
+                            <input class="form-control m-0 inputbox" type="date" id="vaccinationdate" placeholder="Enter date of vaccination..." required>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
                             <input class="btn btn-primary w-50" type="submit" id="submit" value="Update">
