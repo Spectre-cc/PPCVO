@@ -13,7 +13,8 @@
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $query)){
-        header('Location: ../LogIn-Admin.php?error=sqlerror');
+        $alertmessage = urlencode("SQL error!");
+        header('Location: ../LogIn-Admin.php?alertmessage'.$alertmessage);
         exit();
     }
     else{
@@ -29,21 +30,25 @@
             session_start();
             $_SESSION['type'] = 'admin';
             $_SESSION['isloggedin'] = true;
-            header('Location: ../View-Users-Personnel.php?login=success');
+            $alertmessage = urlencode("Log in success!");
+            header('Location: ../View-Users-Personnel.php?');
             exit();
           }
           else if($passwordcheck == false){
-            header('Location: ../LogIn-Admin.php?error=wrongpassword');
+            $alertmessage = urlencode("Wrong password!");
+            header('Location: ../LogIn-Admin.php?alertmessage'.$alertmessage);
             exit();
           }
           else{
-            header('Location: ../LogIn-Admin.php?error=wrongpassword');
+            $alertmessage = urlencode("Wrong password!");
+            header('Location: ../LogIn-Admin.php?alertmessage'.$alertmessage);
             exit();
           }
         }
         else{
-          header('Location: ../LogIn-Admin.php?error=nouser');
-          exit();
+          $alertmessage = urlencode("User does not exist!");
+            header('Location: ../LogIn-Admin.php?alertmessage'.$alertmessage);
+            exit();
         }
     }
     mysqli_stmt_close($stmt);

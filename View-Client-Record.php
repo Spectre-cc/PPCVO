@@ -1,3 +1,5 @@
+<?php include('functions/alert.php'); ?>
+<?php include('functions/checksession-personel.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

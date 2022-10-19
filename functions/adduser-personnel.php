@@ -21,7 +21,8 @@
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $query)){
-        header('Location: ../Add-User-Personnel-Form.php?error=sqlerror');
+        $alertmessage = urlencode("SQL error!");
+        header('Location: ../Add-User-Personnel-Form.php?alertmessage'.$alertmessage);
         exit();
     }
     else{
@@ -31,7 +32,8 @@
 
         mysqli_stmt_bind_param($stmt, "sssss", $type, $name, $email, $hashedpassword, $contactnumber);
         mysqli_stmt_execute($stmt);
-        header('Location: ../View-Users-Personnel.php');
+        $alertmessage = urlencode("Personnel user has been added!");
+        header('Location: ../View-Users-Personnel.php?alertmessage'.$alertmessage);
         exit();
     }
     mysqli_stmt_close($stmt);

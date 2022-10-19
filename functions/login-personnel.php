@@ -13,7 +13,8 @@
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $query)){
-        header('Location: ../Index.php?error=sqlerror');
+        $alertmessage = urlencode("SQL Error!");
+        header('Location: ../Index.php?alertmessage='.$alertmessage);
         exit();
     }
     else{
@@ -29,21 +30,25 @@
             session_start();
             $_SESSION['type'] = 'personnel';
             $_SESSION['isloggedin'] = true;
-            header('Location: ../Analytics.php?login=success');
+            $alertmessage = urlencode("Log in success!");
+            header('Location: ../Analytics.php?alertmessage'.$alertmessage);
             exit();
           }
           else if($passwordcheck == false){
-            header('Location: ../Index.php?error=wrongpassword');
+            $alertmessage = urlencode("Wrong password!");
+            header('Location: ../Index.php?alertmessage'.$alertmessage);
             exit();
           }
           else{
-            header('Location: ../Index.php?error=wrongpassword');
+            $alertmessage = urlencode("Wrong password!");
+            header('Location: ../Index.php?alertmessage'.$alertmessage);
             exit();
           }
         }
         else{
-          header('Location: ../Index.php.php?error=nouser');
-          exit();
+          $alertmessage = urlencode("User does not exist!");
+            header('Location: ../Index.php?alertmessage'.$alertmessage);
+            exit();
         }
     }
     mysqli_stmt_close($stmt);
