@@ -26,7 +26,7 @@
                 <input class="btn btn-primary w-50" type="submit" id="login-admin" name="login-admin" value="Log In">
             </div>
             <br>
-            <div class="container-fluid text-center"><a class="link-primary" href="LogIn-Personnel.php">Personnel Log In</a></div>
+            <div class="container-fluid text-center"><a class="link-primary" href="Index.php">Personnel Log In</a></div>
         </form>
     </div>
 </body>

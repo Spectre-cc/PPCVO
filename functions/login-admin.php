@@ -50,7 +50,7 @@
     mysqli_close($conn);
   }
   else{
-    header('Location: ../LogIn-Personnel.php');
+    header('Location: ../Index.php');
     exit();
   }
 ?>

@@ -28,7 +28,7 @@ if(isset($_POST['send'])){
     exit();
 }
 else{
-    header('Location: ../LogIn-Personnel.php');
+    header('Location: ../Index.php');
     exit();
 }
 

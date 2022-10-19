@@ -2,5 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: ../LogIn-Personnel.php');
+header('Location: ../Index.php');
 ?>

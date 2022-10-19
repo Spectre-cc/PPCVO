@@ -11,7 +11,7 @@
     }
     else{
         //check if selector and validator are valid hexadecimal
-        if(ctype_xdigit($selector) !== false && ctype_xdigit($validator !== false)){
+        if(ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false){
 
         }
         else{
@@ -29,7 +29,7 @@
 </head>
 <body>
     <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <form method="POST" action="functions/passwordreset-reset.php" class="bg-light needs-validation p-4 rounded-4 align-items-center">
+        <form method="POST" action="functions/passwordreset-personnel.php" class="bg-light needs-validation p-4 rounded-4 align-items-center">
             <div class="container-fluid text-center">
                 <h2>Create New Password</h2>
             </div>

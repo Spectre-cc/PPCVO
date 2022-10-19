@@ -13,7 +13,7 @@
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $query)){
-        header('Location: ../LogIn-Personnel.php?error=sqlerror');
+        header('Location: ../Index.php?error=sqlerror');
         exit();
     }
     else{
@@ -33,16 +33,16 @@
             exit();
           }
           else if($passwordcheck == false){
-            header('Location: ../LogIn-Personnel.php?error=wrongpassword');
+            header('Location: ../Index.php?error=wrongpassword');
             exit();
           }
           else{
-            header('Location: ../LogIn-Personnel.php?error=wrongpassword');
+            header('Location: ../Index.php?error=wrongpassword');
             exit();
           }
         }
         else{
-          header('Location: ../LogIn-Personnel.php?error=nouser');
+          header('Location: ../Index.php.php?error=nouser');
           exit();
         }
     }
@@ -50,7 +50,7 @@
     mysqli_close($conn);
   }
   else{
-    header('Location: ../LogIn-Personnel.php');
+    header('Location: ../Index.php');
     exit();
   }
 ?>
