@@ -1,5 +1,5 @@
 <?php include('functions/alert.php'); ?>
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <?php require('inc\links.php'); ?>
@@ -20,7 +20,7 @@
                 <label for="" class="form-label m-0" for="password"><i class="fa-solid fa-key"></i> Password</label>
                 <input class="form-control inputbox m-0" name="password" type="password" id="password" placeholder="*****" required>
                 <div class="invalid-feedback m-0">Please enter valid password...</div>
-                <div class="container-fluid text-end"><a class="link-primary" href="Password-Reset.php">forgot password?</a></div>
+                <div class="container-fluid text-end"><a class="link-primary" href="Password-Reset-Admin.php">forgot password?</a></div>
             </div>
             <div class="form-group pt-3 container-fluid text-center">
                 <input class="btn btn-primary w-50" type="submit" id="login-admin" name="login-admin" value="Log In">

@@ -27,9 +27,9 @@
     <?php require('inc\links.php'); ?>
     <title>Create New Password</title>
 </head>
-<body class="ploginbg">
+<body>
     <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <form method="POST" action="functions/passwordreset-personnel.php" class="bg-light needs-validation p-4 rounded-4 align-items-center">
+        <form method="POST" action="functions/passwordreset-admin.php" class="bg-light needs-validation p-4 rounded-4 align-items-center">
             <div class="container-fluid text-center">
                 <h2>Create New Password</h2>
             </div>
