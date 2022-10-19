@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php include('functions/alert.php'); ?>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <?php require('inc\links.php'); ?>

@@ -10,7 +10,11 @@
     $password=mysqli_real_escape_string($conn,$_POST['password']);
     $type="personnel";
     $contactnumber=mysqli_real_escape_string($conn,$_POST['contactnumber']);
-
+    
+    //check if email exist
+    
+    
+    //insert input into database
     //prepare sql statement before execution
     $query = "INSERT INTO `user`(`type`,`name`, `email`, `password`, `contactNumber`) 
     VALUES (?,?,?,?,?)";
