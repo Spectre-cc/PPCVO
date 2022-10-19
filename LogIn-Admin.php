@@ -22,7 +22,7 @@
                 <div class="container-fluid text-end"><a class="link-primary" href="Password-Reset.php">forgot password?</a></div>
             </div>
             <div class="form-group pt-3 container-fluid text-center">
-                <input class="btn btn-primary w-50" type="submit" id="submit" name="submit" value="Log In">
+                <input class="btn btn-primary w-50" type="submit" id="login-admin" name="login-admin" value="Log In">
             </div>
             <br>
             <div class="container-fluid text-center"><a class="link-primary" href="LogIn-Personnel.php">Personnel Log In</a></div>

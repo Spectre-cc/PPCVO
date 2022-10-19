@@ -11,7 +11,7 @@
                 <h2>Password Recovery</h2>
             </div>
             <div class="form-group was-validated pt-2">
-                <label for="" class="form-label" for="email">Email</label>
+                <label class="form-label" for="email">Email</label>
                 <input class="form-control inputbox" type="email" id="email" placeholder="example@email.com" required>
                 <div class="invalid-feedback">Please enter valid email address...</div>
             </div>

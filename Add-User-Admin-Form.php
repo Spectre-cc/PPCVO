@@ -31,7 +31,7 @@
                             <input class="form-control m-0 inputbox" type="text" name="contactnumber" id="contactnumber" placeholder="Enter contact number..." required>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" name="submit" id="submit" value="Accept">
+                            <input class="btn btn-success w-50" type="submit" name="add-admin" id="add-admin" value="Accept">
                         </div>
                     </form>
                 </div>

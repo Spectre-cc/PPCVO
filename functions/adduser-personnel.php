@@ -1,5 +1,5 @@
 <?php
-  if(isset($_POST['submit'])){
+  if(isset($_POST['add-personnel'])){
     //database connectionn
     require('config/config.php');
     require('config/db.php');
