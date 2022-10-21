@@ -31,23 +31,23 @@
             $_SESSION['type'] = 'admin';
             $_SESSION['isloggedin'] = true;
             $alertmessage = urlencode("Log in success!");
-            header('Location: ../View-Users-Personnel.php?');
+            header('Location: ../View-Users-Personnel.php?alertmessage='.$alertmessage);
             exit();
           }
           else if($passwordcheck == false){
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../LogIn-Admin.php?alertmessage'.$alertmessage);
+            header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
             exit();
           }
           else{
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../LogIn-Admin.php?alertmessage'.$alertmessage);
+            header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
             exit();
           }
         }
         else{
           $alertmessage = urlencode("User does not exist!");
-            header('Location: ../LogIn-Admin.php?alertmessage'.$alertmessage);
+            header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
             exit();
         }
     }

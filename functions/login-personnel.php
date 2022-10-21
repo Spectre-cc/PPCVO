@@ -31,23 +31,23 @@
             $_SESSION['type'] = 'personnel';
             $_SESSION['isloggedin'] = true;
             $alertmessage = urlencode("Log in success!");
-            header('Location: ../Analytics.php?alertmessage'.$alertmessage);
+            header('Location: ../Analytics.php?alertmessage='.$alertmessage);
             exit();
           }
           else if($passwordcheck == false){
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../Index.php?alertmessage'.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
           }
           else{
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../Index.php?alertmessage'.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
           }
         }
         else{
           $alertmessage = urlencode("User does not exist!");
-            header('Location: ../Index.php?alertmessage'.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
         }
     }

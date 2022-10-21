@@ -1,5 +1,13 @@
 <?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-admin.php'); ?>
+
+<?php 
+  require('functions/config/config.php');
+  require('functions/config/db.php');
+  $query="SELECT * FROM user WHERE type='personnel'";
+  $result = mysqli_query($conn,$query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,28 +26,33 @@
                                 <h2>Personnel</h2>
                             </div>
                             <div class="container-fluid mb-2 text-center">
-                                <a href="Add-User-Personnel-Form.php"><button class="btn btn-success"><i class="fa-solid fa-plus"></i> Add</button></a>
+                                <?php $usertype = urlencode("admin"); ?>
+                                <a href="Add-User.php?type=<?php echo $usertype; ?>"><button class="btn btn-success"><i class="fa-solid fa-plus"></i> Add</button></a>
                             </div>
                             <div class="container-fluid d-flex justify-content-start align-items-start overflow-scroll">
                                 <table class="table table-condensed table-bordered table-hover table-responsive text-start">
                                     <thead>
                                         <th class="medcell text-bg-dark">Name</th>
                                         <th class="medcell text-bg-dark">Email</th>
-                                        <th class="medcell text-bg-dark">Password</th>
                                         <th class="largecell text-bg-dark">Contact Number</th>
                                         <th class="medcell bg-dark"></th>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($result as $data) : ?>
                                         <tr>
-                                            <td class="medcell">Kris Martin</td>
-                                            <td class="medcell">example@email.com</td>
-                                            <td class="medcell">mypassword</td>
-                                            <td class="largecell">09*********</td>
+                                            <td class="medcell"><?php echo $data['name']; ?></td>
+                                            <td class="medcell"><?php echo $data['email']; ?></td>
+                                            <td class="largecell"><?php echo $data['contactNumber']; ?></td>
                                             <td class="med d-flex justify-content-center align-items-center" >
-                                                <button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button> 
-                                                <button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
+                                                <a href="Update-User-Form.php?user=<?php echo $data['userid']; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                <a href="functions/delete-user.php?user=<?php echo $data['userid']; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                             </td>
                                         </tr>
+                                        <?php 
+                                        endforeach; 
+                                        mysqli_free_result($result);
+                                        mysqli_close($conn);
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
