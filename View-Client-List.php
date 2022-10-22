@@ -1,5 +1,13 @@
 <?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+
+<?php 
+  require('functions/config/config.php');
+  require('functions/config/db.php');
+  $query="SELECT * FROM client";
+  $result = mysqli_query($conn,$query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,23 +32,29 @@
                                 </form>
                             </div>
                             <div class="container-fluid mb-2">
-                                <button class="btn btn-success"><i class="fa-solid fa-plus"></i> Add</button>
+                                <a href="Add-Client-Form.php"><button class="btn btn-success"><i class="fa-solid fa-plus"></i> Add</button></a>
                             </div>
-                            <div class="container-fluid d-flex justify-content-center align-items-center">
+                            <div class="container-fluid d-flex justify-content-center align-items-center text-center">
                                 <table class="table table-condensed table-bordered table-hover text-start w-75">
                                     <thead>
                                         <th class="medcell text-bg-dark">Name</th>
                                         <th class="autocell bg-dark"></th>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($result as $data) : ?>
                                         <tr>
-                                            <td class="medcell">John Doe</td>
+                                            <td class="medcell"><?php echo $data['name']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
-                                                <button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button> 
-                                                <button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button> 
-                                                <button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
+                                                <a href="View-Client-Record.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button></a>
+                                                <a href="View-Animals-Owned.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
+                                                <a href="functions/delete-client.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                             </td>
                                         </tr>
+                                        <?php 
+                                        endforeach; 
+                                        mysqli_free_result($result);
+                                        mysqli_close($conn);
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -22,7 +22,7 @@
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
-            header('Location: ../Update-User-Form.php?alertmessage='.$alertmessage.'&userid='.$userid.'&type='.$type);
+            header('Location: Update-User-Form.php?alertmessage='.$alertmessage.'&userid='.$userid.'&type='.$type);
             exit();
         }
         else{

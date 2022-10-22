@@ -62,7 +62,8 @@
     
   }
   else{
-    header('Location: ../Index.php');
+    $alertmessage = urlencode("Please Log In!");
+    header('Location: ../Index.php?alertmessage='.$alertmessage);
     exit();
   }
 ?>
