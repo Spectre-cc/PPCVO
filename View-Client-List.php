@@ -46,7 +46,7 @@
                                             <td class="medcell"><?php echo $data['name']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
                                                 <a href="View-Client-Record.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button></a>
-                                                <a href="View-Animals-Owned.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
+                                                <a href="View-Animals-Owned.php?clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $data['name']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
                                                 <a href="functions/delete-client.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                             </td>
                                         </tr>
