@@ -64,7 +64,7 @@
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
-        <div class="wrapper d-flex h-100">
+        <div class="wrapper d-flex h-auto">
             <?php require('inc\sidenav.php'); ?>
             <div class="content container bg-light rounded-4 m-lg-2 min-vh-100">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">

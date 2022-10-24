@@ -31,7 +31,7 @@
             $_SESSION['type'] = 'admin';
             $_SESSION['isloggedin'] = true;
             $alertmessage = urlencode("Log in success!");
-            header('Location: ../View-Users-Personnel.php?alertmessage='.$alertmessage);
+            header('Location: ../Analytics.php?alertmessage='.$alertmessage);
             exit();
           }
           else if($passwordcheck == false){
