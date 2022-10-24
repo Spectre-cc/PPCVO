@@ -41,12 +41,12 @@
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
-        <div class="wrapper d-flex h-auto">
+        <div class="wrapper d-flex m-2">
             <?php require('inc\sidenav.php'); ?>
-            <div class="content container bg-light rounded-4 m-lg-2 min-vh-100">
+            <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
-                    <div class="container pt-4">
-                        <div class="container text-start px-1">
+                    <div class="container pt-4 px-0">
+                        <div class="container text-start px-0">
                             <div class="container-fluid text-center">
                                 <h2>Animals owned by <?php echo $clientname; ?></h2>
                             </div>
@@ -61,7 +61,7 @@
                             <div class="container-fluid text-center mb-2">
                                 <a href="Add-Animal-Form.php?clientid=<?php echo $clientid; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-success"><i class="fa-solid fa-plus"></i> Add</button></a>
                             </div>
-                            <div class="container-fluid d-flex justify-content-start align-items-start overflow-scroll">
+                            <div class="container-fluid d-flex justify-content-start align-items-start text-start overflow-scroll">
                                 <table class="table table-condensed table-bordered table-hover table-responsive text-start">
                                     <thead>
                                         <th class="medcell text-bg-dark">Name</th>

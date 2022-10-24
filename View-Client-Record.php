@@ -56,9 +56,9 @@
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
-        <div class="wrapper d-flex h-auto">
+        <div class="wrapper d-flex m-2">
             <?php require('inc\sidenav.php'); ?>
-            <div class="content container bg-light rounded-4 m-lg-2 min-vh-100">
+            <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container pt-4">
                         <div class="container text-center" style="width: 40%;">
@@ -95,8 +95,8 @@
                                     </tbody>
                             </table>
                             </div>
-                            <a href="Update-Client-Form.php?clientid=<?php echo $clientid; ?>"><button class="btn btn-primary mt-3 w-50"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                            <a href="functions/delete-client.php?clientid=<?php echo $clientid; ?>"><button class="btn btn-danger mt-3 w-50"><i class="fa-solid fa-trash"></i> Delete</button></a>
+                            <a href="Update-Client-Form.php?clientid=<?php echo $clientid; ?>"><button class="btn btn-primary mt-1 w-50"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                            <a href="functions/delete-client.php?clientid=<?php echo $clientid; ?>"><button class="btn btn-danger mt-1 w-50"><i class="fa-solid fa-trash"></i> Delete</button></a>
                         </div>
                     </div>
                 </div>

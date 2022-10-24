@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
-        <div class="wrapper d-flex h-auto">
+        <div class="wrapper d-flex m-2">
             <?php require('inc\sidenav.php'); ?>
-            <div class="content container bg-light rounded-4 m-lg-2 min-vh-100">
+            <div class="content container bg-light rounded-4 min-vh-100">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <form method="POST" action="functions/add-client.php" class="container-fluid p-4 w-50 h-auto">
                         <div class="container text-center">

@@ -9,7 +9,7 @@
     <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
         <form method="POST" action="functions/login-admin.php" class="bg-light needs-validation p-4 rounded-4 w-25 h-auto align-items-center">
             <div class="container text-center">
-                <img class="login-logo img-fluid" src="inc/style/assets/images/PPCVIO-Logo-trnsprnt.png" alt="" >
+                <img class="login-logo img-fluid rounded-circle shadow" src="inc/style/assets/images/PPCVIO-Logo-trnsprnt.png" alt="" >
             </div>
             <div class="form-group was-validated">
                 <label for="" class="form-label m-0" for="email"><i class="fa-solid fa-envelope"></i> Email</label>
@@ -22,11 +22,10 @@
                 <div class="invalid-feedback m-0">Please enter valid password...</div>
                 <div class="container-fluid text-end"><a class="link-primary" href="Password-Reset-Admin.php">forgot password?</a></div>
             </div>
-            <div class="form-group pt-3 container-fluid text-center">
-                <input class="btn btn-primary w-50" type="submit" id="login-admin" name="login-admin" value="Log In">
+            <div class="form-group pt-2  container-fluid text-center">
+                <input class="btn btn-primary w-75 shadow" type="submit" id="login-admin" name="login-admin" value="Log In">
             </div>
-            <br>
-            <div class="container-fluid text-center"><a class="link-primary" href="Index.php">Personnel Log In</a></div>
+            <div class="container-fluid text-center"><a class="btn btn-secondary btn-sm mt-2" href="Index.php">Personnel Log In</a></div>
         </form>
     </div>
 </body>

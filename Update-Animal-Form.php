@@ -64,13 +64,13 @@
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
-        <div class="wrapper d-flex h-auto">
+        <div class="wrapper d-flex m-2">
             <?php require('inc\sidenav.php'); ?>
-            <div class="content container bg-light rounded-4 m-lg-2 min-vh-100">
+            <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                 <form method="POST" action="functions/update-animal.php" class="container-fluid p-4 w-50 h-auto">
                         <div class="container text-center">
-                            <h2>Add Animal</h2>
+                            <h2>Update Animal</h2>
                         </div>
                         <input type="hidden" id="animalid" name="animalid" value="<?php echo $animalid; ?>">
                         <input type="hidden" id="clientid" name="clientid" value="<?php echo $clientid; ?>">
