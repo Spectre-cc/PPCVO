@@ -35,10 +35,10 @@
                 foreach ($result as $data):
                     $mhid=$data['mhID'];
                     $date=$data['date'];
-                    $case=$data['caseHistory'];
-                    $tentativeDiagnosis=$data['tentativeDiagnosis'];
-                    $prescription=$data['prescription'];
-                    $treatment=$data['treatment'];
+                    $disease=$data['disease'];
+                    $vaccineUsed=$data['vaccineUsed'];
+                    $batchNumber=$data['batchNumber'];
+                    $vaccineSource=$data['vaccineSource'];
                     $remarks=$data['remarks'];
                     $veterinarian=$data['veterinarian'];
                     $animalid=$data['animalID'];
@@ -66,32 +66,32 @@
             <?php require('inc\sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
-                <form method="POST" action="functions/update-mh.php" class="container-fluid p-4 w-50 h-auto">
+                <form method="POST" action="functions/update-mh-V.php" class="container-fluid my-3 p-4 w-50 rounded bg-transparent shadow-lg h-auto">
                         <div class="container text-center">
-                            <h2>Update Health History</h2>
+                            <h3>Update Animal Health Record</h3>
                         </div>
                         <input type="hidden" name="mhid" value="<?php echo $mhid; ?>">
                         <input type="hidden" name="animalid" value="<?php echo $animalid; ?>">
                         <input type="hidden" name="animalname" value="<?php echo $animalname; ?>">
                         <div class="form-group">
-                            <label class="form-label m-0" for="birthdate">Date</label>
-                            <input class="form-control m-0 inputbox" type="date" id="birthdate" name="date" value="<?php echo $date; ?>" required>
+                            <label class="form-label m-0" for="date">Date</label>
+                            <input class="form-control m-0 inputbox" type="date" id="date" name="date" value="<?php echo $date; ?>" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="case">Case History / Complaint</label>
-                            <textarea name="case" id="case" cols="10" rows="2" class="form-control m-0 inputbox"><?php echo $case; ?></textarea>
+                            <label class="form-label m-0" for="disease">Disease</label>
+                            <input class="form-control m-0 inputbox" type="text" name="disease" id="disease" value="<?php echo $disease; ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="tentativeDiagnosis">Tentative Diagnosis</label>
-                            <textarea name="tentativeDiagnosis" id="tentativeDiagnosis" cols="10" rows="2" class="form-control m-0 inputbox"><?php echo $tentativeDiagnosis; ?></textarea>
+                            <label class="form-label m-0" for="vaccineUsed">Vaccine Used</label>
+                            <input class="form-control m-0 inputbox" type="text" name="vaccineUsed" id="vaccineUsed" value="<?php echo $vaccineUsed; ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="prescription">Prescription</label>
-                            <textarea name="prescription" id="prescription" cols="10" rows="2" class="form-control m-0 inputbox"><?php echo $prescription; ?></textarea>
+                            <label class="form-label m-0" for="batchNumber">Batch/Lot No.</label>
+                            <input class="form-control m-0 inputbox" type="text" name="batchNumber" id="batchNumber" value="<?php echo $batchNumber; ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="treatment">Treatment</label>
-                            <textarea name="treatment" id="treatment" cols="10" rows="2" class="form-control m-0 inputbox"><?php echo $treatment; ?></textarea>
+                            <label class="form-label m-0" for="vaccineSource">Vaccine Source</label>
+                            <input class="form-control m-0 inputbox" type="text" name="vaccineSource" id="vaccineSource" value="<?php echo $vaccineSource; ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="remarks">Remarks</label>
@@ -102,7 +102,7 @@
                             <input class="form-control m-0 inputbox" type="text" id="veterinarian" name="veterinarian" value="<?php echo $veterinarian; ?>" required>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="update-mh" name="update-mh" value="Accept">
+                            <input class="btn btn-success w-50" type="submit" id="update-mh-V" name="update-mh-V" value="Accept">
                         </div>
                     </form>
                 </div>

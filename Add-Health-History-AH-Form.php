@@ -51,20 +51,20 @@
         <div class="wrapper d-flex m-2">
             <?php require('inc\sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
-                <div class="containter-fluid d-flex justify-content-center align-items-center">
-                    <form method="POST" action="functions/add-mh.php" class="container-fluid p-4 w-50 h-auto">
+                <div class="containter-fluid justify-content-center align-items-center">
+                    <form method="POST" action="functions/add-mh-AH.php" class="container-fluid my-3 p-4 w-50 rounded bg-transparent shadow-lg h-auto">
                         <div class="container text-center">
-                            <h2>Add Health History</h2>
+                            <h3>Animal Health</h3>
                         </div>
                         <input type="hidden" name="animalid" value="<?php echo $animalid; ?>">
                         <input type="hidden" name="animalname" value="<?php echo $animalname; ?>">
                         <div class="form-group">
-                            <label class="form-label m-0" for="birthdate">Date</label>
-                            <input class="form-control m-0 inputbox" type="date" id="birthdate" name="date" required>
+                            <label class="form-label m-0" for="date">Date</label>
+                            <input class="form-control m-0 inputbox" type="date" id="date" name="date" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="case">Case History / Complaint</label>
-                            <textarea name="case" id="case" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
+                            <label class="form-label m-0" for="clinicalSign">Clinical Sign</label>
+                            <textarea name="clinicalSign" id="clinicalSign" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="tentativeDiagnosis">Tentative Diagnosis</label>
@@ -87,7 +87,7 @@
                             <input class="form-control m-0 inputbox" type="text" id="veterinarian" name="veterinarian" placeholder="Enter veterinarian name..." required>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="add-mh" name="add-mh" value="Accept">
+                            <input class="btn btn-success w-50" type="submit" id="add-mh-AH" name="add-mh-AH" value="Accept">
                         </div>
                     </form>
                 </div>

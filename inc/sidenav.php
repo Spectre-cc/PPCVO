@@ -7,7 +7,7 @@
                     <hr class="horizontal-rule p-0 my-3">
                     <a href="View-Client-List.php" class="btn btn-light bg-transparent text-white mb-2 shadow"><i class="fa-solid fa-address-book"></i> Clients</a>
                     <a href="Send-Email.php" class="btn btn-light bg-transparent text-white navlinks2 mb-2 shadow"><i class="fa-solid fa-envelope"></i> Send Announcement</a>
-                    <a href="Download-Records.php" class="btn btn-light bg-transparent text-white navlinks2 shadow"><i class="fa-solid fa-file-arrow-down"></i> Download Records</a>
+                    <a href="Download-Reports.php" class="btn btn-light bg-transparent text-white navlinks2 shadow"><i class="fa-solid fa-file-arrow-down"></i> Download Reports</a>
                     <hr class="horizontal-rule p-0 my-3">
                     <a href="functions/logout.php" class="btn btn-light bg-transparent text-white"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
                     
