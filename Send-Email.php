@@ -17,8 +17,11 @@
                             <h2>Send Announcement</h2>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="recepient">Recepient</label>
-                            <input class="form-control m-0 inputbox" type="email" name="recepient" id="recepient" placeholder="Enter email..." required>
+                            <label class="form-label m-0" for="recepient">Recipient</label>
+                            <select class="form-control m-0 inputbox text-start" id="recipient" name="recipient" required>
+                                <option value="Clients">Clients</option>
+                                <option value="Personnel">Personnel</option>                                                        
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="subject">Subject</label>
