@@ -33,20 +33,21 @@ if(isset($_POST['send'])){
         $query = "SELECT email FROM client;";
         $result = mysqli_query($conn, $query);
         if(mysqli_num_rows($result) > 0) {
-            while($x = mysqli_fetch_assoc($result)) {
-                $mail->addAddress($x['email']);
-            }
-            if($mail->send())
-            {
-                $alertmessage = urlencode("Emails Sent!");
-                header('Location: ../Send-Email.php?alertmessage='.$alertmessage);
-                exit();
-            }
-            else{
-                $alertmessage = urlencode("Failed to send emails!");
-                header('Location: ../Send-Email.php?alertmessage='.$alertmessage);
-                exit();
-            }
+
+            foreach ($result as $data):
+                $mail->addAddress($data['email']);
+                if($mail->send())
+                {
+                    $alertmessage = urlencode("Emails Sent!");
+                    header('Location: ../Send-Email.php?alertmessage='.$alertmessage);
+                    exit();
+                }
+                else{
+                    $alertmessage = urlencode("Failed to send emails!");
+                    header('Location: ../Send-Email.php?alertmessage='.$alertmessage);
+                    exit();
+                }
+            endforeach;
         } 
     }
     if($recepient == "Personnel"){
