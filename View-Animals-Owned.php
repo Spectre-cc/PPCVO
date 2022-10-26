@@ -70,7 +70,7 @@
                                         <th class="medcell text-bg-dark">Color</th>
                                         <th class="smallcell text-bg-dark">Sex</th>
                                         <th class="medcell text-bg-dark">Birthdate</th>
-                                        <th class="medcell text-bg-dark">Vaccination Date</th>
+                                        <th class="medcell text-bg-dark">No. of Heads</th>
                                         <th class="medcell text-bg-dark">Registration Date</th>
                                         <th class="medcell text-bg-dark">Registration Number</th>
                                         <th class="autocell bg-dark"></th>
@@ -84,7 +84,7 @@
                                             <td class="medcell"><?php echo $data['color']; ?></td>
                                             <td class="smallcell"><?php echo $data['sex']; ?></td>
                                             <td class="medcell"><?php echo $data['birthdate']; ?></td>
-                                            <td class="medcell"><?php echo $data['vaccinationDate']; ?></td>
+                                            <td class="medcell"><?php echo $data['numberHeads']; ?></td>
                                             <td class="medcell"><?php echo $dateofregistration = $data['registrationDate']; ?></td>
                                             <td class="medcell"><?php echo $data['registrationNumber']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >

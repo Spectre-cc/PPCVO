@@ -12,7 +12,7 @@
       $color=mysqli_real_escape_string($conn,$_POST['color']);
       $sex=mysqli_real_escape_string($conn,$_POST['sex']);
       $birthdate=mysqli_real_escape_string($conn,$_POST['birthdate']);
-      $vaccinationdate=mysqli_real_escape_string($conn,$_POST['vaccinationdate']);
+      $numberHeads=mysqli_real_escape_string($conn,$_POST['numberHeads']);
       $registrationdate=mysqli_real_escape_string($conn,$_POST['registrationdate']);
       $registrationnumber=mysqli_real_escape_string($conn,$_POST['registrationnumber']);
       $clientid=mysqli_real_escape_string($conn,$_POST['clientid']);
@@ -39,7 +39,7 @@
       
       //insert input into database
       //prepare sql statement before execution
-      $query = "INSERT INTO `animal`(`name`,`species`, `breed`, `color`, `sex`, `birthdate`, `vaccinationDate`, `registrationDate`, `registrationNumber`, `clientID`) 
+      $query = "INSERT INTO `animal`(`name`,`species`, `breed`, `color`, `sex`, `birthdate`, `numberHeads`, `registrationDate`, `registrationNumber`, `clientID`) 
       VALUES (?,?,?,?,?,?,?,?,?,?)";
       $stmt = mysqli_stmt_init($conn);
   
@@ -49,7 +49,7 @@
           exit();
       }
       else{
-          mysqli_stmt_bind_param($stmt, "sssssssssi", $name, $species, $breed, $color, $sex, $birthdate, $vaccinationdate, $registrationdate, $registrationnumber, $clientid);
+          mysqli_stmt_bind_param($stmt, "sssssssssi", $name, $species, $breed, $color, $sex, $birthdate, $numberHeads, $registrationdate, $registrationnumber, $clientid);
           mysqli_stmt_execute($stmt);
           $alertmessage = urlencode("Animal has been added!");
           header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientid.'&clientname='.$clientname);

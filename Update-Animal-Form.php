@@ -40,7 +40,7 @@
                     $color = $data['color'];
                     $sex = $data['sex'];
                     $birthdate = $data['birthdate'];
-                    $vaccinationdate = $data['vaccinationDate'];
+                    $numberHeads = $data['numberHeads'];
                     $registrationdate = $data['registrationDate'];
                     $registrationnumber = $data['registrationNumber'];
                     $clientid = $data['clientID'];
@@ -100,8 +100,8 @@
                             <input class="form-control m-0 inputbox" type="date" id="birthdate" name="birthdate" value="<?php echo $birthdate; ?>" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="vaccinationdate">Vaccination Date</label>
-                            <input class="form-control m-0 inputbox" type="date" id="vaccinationdate" name="vaccinationdate" value="<?php echo $vaccinationdate; ?>">
+                            <label class="form-label m-0" for="numberHeads">No. of Heads</label>
+                            <input class="form-control m-0 inputbox" type="text" id="numberHeads" name="numberHeads" value="<?php echo $numberHeads; ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="registrationdate">Registration Date</label>

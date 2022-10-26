@@ -11,27 +11,98 @@
         <div class="wrapper d-flex m-2">
             <?php require('inc\sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
-                <div class="containter-fluid justify-content-center align-items-center">
-                    <form method="POST" action="" class="form-inline container text-center mt-4 py-2 border" style="width: 40%;">
-                            <div class="container-fluid text-center mb-4">
-                                <h2>Download Health Records</h2>
+                <div class="containter-fluid d-flex justify-content-center align-items-center">
+                    <div class="container">
+                        <div class="container text-center pt-3">
+                            <h2>Download Report</h2>
+                            <div class="container-fluid d-flex justify-content-center align-items-center text-center">
+                                <form method="POST" action="" class="container-fluid justify-content-center align-items-center text-center m-0 p-0">
+                                    <div class="container-fluid p-0 m-0">
+                                        <table class="table table-condensed table-hover text-center p-0 m-0">
+                                            <tbody>
+                                                <tr >
+                                                    <td class="text-end" style="width: 11%;">Report type:</td>
+                                                    <td>
+                                                        <select class="form-control m-0 inputbox text-center" id="type" name="type">
+                                                            <option value="Animal Health">Animal Health</option>                                                        <option value="Vaccination">Vaccination</option>
+                                                            <option value="Routine Services">Routine Services</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-end" style="width: 5%;">From:</td>
+                                                    <td><input class="form-control m-0 inputbox text-center" type="date" id="from" name="from"></td>
+                                                    <td class="text-end" style="width: 5%;">To:</td>
+                                                    <td><input class="form-control m-0 inputbox text-center" type="date" id="to" name="to"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 m-0">
+                                        <input class="btn btn-primary w-25 mb-2" type="submit" id="go" name="go" value="GO">
+                                    </div>
+                                </form>
                             </div>
-                            <div class="container-fluid text-center">
-                                <label class="m-0" for="type">Select health record type: </label>
-                                <select class="m-0 inputbox2" id="type" name="type">
-                                <option value="Animal Health">Animal Health</option>
-                                <option value="Vaccination">Vaccination</option>
-                                <option value="Routine Services">Routine Services</option>
-                                </select>
+                            <div class="container-fluid d-flex justify-content-start align-items-start overflow-scroll">
+                                <table class="table table-condensed table-bordered table-hover table-responsive text-start">
+                                    <thead>
+                                        <th class="medcell text-bg-dark">Date</th>
+                                        <th class="largecell text-bg-dark">Clinical Sign</th> 
+                                        <th class="largecell text-bg-dark">Tentative Diagnosis</th> 
+                                        <th class="largecell text-bg-dark">Prescription</th>
+                                        <th class="largecell text-bg-dark">Treatment</th> 
+                                        <th class="largecell text-bg-dark">Remarks</th> 
+                                        <th class="medcell text-bg-dark">Veterinarian</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="medcell">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="medcell">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="medcell">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="medcell">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="medcell">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="container-fluid center mt-1">               
-                                <label class="form-label mt-2" for="from">From: </label>
-                                <input class="m-0 inputbox2" type="date" id="from" name="from">
-                                <label class="m-0" for="to">To: </label>
-                                <input class="m-0 inputbox2" type="date" id="to" name="to">
-                            </div>
-                            <input class="btn btn-primary w-25" type="submit" id="retrieve" name="retreieve" value="Go">
-                    </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

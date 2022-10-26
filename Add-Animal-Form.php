@@ -83,8 +83,8 @@
                             <input class="form-control m-0 inputbox" type="date" id="birthdate" name="birthdate" placeholder="Enter date of birth..." required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="vaccinationdate">Vaccination Date</label>
-                            <input class="form-control m-0 inputbox" type="date" id="vaccinationdate" name="vaccinationdate">
+                            <label class="form-label m-0" for="numberHeads">No.of Heads</label>
+                            <input class="form-control m-0 inputbox" type="text" id="numberHeads" name="numberHeads" placeholder="Enter number of heads...">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="registrationdate">Registration Date</label>
