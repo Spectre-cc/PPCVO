@@ -89,7 +89,7 @@
                                             <td class="medcell"><?php echo $data['registrationNumber']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
                                                 <a href="Update-Animal-Form.php?animalid=<?php echo $data['animalID']; ?>&clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                <a href="View-Health-History.php?animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $data['name']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-notes-medical"></i> View Health History</button> 
+                                                <a href="View-Health-History-AH.php?animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $data['name']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-notes-medical"></i> View Health History</button> 
                                                 <a href="functions/delete-animal.php?animalid=<?php echo $data['animalID']; ?>&clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
                                             </td>
                                         </tr>

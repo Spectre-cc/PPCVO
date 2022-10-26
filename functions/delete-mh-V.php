@@ -26,14 +26,14 @@
 
       if(!mysqli_stmt_prepare($stmt, $query)){
           $alertmessage = urlencode("SQL error!");
-          header('Location: ../View-Health-History.php?alertmessage='.$alertmessage.'&animalid='.$animalid.'&animalname='.$animalname);
+          header('Location: ../View-Health-History-AH.php?alertmessage='.$alertmessage.'&animalid='.$animalid.'&animalname='.$animalname);
           exit();
       }
       else{
           mysqli_stmt_bind_param($stmt, "ii", $mhid, $animalid);
           mysqli_stmt_execute($stmt);
-          $alertmessage = urlencode("Health history has been deleted!");
-          header('Location: ../View-Health-History.php?alertmessage='.$alertmessage.'&animalid='.$animalid.'&animalname='.$animalname);
+          $alertmessage = urlencode("Vaccination record has been deleted!");
+          header('Location: ../View-Health-History-V.php?alertmessage='.$alertmessage.'&animalid='.$animalid.'&animalname='.$animalname);
           exit();
       }
       mysqli_stmt_close($stmt);
