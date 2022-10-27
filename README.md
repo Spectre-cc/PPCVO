@@ -1,7 +1,16 @@
 # PPCVO
+
 Puerto Princesa City Veterinary Office Animal Records and Health History System
 
-# Functions to-do list
+## Package/Libraries Used:
+
+- PHP MySQLi
+- PHP Password Hashing
+- PHPMailer
+- SheetJS
+- ChartJS
+
+## Functions list:
 
 - [x] Encrypted Log In
 - [x] Log Out
@@ -44,5 +53,5 @@ Puerto Princesa City Veterinary Office Animal Records and Health History System
     - [x] Edit
     - [x] Delete
 - [x] Send Email Announcements
-- [ ] Download records as excel
+- [ ] Download report as excel
 - [ ] Descriptive Analytics
