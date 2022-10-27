@@ -1,6 +1,8 @@
 <?php 
     use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
+    require 'vendor/autoload.php';
     require('config/config.php');
     require('config/db.php');
 
@@ -78,11 +80,6 @@
         //close statements and connections
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-
-        //use phpmailer to send email
-        require 'phpmailer/src/Exception.php';
-        require 'phpmailer/src/PHPMailer.php';
-        require 'phpmailer/src/SMTP.php';
 
         $mail = new PHPMailer(true);
 

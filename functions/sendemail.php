@@ -1,11 +1,10 @@
 <?php 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 if(isset($_POST['send'])){
-    require 'phpmailer/src/Exception.php';
-    require 'phpmailer/src/PHPMailer.php';
-    require 'phpmailer/src/SMTP.php';
+    require 'vendor/autoload.php';
     require('config/config.php');
     require('config/db.php');
 
