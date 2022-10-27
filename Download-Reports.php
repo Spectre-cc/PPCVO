@@ -35,6 +35,7 @@
                                                     <td class="text-end" style="width: 11%;">Report type:</td>
                                                     <td>
                                                         <select class="form-control m-0 inputbox text-center" id="type" name="type">
+                                                            <option value="...">...</option>
                                                             <option value="Animal Health">Animal Health</option>
                                                             <option value="Vaccination">Vaccination</option>                                                        
                                                             <option value="Routine Services">Routine Services</option>
@@ -54,7 +55,7 @@
                                         </table>
                                     </div>
                                     <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
-                                        <button class="btn btn-primary" onclick="ExportToExcel('xlsx')">Export table to excel</button>
+                                        <button class="btn btn-primary" onclick="ExportToExcel('xlsx')"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
                                     </div>
                                 </form>
                             </div>
@@ -139,117 +140,207 @@
                                 <?php }elseif($type=="Vaccination"){ ?>
                                 <table class="table table-condensed table-bordered table-hover table-responsive text-start" id="tbl_exporttable_to_xls">
                                     <thead>
-                                        <th class="medcell text-bg-dark">Date2</th>
-                                        <th class="largecell text-bg-dark">Clinical Sign</th> 
-                                        <th class="largecell text-bg-dark">Tentative Diagnosis</th> 
-                                        <th class="largecell text-bg-dark">Prescription</th>
-                                        <th class="largecell text-bg-dark">Treatment</th> 
-                                        <th class="largecell text-bg-dark">Remarks</th> 
-                                        <th class="medcell text-bg-dark">Veterinarian</th>
+                                        <tr>
+                                            <th class="medcell text-bg-dark" rowspan="2">Date</th>
+                                            <th class="medcell text-bg-dark" rowspan="2">Barangay</th>
+                                            <th class="text-bg-dark" colspan="4">Client Information</th>
+                                            <th class="text-bg-dark" colspan="7">Animal Information</th>
+                                            <th class="text-bg-dark" colspan="4">Vaccine Information</th>
+                                            <th class="largecell text-bg-dark" rowspan="2">Remarks</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="medcell text-bg-dark">Name</th> 
+                                            <th class="medcell text-bg-dark">Gender</th>
+                                            <th class="medcell text-bg-dark">Birthdate</th> 
+                                            <th class="medcell text-bg-dark">Contact No.</th>
+                                            <th class="medcell text-bg-dark">Species</th>
+                                            <th class="medcell text-bg-dark">Sex</th>
+                                            <th class="medcell text-bg-dark">Age</th>
+                                            <th class="medcell text-bg-dark">Animal Registered</th>
+                                            <th class="medcell text-bg-dark">No. of Heads</th>
+                                            <th class="medcell text-bg-dark">Color</th>
+                                            <th class="medcell text-bg-dark">Name</th>   
+                                            <th class="medcell text-bg-dark">Disease</th>
+                                            <th class="medcell text-bg-dark">Vaccine Used</th>
+                                            <th class="medcell text-bg-dark">Batch/Lot No.</th>
+                                            <th class="medcell text-bg-dark">Vaccine Number</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
                                             <td class="medcell">1</td>
-                                        </tr>
-                                        <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <?php }elseif($type=="Routine Services"){ ?>
                                 <table class="table table-condensed table-bordered table-hover table-responsive text-start" id="tbl_exporttable_to_xls">
-                                    <thead>
-                                        <th class="medcell text-bg-dark">Date3</th>
-                                        <th class="largecell text-bg-dark">Clinical Sign</th> 
-                                        <th class="largecell text-bg-dark">Tentative Diagnosis</th> 
-                                        <th class="largecell text-bg-dark">Prescription</th>
-                                        <th class="largecell text-bg-dark">Treatment</th> 
-                                        <th class="largecell text-bg-dark">Remarks</th> 
-                                        <th class="medcell text-bg-dark">Veterinarian</th>
+                                <thead>
+                                        <tr>
+                                            <th class="medcell text-bg-dark" rowspan="2">Date</th>
+                                            <th class="medcell text-bg-dark" rowspan="2">Barangay</th>
+                                            <th class="text-bg-dark" colspan="4">Client Information</th>
+                                            <th class="text-bg-dark" colspan="6">Animal Information</th>
+                                            <th class="largecell text-bg-dark" rowspan="2">Activity</th>
+                                            <th class="largecell text-bg-dark" rowspan="2">Medication</th>
+                                            <th class="largecell text-bg-dark" rowspan="2">Remarks</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="medcell text-bg-dark">Name</th> 
+                                            <th class="medcell text-bg-dark">Gender</th>
+                                            <th class="medcell text-bg-dark">Birthdate</th> 
+                                            <th class="medcell text-bg-dark">Contact No.</th>
+                                            <th class="medcell text-bg-dark">Species</th>
+                                            <th class="medcell text-bg-dark">Sex</th>
+                                            <th class="medcell text-bg-dark">Age</th>
+                                            <th class="medcell text-bg-dark">Name</th>
+                                            <th class="medcell text-bg-dark">No. of Heads</th>  
+                                            <th class="medcell text-bg-dark">Animal Registered</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
                                             <td class="medcell">1</td>
-                                        </tr>
-                                        <tr>
                                             <td class="medcell">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
-                                            <td class="largecell celltextsmall">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
+                                            <td class="medcell">1</td>
                                             <td class="medcell">1</td>
                                         </tr>
                                     </tbody>
