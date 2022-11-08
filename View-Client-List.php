@@ -1,9 +1,9 @@
+<?php require('functions/config/config.php'); ?>
+<?php require('functions/config/db.php'); ?>
 <?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
 
 <?php 
-  require('functions/config/config.php');
-  require('functions/config/db.php');
   $query="SELECT * FROM client";
   $result = mysqli_query($conn,$query);
 ?>

@@ -38,7 +38,7 @@
     }
 
     //prepare sql statement before execution
-    $query = "UPDATE `animal` SET name=?, species=?, breed=?, color=?, sex=?, birthdate=?, vaccinationDate=?, registrationDate=?, registrationNumber=? WHERE animalID=? AND clientID=?;";
+    $query = "UPDATE `animal` SET name=?, species=?, breed=?, color=?, sex=?, birthdate=?, numberHeads=?, registrationDate=?, registrationNumber=? WHERE animalID=? AND clientID=?;";
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $query)){

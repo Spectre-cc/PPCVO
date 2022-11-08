@@ -9,7 +9,7 @@
     $password=mysqli_real_escape_string($conn,$_POST['password']);
 
     //prepare sql statement before execution
-    $query = "SELECT type, email, password FROM user WHERE email=? and type='personnel';";
+    $query = "SELECT userID, type, email, password FROM user WHERE email=? and type='personnel';";
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $query)){
@@ -28,10 +28,10 @@
           if($passwordcheck == true){
             //set session variables before redirecting
             session_start();
-            $_SESSION['type'] = 'personnel';
-            $_SESSION['isloggedin'] = true;
-            $alertmessage = urlencode("Log in success!");
-            header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+            $_SESSION['userID'] = $row['userID'];
+            $_SESSION['type'] = $row['type'];
+            $_SESSION['email'] = $row['email'];
+            header('Location: ../View-Client-List.php');
             exit();
           }
           else if($passwordcheck == false){

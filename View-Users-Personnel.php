@@ -1,9 +1,9 @@
+<?php require('functions/config/config.php'); ?>
+<?php require('functions/config/db.php'); ?>
 <?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-admin.php'); ?>
 
 <?php 
-  require('functions/config/config.php');
-  require('functions/config/db.php');
   $query="SELECT * FROM user WHERE type='personnel'";
   $result = mysqli_query($conn,$query);
 ?>

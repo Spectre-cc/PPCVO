@@ -1,3 +1,5 @@
+<?php require('functions/config/config.php'); ?>
+<?php require('functions/config/db.php'); ?>
 <?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
 
@@ -11,9 +13,6 @@
         exit();
     }
     else{
-        require('functions/config/config.php');
-        require('functions/config/db.php');
-
         //check if animal exist
         //input
         $animalid=mysqli_real_escape_string($conn,$animalid);

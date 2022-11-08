@@ -112,7 +112,7 @@
                             <input class="form-control m-0 inputbox" type="text" id="registrationnumber" name="registrationnumber" value="<?php echo $registrationnumber; ?>">
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="add-animal" name="update-animal" value="Accept">
+                            <input class="btn btn-success w-50" type="submit" id="update-animal" name="update-animal" value="Accept">
                         </div>
                     </form>
                 </div>

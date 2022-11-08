@@ -1,11 +1,11 @@
+<?php require('functions/config/config.php'); ?>
+<?php require('functions/config/db.php'); ?>
 <?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
 
 <?php
     $type = "";
     if(isset($_POST['go'])){
-        require('functions/config/config.php');
-        require('functions/config/db.php');
         $type = mysqli_real_escape_string($conn,$_POST['type']);
         $from = mysqli_real_escape_string($conn,$_POST['from']);
         $to = mysqli_real_escape_string($conn,$_POST['to']);
