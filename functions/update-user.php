@@ -8,8 +8,8 @@
     $userID=mysqli_real_escape_string($conn,$_POST['userID']);
     $type=mysqli_real_escape_string($conn,$_POST['type']);
     $fName=mysqli_real_escape_string($conn,$_POST['fName']);
-    $mName=mysqli_real_escape_string($conn,$_POST['lName']);
-    $lName=mysqli_real_escape_string($conn,$_POST['mName']);
+    $mName=mysqli_real_escape_string($conn,$_POST['mName']);
+    $lName=mysqli_real_escape_string($conn,$_POST['lName']);
     $email=mysqli_real_escape_string($conn,$_POST['email']);
     $password=mysqli_real_escape_string($conn,$_POST['password']);
     $cNumber=mysqli_real_escape_string($conn,$_POST['cNumber']);
@@ -20,7 +20,7 @@
     if(!mysqli_stmt_prepare($stmt, $query)){
       $alertmessage = urlencode("SQL error!");
       if($type=="personnel" || $type=="admin"){
-        header('Location: ../View-Users.php?alertmessage='.$alertmessage.'&type='.$type);
+        header('Location: ../Update-Client-Form.php?alertmessage='.$alertmessage.'&type='.$type.'&userID='.$userID);
         exit();
       }
       else{

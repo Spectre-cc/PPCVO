@@ -19,8 +19,16 @@
                             <h2>Add Client</h2>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="name">Name</label>
-                            <input class="form-control m-0 inputbox" type="text" id="name" name="name" placeholder="Enter full name..." required>
+                            <label for="" class="form-label m-0" for="fName">First Name</label>
+                            <input class="form-control m-0 inputbox" type="text" name="fName" id="fName" placeholder="Enter first name..." maxlength="45" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label m-0" for="mname">Middle Name</label>
+                            <input class="form-control m-0 inputbox" type="text" name="mName" id="mName" placeholder="Enter middle name..." maxlength="45" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label m-0" for="lName">Last Name</label>
+                            <input class="form-control m-0 inputbox" type="text" name="lName" id="lName" placeholder="Enter last name..." maxlength="45" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="birthdate">Birthdate</label>
@@ -28,22 +36,26 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="sex">Sex</label>
-                            <input class="form-control m-0 inputbox" type="text" id="sex" name="sex" placeholder="Enter sex..." required>
+                            <select class="form-select m-0 inputbox" id="sex" name="sex">
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="barangay">Barangay</label>
                             <input class="form-control m-0 inputbox" type="text" id="barangay" name="barangay" placeholder="Enter barangay..." required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="contactnumber">Contact Number</label>
-                            <input class="form-control m-0 inputbox" type="text" id="contactnumber" name="contactnumber" placeholder="Enter contact number..." required>
+                            <label for="" class="form-label m-0" for="cNumber">Contact Number</label>
+                            <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="contactnumber">Email</label>
                             <input class="form-control m-0 inputbox" type="email" id="email" name="email" placeholder="Enter email..." required>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="add-client" name="add-client" value="Accept">
+                            <button class="btn btn-success w-50" type="submit" id="add-client" name="add-client"><i class="fa-solid fa-plus"></i> Add</button>
                         </div>
                     </form>
                 </div>

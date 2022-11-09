@@ -71,19 +71,19 @@
                         <input type="hidden" name="type" id="type" value="<?php echo $type; ?>">
                         <div class="form-group">
                             <label class="form-label m-0" for="fName">First Name</label>
-                            <input class="form-control m-0 inputbox" type="text" id="fName" name="fName" maxlength="45" placeholder="Enter first name..." value="<?php echo $fName; ?>">
+                            <input class="form-control m-0 inputbox" type="text" id="fName" name="fName" maxlength="45" placeholder="Enter first name..." value="<?php echo $fName; ?>" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="mName">Middle Name</label>
-                            <input class="form-control m-0 inputbox" type="text" id="mName" name="mName" maxlength="45" placeholder="Enter middle name..." value="<?php echo $mName; ?>">
+                            <input class="form-control m-0 inputbox" type="text" id="mName" name="mName" maxlength="45" placeholder="Enter middle name..." value="<?php echo $mName; ?>" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="lName">Last Name</label>
-                            <input class="form-control m-0 inputbox" type="text" id="lName" name="lName" maxlength="45" placeholder="Enter last name..." value="<?php echo $lName; ?>">
+                            <input class="form-control m-0 inputbox" type="text" id="lName" name="lName" maxlength="45" placeholder="Enter last name..." value="<?php echo $lName; ?>" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="email">Email</label>
-                            <input class="form-control m-0 inputbox" type="email" id="email" name="email" maxlength="45" placeholder="Enter email..." value="<?php echo $email; ?>">
+                            <input class="form-control m-0 inputbox" type="email" id="email" name="email" maxlength="45" placeholder="Enter email..." value="<?php echo $email; ?>" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="password">Set New Password (Optional)</label>

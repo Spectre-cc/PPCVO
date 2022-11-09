@@ -4,7 +4,7 @@
 <?php include('functions/checksession-personel.php'); ?>
 
 <?php 
-  $query="SELECT * FROM client";
+  $query="SELECT clientID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM client ORDER BY name ASC";
   $result = mysqli_query($conn,$query);
 ?>
 
@@ -23,11 +23,11 @@
                     <div class="container">
                         <div class="container text-center pt-3">
                             <h2>Client Records</h2>
-                            <div class="container-fluid">
-                                <form action="">
-                                    <div class="form-group d-flex justify-content-center">
-                                        <input class="form-control inputbox w-25 mx-1" type="search" name="search" id="search" placeholder="Search client name...">
-                                        <input class="btn btn-primary" type="submit" id="submit" value="Search">
+                            <div class="container-fluid d-flex justify-content-center text-center">
+                                <form class="w-50 d-flex justify-content-center" action="">
+                                    <div class="w-100 d-flex justify-content-center bg-white border border-secondary rounded-pill">
+                                        <input class="form-control rounded-pill bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for client...">
+                                        <button class="btn btn-transparent text-secondary" type="submit" name="search" id="search"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -37,17 +37,16 @@
                             <div class="container-fluid d-flex justify-content-center align-items-center text-center">
                                 <table class="table table-condensed table-bordered table-hover text-start w-75">
                                     <thead>
-                                        <th class="medcell text-bg-dark">Name</th>
+                                        <th class="largecell text-bg-dark">Name</th>
                                         <th class="autocell bg-dark"></th>
                                     </thead>
                                     <tbody>
                                         <?php foreach($result as $data) : ?>
                                         <tr>
-                                            <td class="medcell"><?php echo $data['name']; ?></td>
+                                            <td class="largecell"><?php echo $data['name']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
                                                 <a href="View-Client-Record.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button></a>
                                                 <a href="View-Animals-Owned.php?clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $data['name']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
-                                                <a href="functions/delete-client.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                             </td>
                                         </tr>
                                         <?php 

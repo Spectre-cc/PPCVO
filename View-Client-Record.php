@@ -4,18 +4,18 @@
 <?php include('functions/checksession-personel.php'); ?>
 
 <?php 
-    $clientid = $_GET['clientid'];
-    if(empty($clientid)){
+    $clientID = $_GET['clientid'];
+    if(empty($clientID)){
         $alertmessage = urlencode("Invalid link! Logging out...");
-        header('Location: logout.php?alertmessage='.$alertmessage);
+        header('Location: functions/logout.php?alertmessage='.$alertmessage);
         exit();
     }
     else{
         //input
-        $clientid=mysqli_real_escape_string($conn,$clientid);
+        $clientID=mysqli_real_escape_string($conn,$clientID);
 
         //prepare sql statement before execution
-        $query="SELECT * FROM client WHERE clientID=?";
+        $query="SELECT * FROM client WHERE clientID=? LIMIT 1";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
@@ -23,17 +23,19 @@
             exit();
         }
         else{
-            mysqli_stmt_bind_param($stmt, "s", $clientid);
+            mysqli_stmt_bind_param($stmt, "s", $clientID);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if(mysqli_num_rows($result)==1){
                 foreach ($result as $data):
-                    $clientid = $data['clientID'];
-                    $name = $data['name'];
+                    $client = $data['clientID'];
+                    $fName = $data['fName'];
+                    $mName = $data['mName'];
+                    $lName = $data['lName'];
                     $birthdate = $data['birthdate'];
                     $sex = $data['sex'];
                     $barangay = $data['barangay'];
-                    $contactnumber = $data['contactNumber'];
+                    $cNumber = $data['cNumber'];
                     $email = $data['email'];
                 endforeach;
             }
@@ -67,8 +69,16 @@
                                     <tbody>
                                         <?php foreach($result as $data) : ?>
                                         <tr>
-                                            <td class="medcell">Name</td>
-                                            <td class="largecell"><?php echo $name; ?></td>
+                                            <td class="medcell">First Name</td>
+                                            <td class="largecell"><?php echo $fName; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="medcell">Middle Name</td>
+                                            <td class="largecell"><?php echo $mName; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="medcell">Last Name</td>
+                                            <td class="largecell"><?php echo $lName; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">Birthdate</td>
@@ -84,7 +94,7 @@
                                         </tr>
                                         <tr>
                                             <td class="medcell">Contact Number</td>
-                                            <td class="largecell"><?php echo $contactnumber; ?></td>
+                                            <td class="largecell"><?php echo $cNumber; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="medcell">Email</td>
@@ -94,8 +104,8 @@
                                     </tbody>
                             </table>
                             </div>
-                            <a href="Update-Client-Form.php?clientid=<?php echo $clientid; ?>"><button class="btn btn-primary mt-1 w-50"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                            <a href="functions/delete-client.php?clientid=<?php echo $clientid; ?>"><button class="btn btn-danger mt-1 w-50"><i class="fa-solid fa-trash"></i> Delete</button></a>
+                            <a href="Update-Client-Form.php?clientid=<?php echo $clientID; ?>"><button class="btn btn-primary mt-1 w-50"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                            <a href="functions/delete-client.php?clientid=<?php echo $clientID; ?>"><button class="btn btn-danger mt-1 w-50"><i class="fa-solid fa-trash"></i> Delete</button></a>
                         </div>
                     </div>
                 </div>

@@ -51,7 +51,7 @@
 <html lang="en">
 <head>
     <?php require('inc\links.php'); ?>
-    <title>Update User</title>
+    <title>Update Veterinarian</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
@@ -61,7 +61,7 @@
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <form method="POST" action="functions/update-veterinarian.php" class="container-fluid p-4 w-50 h-auto">
                         <div class="container text-center">
-                            <h2>Update Admin</h2>
+                            <h2>Update Veterinarian</h2>
                         </div>
                         <input type="hidden" name="vetID" id="vetID" value="<?php echo $vetID; ?>">
                         <div class="form-group">
