@@ -1,7 +1,6 @@
 <?php
-  require('functions/config/config.php');
-  require('functions/config/db.php');
-  include('functions/alert.php');
+  require('config/config.php');
+  require('config/db.php');
   include('functions/checksession-personel.php');
 
     $userID = $_GET['userID'];
