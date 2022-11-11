@@ -34,7 +34,7 @@
                     <div class="container pt-4">
                         <div class="container text-start px-1">
                             <div class="container-fluid text-center">
-                                <h2><?php echo ucfirst($type); ?></h2>
+                                <h2><i class="fa-solid fa-user fa-lg"></i> <?php echo ucfirst($type); ?></h2>
                             </div>
                             <div class="container-fluid mb-2 text-center">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddUser" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Add</button>
@@ -81,7 +81,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-center align-items-center bg-success text-light">
-                    <h1 class="modal-title fs-5 " id="AddUserLabel">Add <?php echo ucfirst($type); ?></h1>
+                    <h1 class="modal-title fs-3 " id="AddUserLabel"><i class="fa-solid fa-user fa-lg"></i> <?php echo ucfirst($type); ?></h1>
                 </div>
                 <form method="POST" action="functions/add-user.php">
                     <div class="modal-body">

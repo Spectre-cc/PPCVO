@@ -1,49 +1,73 @@
+<?php require('functions/config/config.php');?>
+<?php require('functions/config/db.php'); ?>
 <?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
 
 <?php 
-    $animalid = $_GET['animalid'];
-    $clientid = $_GET['clientid'];
+    $animalID = $_GET['animalid'];
+    $clientID = $_GET['clientid'];
     $clientname = $_GET['clientname'];
-    if(empty($animalid) || empty($clientid) || empty($clientname)){
+    if(empty($animalID) || empty($clientID) || empty($clientname)){
         $alertmessage = urlencode("Invalid link! Logging out...");
         header('Location: functions/logout.php?alertmessage='.$alertmessage);
         exit();
     }
     else{
-        require('functions/config/config.php');
-        require('functions/config/db.php');
-
         //input
         $clientname=mysqli_real_escape_string($conn,$clientname);
-        $animalid=mysqli_real_escape_string($conn,$animalid);
-        $clientid=mysqli_real_escape_string($conn,$clientid);
+        $animalID=mysqli_real_escape_string($conn,$animalID);
+        $clientID=mysqli_real_escape_string($conn,$clientID);
 
         //prepare sql statement before execution
-        $query="SELECT * FROM animal WHERE animalID=? AND clientID=?";
+        $query="
+            SELECT 
+                animal.name as 'name', 
+                animal.classificationID as 'classificationID',
+                classification.species  as 'species', 
+                classification.breed  as 'breed',
+                animal.color as 'color',
+                animal.sex as 'sex',
+                animal.birthdate as 'birthdate',
+                animal.noHeads as 'noHeads',
+                animal.regDate as 'regDate',
+                animal.regNumber as 'regNumber',
+                animal.animalID as 'animalID',
+                animal.clientID as 'clientID'
+            FROM 
+                client, 
+                animal, 
+                classification 
+            WHERE 
+                animal.animalID = ?
+                AND 
+                animal.classificationID = classification.classificationID
+                AND
+                animal.clientID  = ?
+        ";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
-            header('Location: View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientid);
+            header('Location: View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID);
             exit();
         }
         else{
-            mysqli_stmt_bind_param($stmt, "ii", $animalid, $clientid);
+            mysqli_stmt_bind_param($stmt, "ii", $animalID, $clientID);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if(mysqli_num_rows($result)==1){
                 foreach ($result as $data):
-                    $animalid = $data['animalID'];
+                    $animalID = $data['animalID'];
                     $name = $data['name'];
+                    $classificationID = $data['classificationID'];
                     $species = $data['species'];
                     $breed = $data['breed'];
                     $color = $data['color'];
                     $sex = $data['sex'];
                     $birthdate = $data['birthdate'];
-                    $numberHeads = $data['numberHeads'];
-                    $registrationdate = $data['registrationDate'];
-                    $registrationnumber = $data['registrationNumber'];
-                    $clientid = $data['clientID'];
+                    $noHeads = $data['noHeads'];
+                    $regDate = $data['regDate'];
+                    $regNumber = $data['regNumber'];
+                    $clientID = $data['clientID'];
                 endforeach;
             }
             else{
@@ -72,8 +96,9 @@
                         <div class="container text-center">
                             <h2>Update Animal</h2>
                         </div>
-                        <input type="hidden" id="animalid" name="animalid" value="<?php echo $animalid; ?>">
-                        <input type="hidden" id="clientid" name="clientid" value="<?php echo $clientid; ?>">
+                        <input type="hidden" id="animalID" name="animalID" value="<?php echo $animalID; ?>">
+                        <input type="hidden" id="clientID" name="clientID" value="<?php echo $clientID; ?>">
+                        <input type="hidden" id="classificationID" name="classificationID" value="<?php echo $classificationID; ?>">
                         <input type="hidden" id="clientname" name="clientname" value="<?php echo $clientname; ?>">
                         <div class="form-group">
                             <label class="form-label m-0" for="name">Name</label>
@@ -93,26 +118,46 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="sex">Sex</label>
-                            <input class="form-control m-0 inputbox" type="text" id="sex" name="sex" value="<?php echo $sex; ?>" required>
+                            <select class="form-select m-0 inputbox" id="sex" name="sex">
+                                <?php if($sex=="Male"){?>
+                                    <option value="Male" selected>Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                <?php }elseif($sex=="Female"){ ?>
+                                    <option value="Male">Male</option>
+                                    <option value="Female" selected>Female</option>
+                                    <option value="Other">Other</option>
+                                <?php }elseif($sex=="Other"){ ?>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other" selected>Other</option>
+                                <?php 
+                                    }else{
+                                    $alertmessage = urlencode("Invalid link! Logging out...");
+                                    header('Location: functions/logout.php?alertmessage='.$alertmessage);
+                                    exit();  
+                                    }  
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="birthdate">Brthdate</label>
                             <input class="form-control m-0 inputbox" type="date" id="birthdate" name="birthdate" value="<?php echo $birthdate; ?>" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="numberHeads">No. of Heads</label>
-                            <input class="form-control m-0 inputbox" type="text" id="numberHeads" name="numberHeads" value="<?php echo $numberHeads; ?>">
+                            <label class="form-label m-0" for="noHeads">No. of Heads</label>
+                            <input class="form-control m-0 inputbox" type="text" id="noHeads" name="noHeads" value="<?php echo $noHeads; ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="registrationdate">Registration Date</label>
-                            <input class="form-control m-0 inputbox" type="date" id="registrationdate" name="registrationdate" value="<?php echo $registrationdate; ?>">
+                            <label class="form-label m-0" for="regDate">Registration Date</label>
+                            <input class="form-control m-0 inputbox" type="date" id="regDate" name="regDate" value="<?php echo $regDate; ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="registrationnumber">Registration Number</label>
-                            <input class="form-control m-0 inputbox" type="text" id="registrationnumber" name="registrationnumber" value="<?php echo $registrationnumber; ?>">
+                            <label class="form-label m-0" for="regNumber">Registration Number</label>
+                            <input class="form-control m-0 inputbox" type="text" id="regNumber" name="regNumber" value="<?php echo $regNumber; ?>">
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="update-animal" name="update-animal" value="Accept">
+                            <button class="btn btn-primary w-50" type="submit" id="update-animal" name="update-animal"><i class="fa-solid fa-pen-to-square"></i> Update</button>
                         </div>
                     </form>
                 </div>

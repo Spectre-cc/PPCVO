@@ -4,19 +4,39 @@
 <?php include('functions/checksession-personel.php'); ?>
 
 <?php 
-    $clientid = $_GET['clientid'];
+    $clientID = $_GET['clientid'];
     $clientname = $_GET['clientname'];
-    if(empty($clientid) || empty($clientname)){
+    if(empty($clientID) || empty($clientname)){
         $alertmessage = urlencode("Invalid link! Logging out...");
-        header('Location: logout.php?alertmessage='.$alertmessage);
+        header('Location: functions/logout.php?alertmessage='.$alertmessage);
         exit();
     }
     else{
         //input
-        $clientid=mysqli_real_escape_string($conn,$clientid);
-
+        $clientID=mysqli_real_escape_string($conn,$clientID);
         //prepare sql statement before execution
-        $query="SELECT * FROM animal WHERE clientID=?";
+        $query="
+            SELECT 
+                animal.name as 'name', 
+                classification.species  as 'species', 
+                classification.breed  as 'breed',
+                animal.color as 'color',
+                animal.sex as 'sex',
+                animal.birthdate as 'birthdate',
+                animal.noHeads as 'noHeads',
+                animal.regDate as 'regDate',
+                animal.regNumber as 'regNumber',
+                animal.animalID as 'animalID',
+                animal.clientID as 'clientID'
+            FROM 
+                client, 
+                animal, 
+                classification 
+            WHERE 
+                animal.clientID  = ?
+                AND 
+                animal.classificationID = classification.classificationID
+        ";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
@@ -24,7 +44,7 @@
             exit();
         }
         else{
-            mysqli_stmt_bind_param($stmt, "s", $clientid);
+            mysqli_stmt_bind_param($stmt, "i", $clientID);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
         }
@@ -47,7 +67,7 @@
                     <div class="container pt-4 px-0">
                         <div class="container text-start px-0">
                             <div class="container-fluid text-center">
-                                <h2>Animals owned by <?php echo $clientname; ?></h2>
+                                <h2><i class="fa-solid fa-paw fa-lg"></i>  Animals owned by <?php echo $clientname; ?></h2>
                             </div>
                             <div class="container-fluid mb-2">
                                 <form action="">
@@ -58,7 +78,7 @@
                                 </form>
                             </div>
                             <div class="container-fluid text-center mb-2">
-                                <a href="Add-Animal-Form.php?clientid=<?php echo $clientid; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-success"><i class="fa-solid fa-plus"></i> Add</button></a>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddAnimal" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Add</button>
                             </div>
                             <div class="container-fluid d-flex justify-content-start align-items-start text-start overflow-scroll">
                                 <table class="table table-condensed table-bordered table-hover table-responsive text-start">
@@ -83,9 +103,9 @@
                                             <td class="medcell"><?php echo $data['color']; ?></td>
                                             <td class="smallcell"><?php echo $data['sex']; ?></td>
                                             <td class="medcell"><?php echo $data['birthdate']; ?></td>
-                                            <td class="medcell"><?php echo $data['numberHeads']; ?></td>
-                                            <td class="medcell"><?php echo $dateofregistration = $data['registrationDate']; ?></td>
-                                            <td class="medcell"><?php echo $data['registrationNumber']; ?></td>
+                                            <td class="medcell"><?php echo $data['noHeads']; ?></td>
+                                            <td class="medcell"><?php echo $dateofregistration = $data['regDate']; ?></td>
+                                            <td class="medcell"><?php echo $data['regNumber']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
                                                 <a href="Update-Animal-Form.php?animalid=<?php echo $data['animalID']; ?>&clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
                                                 <a href="View-Health-History-AH.php?animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $data['name']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-notes-medical"></i> View Health History</button> 
@@ -103,6 +123,66 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AddAnimal" tabindex="-1" aria-labelledby="AddAnimalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center bg-success text-light">
+                    <h1 class="modal-title fs-3 " id="AddAnimalLabel"><i class="fa-solid fa-paw fa-lg"></i> Animal</h1>
+                </div>
+                <form method="POST" action="functions/add-animal.php">
+                    <div class="modal-body">
+                    <input type="hidden" id="clientID" name="clientID" value="<?php echo $clientID; ?>">
+                        <input type="hidden" id="clientname" name="clientname" value="<?php echo $clientname; ?>">
+                        <div class="form-group">
+                            <label class="form-label m-0" for="name">Name</label>
+                            <input class="form-control m-0 inputbox" type="text" id="name" name="name" placeholder="Enter full name..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="species">Species</label>
+                            <input class="form-control m-0 inputbox" type="text" id="species" name="species" placeholder="Enter species..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="breed">Breed</label>
+                            <input class="form-control m-0 inputbox" type="text" id="breed" name="breed" placeholder="Enter breed..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="color">Color</label>
+                            <input class="form-control m-0 inputbox" type="text" id="color" name="color" placeholder="Enter color..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="sex">Sex</label>
+                            <select class="form-select m-0 inputbox" id="sex" name="sex">                                
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="birthdate">Brthdate</label>
+                            <input class="form-control m-0 inputbox" type="date" id="birthdate" name="birthdate" placeholder="Enter date of birth..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="noHeads">No.of Heads</label>
+                            <input class="form-control m-0 inputbox" type="text" id="noHeads" name="noHeads" placeholder="Enter number of heads...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="regDate">Registration Date</label>
+                            <input class="form-control m-0 inputbox" type="date" id="regDate" name="regDate">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="regNumber">Registration Number</label>
+                            <input class="form-control m-0 inputbox" type="text" id="regNumber" name="regNumber" placeholder="Enter registration number...">
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center align-items-center">
+                        <button class="btn btn-success w-25"  type="submit" id="add-animal" name="add-animal"><i class="fa-solid fa-plus"></i> Add</button>
+                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

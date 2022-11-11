@@ -23,7 +23,7 @@
                     <div class="container pt-4">
                         <div class="container text-start px-1">
                             <div class="container-fluid text-center">
-                                <h2>Veterinarian</h2>
+                                <h2><i class="fa-solid fa-user-doctor fa-lg"></i> Veterinarian</h2>
                             </div>
                             <div class="container-fluid mb-2 text-center">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddVet" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Add</button>
@@ -68,7 +68,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-center align-items-center bg-success text-light">
-                    <h1 class="modal-title fs-5 " id="AddVetLabel">Add Veterinarian</h1>
+                    <h1 class="modal-title fs-3 " id="AddVetLabel"><i class="fa-solid fa-user-doctor fa-lg"></i> Veterinarian</h1>
                 </div>
                 <form method="POST" action="functions/add-veterinarian.php">
                     <div class="modal-body">
