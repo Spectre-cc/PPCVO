@@ -6,8 +6,8 @@
 
     //input
     $fName=mysqli_real_escape_string($conn,$_POST['fName']);
-    $mName=mysqli_real_escape_string($conn,$_POST['lName']);
-    $lName=mysqli_real_escape_string($conn,$_POST['mName']);
+    $mName=mysqli_real_escape_string($conn,$_POST['mName']);
+    $lName=mysqli_real_escape_string($conn,$_POST['lName']);
     $licenseNo=mysqli_real_escape_string($conn,$_POST['licenseNo']);
 
     //Check if record already exists
