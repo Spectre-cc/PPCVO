@@ -21,7 +21,7 @@
       
       //delete input into database
       //prepare sql statement before execution
-      $query = "DELETE FROM `animal` WHERE animalID=? AND clientID=?;";
+      $query = "DELETE FROM `animals` WHERE animalID=? AND clientID=?;";
       $stmt = mysqli_stmt_init($conn);
 
       if(!mysqli_stmt_prepare($stmt, $query)){

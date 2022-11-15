@@ -21,11 +21,11 @@
     $clientname=mysqli_real_escape_string($conn,$_POST['clientname']);
 
     //check if animal already exist
-    $query = "SELECT * FROM animal WHERE name=? AND clientID=? AND NOT animalID=?"; 
+    $query = "SELECT * FROM animals WHERE name=? AND clientID=? AND NOT animalID=?"; 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $query)){
       $alertmessage = urlencode("SQL error!");
-      header('Location: ../Update-Animal-Form.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&animalid='.$animalID.'&clientname='.$clientname);
+      header('Location: ../Update-Animal-Form.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&animalID='.$animalID.'&clientname='.$clientname);
       exit();
     }
     else{
@@ -34,20 +34,20 @@
       $result = mysqli_stmt_get_result($stmt);
       if(mysqli_num_rows($result)==1){
         $alertmessage = urlencode("Animal already exist!");
-        header('Location: ../Update-Animal-Form.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&animalid='.$animalID.'&clientname='.$clientname);
+        header('Location: ../Update-Animal-Form.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&animalID='.$animalID.'&clientname='.$clientname);
         exit();
       }
     }
 
     //prepare sql statement before execution
-    $query1 = "UPDATE `classification` SET species=?, breed=? WHERE classificationID=?";
-    $query2 = "UPDATE `animal` SET name=?, color=?, sex=?, birthdate=?, noHeads=?, regDate=?, regNumber=? WHERE animalID=? AND clientID=?;";
+    $query1 = "UPDATE `classifications` SET species=?, breed=? WHERE classificationID=?";
+    $query2 = "UPDATE `animals` SET name=?, color=?, sex=?, birthdate=?, noHeads=?, regDate=?, regNumber=? WHERE animalID=? AND clientID=?;";
     $stmt1 = mysqli_stmt_init($conn);
     $stmt2 = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt1, $query1) || !mysqli_stmt_prepare($stmt2, $query2)){
       $alertmessage = urlencode("SQL error!");
-      header('Location: ../Update-Animal-Form.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&animalid='.$animalID.'&clientname='.$clientname);
+      header('Location: ../Update-Animal-Form.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&animalID='.$animalID.'&clientname='.$clientname);
       exit();
     }
     else{
@@ -56,7 +56,7 @@
       mysqli_stmt_execute($stmt1);
       mysqli_stmt_execute($stmt2);
       $alertmessage = urlencode("Animal record has been updated!");
-      header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&clientname='.$clientname);
+      header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&clientname='.$clientname);
       exit();
     }
 

@@ -135,7 +135,7 @@
                 </div>
                 <form method="POST" action="functions/add-animal.php">
                     <div class="modal-body">
-                    <input type="hidden" id="clientID" name="clientID" value="<?php echo $clientID; ?>">
+                        <input type="hidden" id="clientID" name="clientID" value="<?php echo $clientID; ?>">
                         <input type="hidden" id="clientname" name="clientname" value="<?php echo $clientname; ?>">
                         <div class="form-group">
                             <label class="form-label m-0" for="name">Name</label>
@@ -167,7 +167,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="noHeads">No.of Heads</label>
-                            <input class="form-control m-0 inputbox" type="text" id="noHeads" name="noHeads" placeholder="Enter number of heads...">
+                            <input class="form-control m-0 inputbox" type="number" id="noHeads" name="noHeads" placeholder="Enter number of heads...">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="regDate">Registration Date</label>

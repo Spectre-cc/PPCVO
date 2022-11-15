@@ -18,11 +18,11 @@
     $clientname=mysqli_real_escape_string($conn,$_POST['clientname']);
   
     //check if animal already exist
-    $query = "SELECT * FROM animal WHERE name=? AND clientID=?"; 
+    $query = "SELECT * FROM animals WHERE name=? AND clientID=?"; 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $query)){
       $alertmessage = urlencode("SQL error!");
-      header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&clientname='.$clientname);
+      header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&clientname='.$clientname);
       exit();
     }
     else{
@@ -31,7 +31,7 @@
       $result = mysqli_stmt_get_result($stmt);
       if(mysqli_num_rows($result)==1){
         $alertmessage = urlencode("Animal already exist!");
-        header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&clientname='.$clientname);
+        header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&clientname='.$clientname);
         exit();
       }
     }
@@ -39,18 +39,18 @@
     //insert input into database
     //prepare sql statement before execution
     $query1 = "
-    INSERT INTO `classification`(`species`,`breed`) 
+    INSERT INTO `classifications`(`species`,`breed`) 
       VALUES(?,?);
     ";
     $query2 = "
-    INSERT INTO `animal`(`name`,`classificationID`, `color`, `sex`, `birthdate`, `noHeads`, `regDate`, `regNumber`, `clientID`) 
+    INSERT INTO `animals`(`name`,`classificationID`, `color`, `sex`, `birthdate`, `noHeads`, `regDate`, `regNumber`, `clientID`) 
       VALUES(?,LAST_INSERT_ID(),?,?,?,?,?,?,?);
     ";
     $stmt1 = mysqli_stmt_init($conn);
     $stmt2 = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt1, $query1) || !mysqli_stmt_prepare($stmt2, $query2)){
       $alertmessage = urlencode("SQL error!");
-        header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&clientname='.$clientname);
+        header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&clientname='.$clientname);
         exit();
     }
     else{
@@ -59,7 +59,7 @@
       mysqli_stmt_execute($stmt1);
       mysqli_stmt_execute($stmt2);
       $alertmessage = urlencode("Animal has been added!");
-      header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&clientname='.$clientname);
+      header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&clientname='.$clientname);
       exit();
     }
     mysqli_stmt_close($stmt1);

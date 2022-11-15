@@ -43,6 +43,7 @@
                 animals.classificationID = classifications.classificationID
                 AND
                 animals.clientID  = ?
+            LIMIT 1;
         ";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
@@ -147,7 +148,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="noHeads">No. of Heads</label>
-                            <input class="form-control m-0 inputbox" type="text" id="noHeads" name="noHeads" value="<?php echo $noHeads; ?>">
+                            <input class="form-control m-0 inputbox" type="number" id="noHeads" name="noHeads" value="<?php echo $noHeads; ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="regDate">Registration Date</label>
