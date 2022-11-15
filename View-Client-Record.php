@@ -1,10 +1,10 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
-    $clientID = $_GET['clientid'];
+    $clientID = $_GET['clientID'];
     if(empty($clientID)){
         $alertmessage = urlencode("Invalid link! Logging out...");
         header('Location: functions/logout.php?alertmessage='.$alertmessage);
@@ -15,7 +15,30 @@
         $clientID=mysqli_real_escape_string($conn,$clientID);
 
         //prepare sql statement before execution
-        $query="SELECT * FROM client WHERE clientID=? LIMIT 1";
+        $query="
+        SELECT 
+            clients.clientID,
+            clients.fName,
+            clients.mName,
+            clients.lName,
+            clients.birthdate,
+            clients.sex,
+            clients_addresses.Specific_add,
+            barangays.brgy_name,
+            clients.cNumber,
+            clients.email
+        FROM 
+            `clients`,
+            `clients_addresses`,
+            `barangays`
+        WHERE 
+            clients.clientID=?
+            AND
+            clients.addressID=clients_addresses.addressID
+            AND
+            clients_addresses.barangayID=barangays.barangayID
+        LIMIT 1;
+        ";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
@@ -28,13 +51,14 @@
             $result = mysqli_stmt_get_result($stmt);
             if(mysqli_num_rows($result)==1){
                 foreach ($result as $data):
-                    $client = $data['clientID'];
+                    $clientID = $data['clientID'];
                     $fName = $data['fName'];
                     $mName = $data['mName'];
                     $lName = $data['lName'];
                     $birthdate = $data['birthdate'];
                     $sex = $data['sex'];
-                    $barangay = $data['barangay'];
+                    $address = $data['Specific_add'];
+                    $barangay = $data['brgy_name'];
                     $cNumber = $data['cNumber'];
                     $email = $data['email'];
                 endforeach;
@@ -89,6 +113,10 @@
                                             <td class="largecell"><?php echo $sex; ?></td>
                                         </tr>
                                         <tr>
+                                            <td class="medcell">Address</td>
+                                            <td class="largecell"><?php echo $address; ?></td>
+                                        </tr>
+                                        <tr>
                                             <td class="medcell">Barangay</td>
                                             <td class="largecell"><?php echo $barangay; ?></td>
                                         </tr>
@@ -104,8 +132,8 @@
                                     </tbody>
                             </table>
                             </div>
-                            <a href="Update-Client-Form.php?clientid=<?php echo $clientID; ?>"><button class="btn btn-primary mt-1 w-50"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                            <a href="functions/delete-client.php?clientid=<?php echo $clientID; ?>"><button class="btn btn-danger mt-1 w-50"><i class="fa-solid fa-trash"></i> Delete</button></a>
+                            <a href="Update-Client-Form.php?clientID=<?php echo $clientID; ?>"><button class="btn btn-primary mt-1 w-50"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                            <a href="functions/delete-client.php?clientID=<?php echo $clientID; ?>"><button class="btn btn-danger mt-1 w-50"><i class="fa-solid fa-trash"></i> Delete</button></a>
                         </div>
                     </div>
                 </div>

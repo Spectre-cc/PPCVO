@@ -1,11 +1,11 @@
 <?php require('functions/config/config.php');?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
-    $animalID = $_GET['animalid'];
-    $clientID = $_GET['clientid'];
+    $animalID = $_GET['animalID'];
+    $clientID = $_GET['clientID'];
     $clientname = $_GET['clientname'];
     if(empty($animalID) || empty($clientID) || empty($clientname)){
         $alertmessage = urlencode("Invalid link! Logging out...");
@@ -21,33 +21,33 @@
         //prepare sql statement before execution
         $query="
             SELECT 
-                animal.name as 'name', 
-                animal.classificationID as 'classificationID',
-                classification.species  as 'species', 
-                classification.breed  as 'breed',
-                animal.color as 'color',
-                animal.sex as 'sex',
-                animal.birthdate as 'birthdate',
-                animal.noHeads as 'noHeads',
-                animal.regDate as 'regDate',
-                animal.regNumber as 'regNumber',
-                animal.animalID as 'animalID',
-                animal.clientID as 'clientID'
+                animals.name as 'name', 
+                animals.classificationID as 'classificationID',
+                classifications.species  as 'species', 
+                classifications.breed  as 'breed',
+                animals.color as 'color',
+                animals.sex as 'sex',
+                animals.birthdate as 'birthdate',
+                animals.noHeads as 'noHeads',
+                animals.regDate as 'regDate',
+                animals.regNumber as 'regNumber',
+                animals.animalID as 'animalID',
+                animals.clientID as 'clientID'
             FROM 
-                client, 
-                animal, 
-                classification 
+                clients, 
+                animals, 
+                classifications 
             WHERE 
-                animal.animalID = ?
+                animals.animalID = ?
                 AND 
-                animal.classificationID = classification.classificationID
+                animals.classificationID = classifications.classificationID
                 AND
-                animal.clientID  = ?
+                animals.clientID  = ?
         ";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
-            header('Location: View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID);
+            header('Location: View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID);
             exit();
         }
         else{
@@ -72,7 +72,8 @@
             }
             else{
                 $alertmessage = urlencode("Animal does not exist! ".$type);
-                header('Location: View-Client-List.php?alertmessage='.$alertmessage);
+                header('Location: View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID);
+                exit();
             }
         }
         mysqli_stmt_close($stmt);

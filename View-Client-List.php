@@ -1,10 +1,10 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
-  $query="SELECT clientID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM client ORDER BY name ASC";
+  $query="SELECT clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', fname FROM clients ORDER BY fullName ASC";
   $result = mysqli_query($conn,$query);
 ?>
 
@@ -43,17 +43,13 @@
                                     <tbody>
                                         <?php foreach($result as $data) : ?>
                                         <tr>
-                                            <td class="largecell"><?php echo $data['name']; ?></td>
+                                            <td class="largecell"><?php echo $data['fullName']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
-                                                <a href="View-Client-Record.php?clientid=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button></a>
-                                                <a href="View-Animals-Owned.php?clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $data['name']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
+                                                <a href="View-Client-Record.php?clientID=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button></a>
+                                                <a href="View-Animals-Owned.php?clientID=<?php echo $data['clientID']; ?>&clientname=<?php echo $data['fname']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
                                             </td>
                                         </tr>
-                                        <?php 
-                                        endforeach; 
-                                        mysqli_free_result($result);
-                                        mysqli_close($conn);
-                                        ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -97,15 +93,32 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="barangay">Barangay</label>                            
-                            <input class="form-control m-0 inputbox" type="text" id="barangay" name="barangay" placeholder="Enter barangay..." required>
+                            <label class="form-label m-0" for="address">Address (Optional)</label>                            
+                            <input class="form-control m-0 inputbox" type="text" id="address" name="address" placeholder="Enter address...">
                         </div>
                         <div class="form-group">
-                            <label for="" class="form-label m-0" for="cNumber">Contact Number</label>
+                            <label for="barangay" class="form-label m-0">Barangay</label>
+                            <input class="form-control m-0 inputbox" list="datalistOptions" id="barangay" name="barangay" placeholder="Enter barangay..." required>
+                                <datalist id="datalistOptions">
+                                <?php 
+                                    $query="SELECT brgy_name FROM barangays ORDER BY brgy_name ASC";
+                                    $result = mysqli_query($conn,$query);
+                                    foreach($result as $data) :
+                                ?>
+                                    <option value="<?php echo $data['brgy_name']; ?>">
+                                <?php 
+                                    endforeach; 
+                                    mysqli_free_result($result);
+                                    mysqli_close($conn);
+                                ?>
+                                </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label m-0" for="cNumber">Contact Number (Optional)</label>
                             <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="contactnumber">Email</label>
+                            <label class="form-label m-0" for="contactnumber">Email (Optional)</label>
                             <input class="form-control m-0 inputbox" type="email" id="email" name="email" placeholder="Enter email..." required>
                         </div>
                     </div>

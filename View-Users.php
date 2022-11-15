@@ -1,15 +1,15 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-admin.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
     $type = $_GET['type'];
     if($type == 'personnel'){
-        $query="SELECT * FROM user WHERE type='personnel'";
+        $query="SELECT 'userID','type', CONCAT(fName,' ',mName,' ',lName) as 'name', email, cNumber FROM user WHERE type='personnel'";
     }
     elseif($type == 'admin'){
-        $query="SELECT * FROM user WHERE type='admin'";
+        $query="SELECT 'userID','type', CONCAT(fName,' ',mName,' ',lName) as 'name', email, cNumber FROM user WHERE type='admin'";
     }
     else{
         $alertmessage = urlencode("Invalid link, Please Log In!");
@@ -42,9 +42,7 @@
                             <div class="container-fluid d-flex justify-content-start align-items-start overflow-scroll">
                                 <table class="table table-condensed table-bordered table-hover table-responsive text-start">
                                     <thead>
-                                        <th class="medcell text-bg-dark">First Name</th>
-                                        <th class="medcell text-bg-dark">Middle Name</th>
-                                        <th class="medcell text-bg-dark">Last Name</th>
+                                        <th class="largecell text-bg-dark">Name</th>
                                         <th class="medcell text-bg-dark">Email</th>
                                         <th class="largecell text-bg-dark">Contact Number</th>
                                         <th class="medcell bg-dark"></th>
@@ -52,9 +50,7 @@
                                     <tbody>
                                         <?php foreach($result as $data) : ?>
                                         <tr>
-                                            <td class="medcell"><?php echo $data['fName']; ?></td>
-                                            <td class="medcell"><?php echo $data['mName']; ?></td>
-                                            <td class="medcell"><?php echo $data['lName']; ?></td>
+                                            <td class="largecell"><?php echo $data['name']; ?></td>
                                             <td class="largecell"><?php echo $data['email']; ?></td>
                                             <td class="largecell"><?php echo $data['cNumber']; ?></td>
                                             <td class="med d-flex justify-content-center align-items-center" >
@@ -107,7 +103,7 @@
                             <input class="form-control m-0 inputbox" type="password" name="password" id="password" placeholder="Enter password..." required>
                         </div>
                         <div class="form-group">
-                            <label for="" class="form-label m-0" for="cNumber">Contact Number</label>
+                            <label for="" class="form-label m-0" for="cNumber">Contact Number (Optional)</label>
                             <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50" required>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-admin.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
     $userID = $_GET['userID'];
@@ -65,7 +65,7 @@
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <form method="POST" action="functions/update-user.php" class="container-fluid p-4 w-50 h-auto">
                         <div class="container text-center">
-                            <h2>Update Admin</h2>
+                            <h2>Update <?php echo $type; ?></h2>
                         </div>
                         <input type="hidden" name="userID" id="userID" value="<?php echo $userID; ?>">
                         <input type="hidden" name="type" id="type" value="<?php echo $type; ?>">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="mName">Middle Name</label>
-                            <input class="form-control m-0 inputbox" type="text" id="mName" name="mName" maxlength="45" placeholder="Enter middle name..." value="<?php echo $mName; ?>" required>
+                            <input class="form-control m-0 inputbox" type="text" id="mName" name="mName" maxlength="45" placeholder="Enter middle name..." value="<?php echo $mName; ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="lName">Last Name</label>

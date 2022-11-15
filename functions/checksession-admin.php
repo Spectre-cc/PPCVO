@@ -13,7 +13,7 @@ if(empty($userID) || empty($type) || empty($email)){
 else{
     if(empty($type) || $type != 'admin'){
         $alertmessage = urlencode("Invalid credentials, Please Log In!");
-        header('Location: Index.php?alertmessage='.$alertmessage);
+        header('Location: logout.php?alertmessage='.$alertmessage);
         exit();
     }
     else{ 
@@ -23,7 +23,7 @@ else{
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
-            header('Location: ../Index.php?alertmessage='.$alertmessage.'&type');
+            header('Location: logout.php?alertmessage='.$alertmessage);
             exit();
         }
         else{
@@ -35,7 +35,7 @@ else{
             }
             else{
                 $alertmessage = urlencode("Invalid credentials, Please Log In!");
-                header('Location: Index.php?alertmessage='.$alertmessage);
+                header('Location: logout.php?alertmessage='.$alertmessage);
                 exit();
             }
         }

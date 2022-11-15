@@ -86,7 +86,8 @@
     mysqli_close($conn);
   }
   else{
-    header('Location: ../Index.php');
+    $alertmessage = urlencode("Invalid link! Logging out...");
+    header('Location: logout.php?alertmessage='.$alertmessage);
     exit();
   }
 ?>

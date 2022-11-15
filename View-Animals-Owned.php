@@ -1,10 +1,10 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
-    $clientID = $_GET['clientid'];
+    $clientID = $_GET['clientID'];
     $clientname = $_GET['clientname'];
     if(empty($clientID) || empty($clientname)){
         $alertmessage = urlencode("Invalid link! Logging out...");
@@ -17,25 +17,25 @@
         //prepare sql statement before execution
         $query="
             SELECT 
-                animal.name as 'name', 
-                classification.species  as 'species', 
-                classification.breed  as 'breed',
-                animal.color as 'color',
-                animal.sex as 'sex',
-                animal.birthdate as 'birthdate',
-                animal.noHeads as 'noHeads',
-                animal.regDate as 'regDate',
-                animal.regNumber as 'regNumber',
-                animal.animalID as 'animalID',
-                animal.clientID as 'clientID'
+                animals.name as 'name', 
+                classifications.species  as 'species', 
+                classifications.breed  as 'breed',
+                animals.color as 'color',
+                animals.sex as 'sex',
+                animals.birthdate as 'birthdate',
+                animals.noHeads as 'noHeads',
+                animals.regDate as 'regDate',
+                animals.regNumber as 'regNumber',
+                animals.animalID as 'animalID',
+                animals.clientID as 'clientID'
             FROM 
-                client, 
-                animal, 
-                classification 
+                clients, 
+                animals, 
+                classifications
             WHERE 
-                animal.clientID  = ?
+                animals.clientID  = ?
                 AND 
-                animal.classificationID = classification.classificationID
+                animals.classificationID = classifications.classificationID
         ";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
@@ -107,9 +107,9 @@
                                             <td class="medcell"><?php echo $dateofregistration = $data['regDate']; ?></td>
                                             <td class="medcell"><?php echo $data['regNumber']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
-                                                <a href="Update-Animal-Form.php?animalid=<?php echo $data['animalID']; ?>&clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                <a href="View-Health-History.php?animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $data['name']; ?>&type=Animal%20Health"><button class="btn btn-primary mx-1"><i class="fa-solid fa-notes-medical"></i> View Health History</button> 
-                                                <a href="functions/delete-animal.php?animalid=<?php echo $data['animalID']; ?>&clientid=<?php echo $data['clientID']; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
+                                                <a href="Update-Animal-Form.php?animalID=<?php echo $data['animalID']; ?>&clientID=<?php echo $data['clientID']; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                <a href="View-Health-History.php?animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $data['name']; ?>&type=Animal%20Health"><button class="btn btn-primary mx-1"><i class="fa-solid fa-notes-medical"></i> View Health History</button> 
+                                                <a href="functions/delete-animal.php?animalID=<?php echo $data['animalID']; ?>&clientID=<?php echo $data['clientID']; ?>&clientname=<?php echo $clientname; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <?php 

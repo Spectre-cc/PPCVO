@@ -1,8 +1,8 @@
 <?php
   if($_SESSION['type']='personnel' && $_SESSION['isloggedin']=true){
 
-    $animalID = $_GET['animalid'];
-    $clientID = $_GET['clientid'];
+    $animalID = $_GET['animalID'];
+    $clientID = $_GET['clientID'];
     $clientname = $_GET['clientname'];
     if(empty($clientID) || empty($animalID) || empty($clientname)){
         $alertmessage = urlencode("Invalid link! Logging out...");
@@ -26,13 +26,15 @@
 
       if(!mysqli_stmt_prepare($stmt, $query)){
           $alertmessage = urlencode("SQL error!");
-          header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+          header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&clientname='.$clientname);
+          exit();
       }
       else{
           mysqli_stmt_bind_param($stmt, "ii", $animalID, $clientID);
           mysqli_stmt_execute($stmt);
           $alertmessage = urlencode("Animal record has been deleted!");
-          header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientid='.$clientID.'&clientname='.$clientname);
+          header('Location: ../View-Animals-Owned.php?alertmessage='.$alertmessage.'&clientID='.$clientID.'&clientname='.$clientname);
+          exit();
       }
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
