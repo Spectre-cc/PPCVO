@@ -4,6 +4,8 @@
     $animalID = $_GET['animalID'];
     $clientID = $_GET['clientID'];
     $clientname = $_GET['clientname'];
+    session_start();
+    $_SESSION["alert"]=true;
     if(empty($clientID) || empty($animalID) || empty($clientname)){
         $alertmessage = urlencode("Invalid link! Logging out...");
         header('Location: logout.php?alertmessage'.$alertmessage);

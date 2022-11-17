@@ -5,6 +5,8 @@
 
     $userID = $_GET['userID'];
     $type = $_GET['type'];
+    session_start();
+    $_SESSION["alert"]=true;
     if(empty($userID) && empty($type)){
         $alertmessage = urlencode("Invalid link! Logging out...");
         header('Location: logout.php?alertmessage'.$alertmessage);

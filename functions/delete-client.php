@@ -1,5 +1,7 @@
 <?php
   $clientID = $_GET['clientID'];
+  session_start();
+  $_SESSION["alert"]=true;
   if(empty($clientID)){
     $alertmessage = urlencode("Invalid link! Logging out...");
     header('Location: logout.php?alertmessage'.$alertmessage);

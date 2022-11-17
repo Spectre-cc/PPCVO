@@ -20,6 +20,9 @@
     $clientID=mysqli_real_escape_string($conn,$_POST['clientID']);
     $clientname=mysqli_real_escape_string($conn,$_POST['clientname']);
 
+    session_start();
+    $_SESSION["alert"]=true;
+
     //check if animal already exist
     $query = "SELECT * FROM animals WHERE name=? AND clientID=? AND NOT animalID=?"; 
     $stmt = mysqli_stmt_init($conn);

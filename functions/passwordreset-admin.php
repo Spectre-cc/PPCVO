@@ -11,6 +11,8 @@
 
         //input
         $email = $_POST['email'];
+        session_start();
+        $_SESSION["alert"]=true;
 
         //check if email exist in database
         //prepare statement before execution

@@ -10,6 +10,8 @@
     $lName=mysqli_real_escape_string($conn,$_POST['lName']);
     $licenseNo=mysqli_real_escape_string($conn,$_POST['licenseNo']);
     $designation=mysqli_real_escape_string($conn,$_POST['designation']);
+    session_start();
+    $_SESSION["alert"]=true;
 
     //Check if record already exists
     $query = "SELECT licenseNo FROM personnel WHERE licenseNo=?";

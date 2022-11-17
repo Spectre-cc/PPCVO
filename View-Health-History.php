@@ -1,22 +1,26 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
-    $animalID = $_GET['animalid'];
+    $animalID = $_GET['animalID'];
     $animalname = $_GET['animalname'];
-    $type = urldecode($_GET['type']);
+    $type = $_GET['type'];
 
     switch ($type) {
         case "Animal Health":
             $modalSelect = "AH";
+            $ctID=1;
             break;
         case "Vaccination":
             $modalSelect = "V";
+            $ctID=2;
             break;
         case "Routine Service":
             $modalSelect = "RS";
+            $ctID=3;
+            $transaction="field";
             break;
         default:
             $alertmessage = urlencode("Invalid link! Logging out...");
@@ -37,74 +41,88 @@
         //prepare sql statement before execution
         if($type=="Animal Health"){
             $query="
-            SELECT
-                medicalhistory.medicalhistoryID as 'mhID',
-                medicalhistory.date as 'date',
-                medicalhistory.type as 'type',
-                medicalhistory.clinicalSign as 'clinicalSign',
-                medicalhistory.tentativeDiagnosis as 'tentativeDiagnosis',
-                medicalhistory.prescription as 'prescription',
-                medicalhistory.treatment as 'treatment',
-                medicalhistory.remarks as 'remarks',
-                CONCAT(veterinarian.fName, ' ', veterinarian.mName, ' ', veterinarian.lName) as 'veterinarian',
-                medicalhistory.animalID as 'animalID'
+            SELECT 
+                walk_in_transactions.consultationID,
+                walk_in_transactions.date,
+                consultation_types.Type_Description,
+                walk_in_transactions.clinicalSign,
+                walk_in_transactions.tentativeDiagnosis,
+                walk_in_transactions.prescription,
+                walk_in_transactions.treatment,
+                walk_in_transactions.remarks,
+                CONCAT(personnel.fName, ' ', personnel.mName, ' ', personnel.lName) as 'veterinarian',
+                walk_in_transactions.animalID
             FROM 
-                medicalhistory, 
-                veterinarian
+                walk_in_transactions,
+                consultation_types,
+                personnel
             WHERE 
-                medicalhistory.type=?
+                walk_in_transactions.ctID=1
                 AND
-                medicalhistory.animalID=?
+                consultation_types.Type_Description=?
                 AND
-                medicalhistory.vetID=veterinarian.vetID
+                walk_in_transactions.animalID=?
+                AND
+                walk_in_transactions.personnelID=personnel.personnelID
+            ORDER BY 
+                walk_in_transactions.date DESC;
             ";
         }elseif($type=="Vaccination"){
-            $query="
-            SELECT
-                medicalhistory.medicalhistoryID as 'mhID',
-                medicalhistory.date as 'date',
-                medicalhistory.type as 'type',
-                medicalhistory.disease as 'disease',
-                vaccine.name as 'name',
-                vaccine.batchNumber as 'batchNumber',
-                vaccine.source as 'source',
-                medicalhistory.remarks as 'remarks',
-                CONCAT(veterinarian.fName, ' ', veterinarian.mName, ' ', veterinarian.lName) as 'veterinarian',
-                medicalhistory.animalID as 'animalID'
-            FROM 
-                medicalhistory, 
-                vaccine, 
-                veterinarian
-            WHERE 
-                medicalhistory.type=?
-                AND
-                medicalhistory.animalID=?
-                AND
-                medicalhistory.vaccineID=vaccine.vaccineID
-                AND
-                medicalhistory.vetID=veterinarian.vetID
-            ";
+                $query="
+                SELECT
+                    walk_in_transactions.date,
+                    walk_in_transactions.consultationID,
+                    consultation_types.Type_Description,
+                    walk_in_transactions.disease,
+                    walk_in_transactions.vaccineID,
+                    vaccines.name,
+                    vaccines.batchNumber,
+                    vaccines.source,
+                    walk_in_transactions.remarks,
+                    CONCAT(personnel.fName, ' ', personnel.mName, ' ', personnel.lName) as 'veterinarian',
+                    walk_in_transactions.animalID
+                FROM 
+                    walk_in_transactions, 
+                    consultation_types,
+                    vaccines, 
+                    personnel
+                WHERE 
+                    walk_in_transactions.ctID=2
+                    AND
+                    consultation_types.Type_Description=?
+                    AND
+                    walk_in_transactions.animalID=?
+                    AND
+                    walk_in_transactions.vaccineID=vaccines.vaccineID
+                    AND
+                    walk_in_transactions.personnelID=personnel.personnelID
+                ";
         }elseif($type=="Routine Service"){
             $query="
-            SELECT
-                medicalhistory.medicalhistoryID as 'mhID',
-                medicalhistory.date as 'date',
-                medicalhistory.type as 'type',
-                medicalhistory.clinicalSign as 'clinicalSign',
-                medicalhistory.activity as 'activity',
-                medicalhistory.medication as 'medication',
-                medicalhistory.remarks as 'remarks',
-                CONCAT(veterinarian.fName, ' ', veterinarian.mName, ' ', veterinarian.lName) as 'veterinarian',
-                medicalhistory.animalID as 'animalID'
+            SELECT 
+                field_visititations.consultationID,
+                field_visititations.date,
+                consultation_types.Type_Description,
+                field_visititations.clinicalSign,
+                field_visititations.activity,
+                field_visititations.medication,
+                field_visititations.remarks,
+                CONCAT(personnel.fName, ' ', personnel.mName, ' ', personnel.lName) as 'veterinarian',
+                field_visititations.animalID
             FROM 
-                medicalhistory, 
-                veterinarian
+                field_visititations,
+                consultation_types,
+                personnel
             WHERE 
-                medicalhistory.type=?
+                field_visititations.ctID=3
                 AND
-                medicalhistory.animalID=?
+                consultation_types.Type_Description=?
                 AND
-                medicalhistory.vetID=veterinarian.vetID
+                field_visititations.animalID=?
+                AND
+                field_visititations.personnelID=personnel.personnelID
+            ORDER BY 
+                field_visititations.date DESC;
             ";
         }
         
@@ -143,9 +161,9 @@
                                     <?php echo $type?>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="View-Health-History.php?animalid=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Animal%20Health">Animal Health</a></li>
-                                    <li><a class="dropdown-item" href="View-Health-History.php?animalid=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Vaccination">Vaccination</a></li>
-                                    <li><a class="dropdown-item" href="View-Health-History.php?animalid=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Routine%20Service">Routine Sevice</a></li>
+                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Animal%20Health">Animal Health</a></li>
+                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Vaccination">Vaccination</a></li>
+                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Routine%20Service">Routine Sevice</a></li>
                                 </ul>
                             </div>
                             <div class="container-fluid text-center mb-2">
@@ -175,8 +193,8 @@
                                                 <td class="largecell celltextsmall"><?php echo $data['remarks']; ?></td>
                                                 <td class="medcell"><?php echo $data['veterinarian']; ?></td>
                                                 <td class="largecell d-flex justify-content-center align-items-center" >
-                                                    <a href="Update-Health-History-Form.php?mhid=<?php echo $data['mhID']; ?>&animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                    <a href="functions/delete-mh.php?mhid=<?php echo $data['mhID']; ?>&animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
+                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
                                             <?php 
@@ -209,14 +227,12 @@
                                                 <td class="largecell celltextsmall"><?php echo $data['remarks']; ?></td>
                                                 <td class="medcell"><?php echo $data['veterinarian']; ?></td>
                                                 <td class="largecell d-flex justify-content-center align-items-center" >
-                                                    <a href="Update-Health-History-Form.php?mhid=<?php echo $data['mhID']; ?>&animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                    <a href="functions/delete-mh.php?mhid=<?php echo $data['mhID']; ?>&animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
+                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&vaccineID=<?php echo $data['vaccineID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&vaccineID=<?php echo $data['vaccineID']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
-                                            <?php 
-                                                endforeach;
-                                            ?>
-                                        </tbody>
+                                            <?php endforeach; ?>
+                                        </tbody> 
                                     </table>
                                 </div>
                             <?php }elseif($type=="Routine Service"){?> 
@@ -241,13 +257,11 @@
                                                 <td class="largecell celltextsmall"><?php echo $data['remarks']; ?></td>
                                                 <td class="medcell"><?php echo $data['veterinarian']; ?></td>
                                                 <td class="largecell d-flex justify-content-center align-items-center" >
-                                                    <a href="Update-Health-History-Form.php?mhid=<?php echo $data['mhID']; ?>&animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                    <a href="functions/delete-mh.php?mhid=<?php echo $data['mhID']; ?>&animalid=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['type']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
+                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
-                                            <?php 
-                                                endforeach;
-                                            ?>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -275,6 +289,7 @@
                 </div>
                 <form method="POST" action="functions/add-mh.php">
                     <div class="modal-body">
+                        <input type="hidden" name="ctID" value="<?php echo $ctID; ?>">
                         <input type="hidden" name="type" value="<?php echo $type; ?>">
                         <input type="hidden" name="animalID" value="<?php echo $animalID; ?>">
                         <input type="hidden" name="animalname" value="<?php echo $animalname; ?>">
@@ -303,14 +318,15 @@
                             <textarea name="remarks" id="remarks" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="vetID">Veterinarian</label>
-                            <select class="form-select m-0 inputbox" id="vetID" name="vetID">   
+                            <label class="form-label m-0" for="personnelID">Veterinarian</label>
+                            <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
+                                <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT vetID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM veterinarian ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
-                                    <option value="<?php echo $data['vetID']; ?>"><?php echo $data['name']; ?></option>
+                                    <option value="<?php echo $data['personnelID']; ?>"><?php echo $data['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -332,6 +348,7 @@
                 </div>
                 <form method="POST" action="functions/add-mh.php">
                     <div class="modal-body">
+                        <input type="hidden" name="ctID" value="<?php echo $ctID; ?>">
                         <input type="hidden" name="type" value="<?php echo $type; ?>">
                         <input type="hidden" name="animalID" value="<?php echo $animalID; ?>">
                         <input type="hidden" name="animalname" value="<?php echo $animalname; ?>">
@@ -349,7 +366,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="batchNumber">Batch/Lot No.</label>
-                            <input class="form-control m-0 inputbox" type="text" name="batchNumber" id="batchNumber" placeholder="...">
+                            <input class="form-control m-0 inputbox" type="number" name="batchNumber" id="batchNumber" placeholder="...">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="vaccineSource">Vaccine Source</label>
@@ -360,21 +377,22 @@
                             <textarea name="remarks" id="remarks" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="vetID">Veterinarian</label>
-                            <select class="form-select m-0 inputbox" id="vetID" name="vetID">   
+                            <label class="form-label m-0" for="personnelID">Veterinarian</label>
+                            <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
+                                <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT vetID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM veterinarian ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
-                                    <option value="<?php echo $data['vetID']; ?>"><?php echo $data['name']; ?></option>
+                                    <option value="<?php echo $data['personnelID']; ?>"><?php echo $data['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center align-items-center">
-                        <button class="btn btn-success w-25" type="submit" id="add-mh" name="add-mh"><i class="fa-solid fa-plus"></i> Add</button>
-                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        <div class="modal-footer d-flex justify-content-center align-items-center">
+                            <button class="btn btn-success w-25" type="submit" id="add-mh" name="add-mh"><i class="fa-solid fa-plus"></i> Add</button>
+                            <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -389,9 +407,25 @@
                 </div>
                 <form method="POST" action="functions/add-mh.php">
                     <div class="modal-body">
+                        <input type="hidden" name="ctID" value="<?php echo $ctID; ?>">
                         <input type="hidden" name="type" value="<?php echo $type; ?>">
                         <input type="hidden" name="animalID" value="<?php echo $animalID; ?>">
                         <input type="hidden" name="animalname" value="<?php echo $animalname; ?>">
+                        <div class="form-group">
+                            <label for="barangay" class="form-label m-0">Barangay</label>
+                            <input class="form-control m-0 inputbox" list="datalistOptions" id="barangay" name="barangay" placeholder="Enter barangay..." required>
+                                <datalist id="datalistOptions">
+                                <?php 
+                                    $query="SELECT brgy_name FROM barangays ORDER BY brgy_name ASC";
+                                    $result = mysqli_query($conn,$query);
+                                    foreach($result as $data) :
+                                ?>
+                                    <option value="<?php echo $data['brgy_name']; ?>">
+                                <?php 
+                                    endforeach; 
+                                ?>
+                                </datalist>
+                        </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="date">Date</label>
                             <input class="form-control m-0 inputbox" type="date" id="date" name="date" required>
@@ -413,14 +447,15 @@
                             <textarea name="remarks" id="remarks" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="vetID">Veterinarian</label>
-                            <select class="form-select m-0 inputbox" id="vetID" name="vetID">   
+                            <label class="form-label m-0" for="personnelID">Veterinarian</label>
+                            <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
+                                <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT vetID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM veterinarian ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
-                                    <option value="<?php echo $data['vetID']; ?>"><?php echo $data['name']; ?></option>
+                                    <option value="<?php echo $data['personnelID']; ?>"><?php echo $data['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

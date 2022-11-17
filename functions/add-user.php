@@ -12,6 +12,8 @@
     $password=mysqli_real_escape_string($conn,$_POST['password']);
     $type=mysqli_real_escape_string($conn,$_POST['type']);
     $cNumber=mysqli_real_escape_string($conn,$_POST['cNumber']);
+    session_start();
+    $_SESSION["alert"]=true;
 
     //check if email is already used
     $query = "SELECT * FROM user WHERE email=? AND type=?"; 

@@ -16,6 +16,7 @@
     $barangay=mysqli_real_escape_string($conn,$_POST['barangay']);
     $cNumber=mysqli_real_escape_string($conn,$_POST['cNumber']);
     $email=mysqli_real_escape_string($conn,$_POST['email']);
+    
     session_start();
     $_SESSION["alert"]=true;
 

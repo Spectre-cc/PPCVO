@@ -5,6 +5,8 @@
 
       //input
       $personnelID=mysqli_real_escape_string($conn,$_GET['personnelID']);
+      session_start();
+      $_SESSION["alert"]=true;
       
       //delete input into database
       //prepare sql statement before execution

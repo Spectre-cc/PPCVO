@@ -16,6 +16,8 @@
     $regNumber=mysqli_real_escape_string($conn,$_POST['regNumber']);
     $clientID=mysqli_real_escape_string($conn,$_POST['clientID']);
     $clientname=mysqli_real_escape_string($conn,$_POST['clientname']);
+    session_start();
+    $_SESSION["alert"]=true;
   
     //check if animal already exist
     $query = "SELECT * FROM animals WHERE name=? AND clientID=?"; 

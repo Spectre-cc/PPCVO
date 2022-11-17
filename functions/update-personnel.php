@@ -12,6 +12,9 @@
     $licenseNo=mysqli_real_escape_string($conn,$_POST['licenseNo']);
     $designation=mysqli_real_escape_string($conn,$_POST['designation']);
 
+    session_start();
+    $_SESSION["alert"]=true;
+
     //check veterinarian record already exist
     $query = "SELECT * FROM personnel WHERE licenseNo=? AND NOT personnelID=?"; 
     $stmt = mysqli_stmt_init($conn);
