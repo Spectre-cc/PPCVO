@@ -57,7 +57,7 @@
       $vaccineID=mysqli_real_escape_string($conn,$_POST['vaccineID']);
       $consultationID=mysqli_real_escape_string($conn,$_POST['consultationID']);
       $date=mysqli_real_escape_string($conn,$_POST['date']);
-      $disease=mysqli_real_escape_string($conn,$_POST['clinicalSign']);
+      $disease=mysqli_real_escape_string($conn,$_POST['disease']);
       $vaccineUsed=mysqli_real_escape_string($conn,$_POST['vaccineUsed']);
       $batchNumber=mysqli_real_escape_string($conn,$_POST['batchNumber']);
       $vaccineSource=mysqli_real_escape_string($conn,$_POST['vaccineSource']);
