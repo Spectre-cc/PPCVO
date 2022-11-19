@@ -1,11 +1,14 @@
 <?php
 
 if(isset($_GET['alertmessage'])){
-    echo '
-    <script>
-    alert("'.$_GET['alertmessage'].'")
-    </script>
-    ';
+    if($_SESSION["alert"]==true){
+        echo '
+        <script>
+        alert("'.$_GET['alertmessage'].'")
+        </script>
+        ';
+        $_SESSION["alert"]=false;
+    }
 }
 
 ?>

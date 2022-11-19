@@ -31,6 +31,7 @@
             $_SESSION['userID'] = $row['userID'];
             $_SESSION['type'] = $row['type'];
             $_SESSION['email'] = $row['email'];
+            $_SESSION["alert"]=false;
             header('Location: ../Analytics.php');
             exit();
           }
@@ -55,7 +56,8 @@
     mysqli_close($conn);
   }
   else{
-    header('Location: ../Index.php');
+    $alertmessage = urlencode("Invalid link! Logging out...");
+    header('Location: logout.php?alertmessage='.$alertmessage);
     exit();
   }
 ?>

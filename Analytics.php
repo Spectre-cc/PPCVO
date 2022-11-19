@@ -1,7 +1,7 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-admin.php'); ?>
+<?php include('functions/alert.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

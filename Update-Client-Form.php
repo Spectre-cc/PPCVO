@@ -1,21 +1,45 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php 
-    $clientid = $_GET['clientid'];
-    if(empty($clientid)){
+    $clientID = $_GET['clientID'];
+    if(empty($clientID)){
         $alertmessage = urlencode("Invalid link! Logging out...");
-        header('Location: logout.php?alertmessage='.$alertmessage);
+        header('Location: functions/logout.php?alertmessage='.$alertmessage);
         exit();
     }
     else{
         //input
-        $clientid=mysqli_real_escape_string($conn,$clientid);
+        $clientID=mysqli_real_escape_string($conn,$clientID);
 
         //prepare sql statement before execution
-        $query="SELECT * FROM client WHERE clientID=?";
+        $query="
+        SELECT 
+            clients.clientID,
+            clients.fName,
+            clients.mName,
+            clients.lName,
+            clients.birthdate,
+            clients.sex,
+            clients.addressID,
+            clients_addresses.Specific_add,
+            barangays.brgy_name,
+            clients.cNumber,
+            clients.email
+        FROM 
+            `clients`,
+            `clients_addresses`,
+            `barangays`
+        WHERE 
+            clients.clientID=?
+            AND
+            clients.addressID=clients_addresses.addressID
+            AND
+            clients_addresses.barangayID=barangays.barangayID
+        LIMIT 1;
+        ";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
@@ -23,17 +47,21 @@
             exit();
         }
         else{
-            mysqli_stmt_bind_param($stmt, "s", $clientid);
+            mysqli_stmt_bind_param($stmt, "i", $clientID);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if(mysqli_num_rows($result)==1){
                 foreach ($result as $data):
-                    $clientid = $data['clientID'];
-                    $name = $data['name'];
+                    $addressID = $data['addressID'];
+                    $clientID = $data['clientID'];
+                    $fName = $data['fName'];
+                    $mName = $data['mName'];
+                    $lName = $data['lName'];
                     $birthdate = $data['birthdate'];
                     $sex = $data['sex'];
-                    $barangay = $data['barangay'];
-                    $contactnumber = $data['contactNumber'];
+                    $address = $data['Specific_add'];
+                    $barangay = $data['brgy_name'];
+                    $cNumber = $data['cNumber'];
                     $email = $data['email'];
                 endforeach;
             }
@@ -42,8 +70,6 @@
                 header('Location: View-Client-List.php?alertmessage='.$alertmessage);
             }
         }
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
     } 
 ?>
 
@@ -63,10 +89,19 @@
                         <div class="container text-center">
                             <h2>Update Client</h2>
                         </div>
-                        <input type="hidden" name="clientid" id="clientid" value="<?php echo $clientid; ?>">
+                        <input type="hidden" name="clientID" id="clientID" value="<?php echo $clientID; ?>">
+                        <input type="hidden" name="addressID" id="addressID" value="<?php echo $addressID; ?>">
                         <div class="form-group">
-                            <label class="form-label m-0" for="name">Name</label>
-                            <input class="form-control m-0 inputbox" type="text" id="name" name="name" value="<?php echo $name; ?>" required>
+                            <label class="form-label m-0" for="fName">First Name</label>
+                            <input class="form-control m-0 inputbox" type="text" id="fName" name="fName" maxlength="45" placeholder="Enter first name..." value="<?php echo $fName; ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="mName">Middle Name</label>
+                            <input class="form-control m-0 inputbox" type="text" id="mName" name="mName" maxlength="45" placeholder="Enter middle name..." value="<?php echo $mName; ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="lName">Last Name</label>
+                            <input class="form-control m-0 inputbox" type="text" id="lName" name="lName" maxlength="45" placeholder="Enter last name..." value="<?php echo $lName; ?>" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="birthdate">Birthdate</label>
@@ -74,22 +109,59 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="sex">Sex</label>
-                            <input class="form-control m-0 inputbox" type="text" id="sex" name="sex" value="<?php echo $sex; ?>" required>
+                            <select class="form-select m-0 inputbox" id="sex" name="sex">
+                                <?php if($sex=="Male"){?>
+                                    <option value="Male" selected>Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                <?php }elseif($sex=="Female"){ ?>
+                                    <option value="Male">Male</option>
+                                    <option value="Female" selected>Female</option>
+                                    <option value="Other">Other</option>
+                                <?php }elseif($sex=="Other"){ ?>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other" selected>Other</option>
+                                <?php 
+                                    }else{
+                                    $alertmessage = urlencode("Invalid link! Logging out...");
+                                    header('Location: functions/logout.php?alertmessage='.$alertmessage);
+                                    exit();  
+                                    }  
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="barangay">Barangay</label>
-                            <input class="form-control m-0 inputbox" type="text" id="barangay" name="barangay" value="<?php echo $barangay; ?>" required>
+                            <label class="form-label m-0" for="address">Address</label>
+                            <input class="form-control m-0 inputbox" type="text" id="address" name="address" value="<?php echo $address; ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="contactnumber">Contact Number</label>
-                            <input class="form-control m-0 inputbox" type="text" id="contactnumber" name="contactnumber" value="<?php echo $contactnumber; ?>" required>
+                            <label for="barangay" class="form-label m-0">Barangay</label>
+                            <input class="form-control m-0 inputbox" list="datalistOptions" id="barangay" name="barangay" value="<?php echo $barangay; ?>" placeholder="Enter barangay..." required>
+                                <datalist id="datalistOptions">
+                                <?php 
+                                    $query="SELECT brgy_name FROM barangays ORDER BY brgy_name ASC";
+                                    $result = mysqli_query($conn,$query);
+                                    foreach($result as $data) :
+                                ?>
+                                    <option value="<?php echo $data['brgy_name']; ?>">
+                                <?php 
+                                    endforeach; 
+                                    mysqli_free_result($result);
+                                    mysqli_close($conn);
+                                ?>
+                                </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label m-0" for="cNumber">Contact Number</label>
+                            <input class="form-control m-0 inputbox" type="text" id="cNumber" name="cNumber" value="<?php echo $cNumber; ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="contactnumber">Email</label>
-                            <input class="form-control m-0 inputbox" type="email" id="email" name="email" value="<?php echo $email; ?>" required>
+                            <input class="form-control m-0 inputbox" type="email" id="email" name="email" value="<?php echo $email; ?>">
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-success w-50" type="submit" id="update-client" name="update-client" value="Accept">
+                            <button class="btn btn-primary w-50" type="submit" id="update-client" name="update-client"><i class="fa-solid fa-pen-to-square"></i> Update</button>
                         </div>
                     </form>
                 </div>

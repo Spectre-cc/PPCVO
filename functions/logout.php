@@ -2,5 +2,9 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: ../Index.php');
+if(empty($alert=$_GET['alertmessage'])){
+    header('Location: ../Index.php');
+}else{
+    header('Location: ../Index.php?alertmessage='.urlencode($alert));
+}
 ?>

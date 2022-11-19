@@ -8,6 +8,9 @@ if(isset($_POST['send'])){
     require('config/config.php');
     require('config/db.php');
 
+    session_start();
+    $_SESSION["alert"]=true;
+
     //Declare recipient variable
     $recepient = $_POST['recipient'];
 

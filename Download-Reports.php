@@ -1,7 +1,7 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
 <?php include('functions/checksession-personel.php'); ?>
+<?php include('functions/alert.php'); ?>
 
 <?php
     $type = "";
@@ -15,30 +15,50 @@
             $query="
             /*Select columns*/
             SELECT 
-            /*Client Information*/
-            client.barangay AS 'barangay', client.name AS 'clientName', client.sex AS 'gender', client.birthdate 'clientBirthdate', client.contactNumber AS 'contactNumber', 
-
-            /*Animal Information*/
-            animal.species AS 'species', animal.sex AS 'sex', animal.birthdate AS 'animalBirthdate',
-
-            /*MH Information*/
-            medicalhistory.clinicalSign AS 'clinicalSign', medicalhistory.remarks AS 'remarks' 
-
+                /*Client Information*/
+                barangays.brgy_name AS 'barangay', 
+                CONCAT(clients.fName, ' ', clients.mName, ' ', clients.lName) as 'clientName', 
+                clients.sex AS 'gender', 
+                clients.birthdate 'clientBirthdate', 
+                clients.cNumber AS 'contactNumber', 
+            
+                /*Animal Information*/
+                classifications.species AS 'species', 
+                animals.sex AS 'sex', 
+                animals.birthdate AS 'animalBirthdate',
+            
+                /*MH Information*/
+                walk_in_transactions.clinicalSign AS 'clinicalSign', 
+                walk_in_transactions.remarks AS 'remarks' 
+            
             /*Specify tables to retrieve columns*/
-            FROM client, animal, medicalhistory
-
+            FROM 
+                clients, 
+                clients_addresses, 
+                barangays, 
+                animals, 
+                classifications, 
+                walk_in_transactions
+            
             /*Specify conditions on column selection*/
             WHERE 
-                medicalhistory.type = 'animal health' 
+                walk_in_transactions.ctID = 1
                 AND
-                client.clientID = animal.clientID 
+                clients.addressID = clients_addresses.addressID
                 AND
-                animal.animalID = medicalhistory.animalID
+                clients_addresses.barangayID = barangays.barangayID
                 AND
-                (medicalhistory.date BETWEEN ? AND ?) 
-                
+                clients.clientID = animals.clientID 
+                AND
+                animals.classificationID = classifications.classificationID
+                AND
+                animals.animalID = walk_in_transactions.animalID
+                AND
+                (walk_in_transactions.date BETWEEN ? AND ?) 
+                            
             /*Order records in ASC order based on client's barangay*/
-            ORDER BY client.barangay ASC;
+            ORDER BY 
+                barangays.brgy_name ASC;
             ";
         }
         elseif($type == "Vaccination"){
@@ -48,33 +68,63 @@
             /*Select columns*/
             SELECT
 
-            /*Record date*/
-            medicalhistory.date AS 'date',
+                /*Record date*/
+                walk_in_transactions    .date AS 'date',
 
-            /*Client Information*/
-            client.barangay AS 'barangay', client.name AS 'clientName', client.sex AS 'gender', client.birthdate AS 'clientBirthdate', client.contactNumber AS 'contactNumber', 
+                /*Client Information*/
+                barangays.brgy_name AS 'barangay', 
+                CONCAT(clients.fName, ' ', clients.mName, ' ', clients.lName) as 'clientName', 
+                clients.sex AS 'gender', 
+                clients.birthdate 'clientBirthdate', 
+                clients.cNumber AS 'contactNumber',  
 
-            /*Animal Information*/
-            animal.species AS 'species', animal.sex AS 'sex', animal.birthdate AS 'animalBirthdate', animal.registrationNumber AS 'registrationNumber', animal.numberHeads AS 'numberHeads', animal.color AS 'color', animal.name AS 'animalName',
+                /*Animal Information*/
+                classifications.species AS 'species', 
+                animals.sex AS 'sex', 
+                animals.birthdate AS 'animalBirthdate', 
+                animals.regNumber AS 'registrationNumber', 
+                animals.noHeads AS 'numberHeads', 
+                animals.color AS 'color', 
+                animals.name AS 'animalName',
 
-            /*MH Information*/
-            medicalhistory.disease AS 'disease', medicalhistory.vaccineUsed AS 'vaccineUsed', medicalhistory.batchNumber AS 'batchNumber', medicalhistory.remarks AS 'remarks'
+                /*MH Information*/
+                walk_in_transactions.disease AS 'disease', 
+                vaccines.name AS 'vaccineUsed', 
+                vaccines.batchNumber AS 'batchNumber', 
+                vaccines.source AS 'vaccineSource', 
+                walk_in_transactions.remarks AS 'remarks'
 
             /*Specify tables to retrieve columns*/
-            FROM client, animal, medicalhistory
+            FROM 
+                clients, 
+                clients_addresses, 
+                barangays, 
+                animals, 
+                classifications, 
+                walk_in_transactions,
+                vaccines
 
             /*Specify conditions on column selection*/
             WHERE 
-                medicalhistory.type = 'vaccination' 
+                walk_in_transactions.ctID = 2
                 AND
-                client.clientID = animal.clientID 
+                clients.addressID = clients_addresses.addressID
                 AND
-                animal.animalID = medicalhistory.animalID
+                clients_addresses.barangayID = barangays.barangayID
                 AND
-                (medicalhistory.date BETWEEN ? AND ?) 
-                
+                clients.clientID = animals.clientID 
+                AND
+                animals.classificationID = classifications.classificationID
+                AND
+                animals.animalID = walk_in_transactions.animalID
+                AND
+                walk_in_transactions.vaccineID = vaccines.vaccineID
+                AND
+                (walk_in_transactions.date BETWEEN ? AND ?)  
+                            
             /*Order records in ASC order based on medical history date*/
-            ORDER BY medicalhistory.date ASC;
+            ORDER BY 
+                walk_in_transactions.date ASC;
             ";
         }
         elseif($type == "Routine Service"){
@@ -82,34 +132,58 @@
             $query="
             /*Select columns*/
             SELECT
-
-            /*Record date*/
-            medicalhistory.date AS 'date',
-
-            /*Client Information*/
-            client.barangay AS 'barangay', client.name AS 'clientName', client.sex AS 'gender', client.birthdate AS 'clientBirthdate', client.contactNumber AS 'contactNumber', 
-
-            /*Animal Information*/
-            animal.species AS 'species', animal.sex AS 'sex', animal.birthdate AS 'animalBirthdate', animal.name AS 'animalName', animal.numberHeads AS 'numberHeads', animal.registrationNumber AS 'registrationNumber', 
-
-            /*MH Information*/
-            medicalhistory.activity AS 'activity', medicalhistory.medication AS 'medication', medicalhistory.remarks AS 'remarks'
-
+            
+                /*Record date*/
+                field_visititations.date AS 'date',
+            
+                /*Client Information*/
+                barangays.brgy_name AS 'barangay', 
+                CONCAT(clients.fName, ' ', clients.mName, ' ', clients.lName) as 'clientName', 
+                clients.sex AS 'gender', 
+                clients.birthdate 'clientBirthdate', 
+                clients.cNumber AS 'contactNumber',  
+            
+                /*Animal Information*/
+                classifications.species AS 'species', 
+                animals.sex AS 'sex', 
+                animals.birthdate AS 'animalBirthdate', 
+                animals.name AS 'animalName', 
+                animals.noHeads AS 'numberHeads', 
+                animals.regNumber AS 'registrationNumber', 
+            
+                /*MH Information*/
+                field_visititations.activity AS 'activity', 
+                field_visititations.medication AS 'medication', 
+                field_visititations.remarks AS 'remarks'
+            
             /*Specify tables to retrieve columns*/
-            FROM client, animal, medicalhistory
-
+            FROM 
+                clients, 
+                clients_addresses, 
+                barangays, 
+                animals, 
+                classifications, 
+                field_visititations
+            
             /*Specify conditions on column selection*/
             WHERE 
-                medicalhistory.type = 'routine service' 
+                field_visititations.ctID = 3 
                 AND
-                client.clientID = animal.clientID 
+                clients.addressID = clients_addresses.addressID
                 AND
-                animal.animalID = medicalhistory.animalID
+                clients_addresses.barangayID = barangays.barangayID
                 AND
-                (medicalhistory.date BETWEEN ? AND ?) 
-                
+                clients.clientID = animals.clientID 
+                AND
+                animals.classificationID = classifications.classificationID
+                AND
+                animals.animalID = field_visititations.animalID
+                AND
+                (field_visititations.date BETWEEN ? AND ?) 
+                            
             /*Order records in ASC order based on medical history date*/
-            ORDER BY medicalhistory.date ASC;
+            ORDER BY 
+                field_visititations.date ASC;
             ";
         }
         $stmt = mysqli_stmt_init($conn);
@@ -170,11 +244,11 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
-                                        <button class="btn btn-primary" onclick="ExportToExcel('xlsx')"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
-                                    </div>
                                 </form>
                             </div>
+                            <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
+                                        <button class="btn btn-primary" onclick="ExportToExcel('xlsx')"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
+                                    </div>
                             <div class="container-fluid d-flex justify-content-start align-items-start overflow-scroll">
                                 
                                 <?php if($type=="Animal Health"){ ?>
@@ -224,7 +298,7 @@
                                             <th class="medcell text-bg-dark" rowspan="2">Barangay</th>
                                             <th class="text-bg-dark" colspan="4">Client Information</th>
                                             <th class="text-bg-dark" colspan="7">Animal Information</th>
-                                            <th class="text-bg-dark" colspan="3">Vaccine Information</th>
+                                            <th class="text-bg-dark" colspan="4">Vaccine Information</th>
                                             <th class="largecell text-bg-dark" rowspan="2">Remarks</th>
                                         </tr>
                                         <tr>
@@ -242,6 +316,7 @@
                                             <th class="medcell text-bg-dark">Disease</th>
                                             <th class="medcell text-bg-dark">Vaccine Used</th>
                                             <th class="medcell text-bg-dark">Batch/Lot No.</th>
+                                            <th class="medcell text-bg-dark">Vaccine Source</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -263,6 +338,7 @@
                                             <td class="medcell"><?php echo $data['disease']; ?></td>
                                             <td class="medcell"><?php echo $data['vaccineUsed']; ?></td>
                                             <td class="medcell"><?php echo $data['batchNumber']; ?></td>
+                                            <td class="medcell"><?php echo $data['vaccineSource']; ?></td>
                                             <td class="largecell"><?php echo $data['remarks']; ?></td>
                                         </tr>
                                         <?php endforeach; ?>
