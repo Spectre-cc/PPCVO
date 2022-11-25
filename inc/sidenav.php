@@ -4,13 +4,13 @@
                     <img class="sidebar-logo img-fluid" src="inc\style\assets\images\PPCVIO-Logo-wht.png" alt="" >
                 </div>
                 <div class="container list-group text-center px-2 ">
-                    <hr class="horizontal-rule p-0 my-3">
+                    <a href="View-User-Account.php" class="link-light p-0 mt-3" style="text-decoration: none;"><i class="fa-solid fa-user"></i> Good day, <?php echo $_SESSION['fName']?></a>
+                    <hr class="horizontal-rule p-0 mb-3">
                     <a href="View-Client-List.php" class="btn btn-outline-light mb-2 rounded-pill shadow"><i class="fa-solid fa-address-book"></i> Clients</a>
                     <a href="Send-Email.php" class="btn btn-outline-light  mb-2 rounded-pill shadow"><i class="fa-solid fa-envelope"></i> Send Announcement</a>
                     <a href="Download-Reports.php" class="btn btn-outline-light rounded-pill shadow"><i class="fa-solid fa-file-arrow-down"></i> Download Reports</a>
                     <hr class="horizontal-rule p-0 my-3">
                     <a href="functions/logout.php" class="btn btn-outline-light rounded-pill"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
-                    
                 </div>
             </div>
             <!-- Sidebar -->

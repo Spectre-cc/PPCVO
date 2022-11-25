@@ -6,17 +6,82 @@
 <?php 
     $type = $_GET['type'];
     if($type == 'personnel'){
-        $query="SELECT 'userID','type', CONCAT(fName,' ',mName,' ',lName) as 'name', email, cNumber FROM user WHERE type='personnel'";
+        if(isset($_POST['search-user'])){
+            $search = mysqli_real_escape_string($conn,$_POST['string']);
+            $query = "
+            SELECT 
+                user.userID,
+                user.type, 
+                CONCAT(user.fName,' ',mName,' ',user.lName) as 'name', 
+                user.email, 
+                user.cNumber 
+            FROM 
+                user 
+            WHERE 
+                user.fName LIKE ?
+                OR
+                user.mName LIKE ?
+                OR
+                user.lName LIKE ?
+                AND
+                user.type='personnel'
+            ";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $query)){
+                $alertmessage = urlencode("SQL error!");
+                header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+                exit();
+            }else{
+                mysqli_stmt_bind_param($stmt, "sss", $search, $search, $search);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+            }
+        }else{
+            $query="SELECT user.userID,user.type, CONCAT(user.fName,' ',user.mName,' ',user.lName) as 'name', user.email, user.cNumber FROM user WHERE user.type='personnel'";
+            $result = mysqli_query($conn,$query);
+        }
     }
     elseif($type == 'admin'){
-        $query="SELECT 'userID','type', CONCAT(fName,' ',mName,' ',lName) as 'name', email, cNumber FROM user WHERE type='admin'";
+        if(isset($_POST['search-user'])){
+            $search = mysqli_real_escape_string($conn,$_POST['string']);
+            $query = "
+            SELECT 
+                user.userID,
+                user.type, 
+                CONCAT(user.fName,' ',user.mName,' ',user.lName) as 'name', 
+                user.email, 
+                user.cNumber 
+            FROM 
+                user 
+            WHERE 
+                user.fName LIKE ?
+                OR
+                user.mName LIKE ?
+                OR
+                user.lName LIKE ?
+                AND
+                user.type='admin'
+            ";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $query)){
+                $alertmessage = urlencode("SQL error!");
+                header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+                exit();
+            }else{
+                mysqli_stmt_bind_param($stmt, "sss", $search, $search, $search);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+            }
+        }else{
+            $query="SELECT user.userID,user.type, CONCAT(user.fName,' ',user.mName,' ',user.lName) as 'name', user.email, user.cNumber FROM user WHERE user.type='admin'";
+            $result = mysqli_query($conn,$query);
+        }
     }
     else{
         $alertmessage = urlencode("Invalid link, Please Log In!");
         header('Location: Index.php?alertmessage='.$alertmessage);
         exit();
     }
-    $result = mysqli_query($conn,$query);
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +100,14 @@
                         <div class="container text-start px-1">
                             <div class="container-fluid text-center">
                                 <h2><i class="fa-solid fa-user fa-lg"></i> <?php echo ucfirst($type); ?></h2>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-center text-center my-2">
+                                <form class="w-50 d-flex justify-content-center" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                    <div class="w-100 d-flex justify-content-center bg-white border border-secondary rounded-pill">
+                                        <input class="form-control search bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for client...">
+                                        <button class="btn btn-secondary text-light searchbtn border" type="submit" name="search-user" id="search-user"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="container-fluid mb-2 text-center">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddUser" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Add</button>

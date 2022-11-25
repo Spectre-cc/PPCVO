@@ -9,7 +9,7 @@
     $password=mysqli_real_escape_string($conn,$_POST['password']);
 
     //prepare sql statement before execution
-    $query = "SELECT userID, type, email, password FROM user WHERE email=? and type='personnel';";
+    $query = "SELECT userID, fName, type, email, password FROM user WHERE email=? and type='personnel';";
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $query)){
@@ -30,6 +30,7 @@
             session_start();
             $_SESSION['userID'] = $row['userID'];
             $_SESSION['type'] = $row['type'];
+            $_SESSION['fName'] = $row['fName'];
             $_SESSION['email'] = $row['email'];
             $_SESSION["alert"]=false;
             header('Location: ../View-Client-List.php');

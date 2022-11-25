@@ -4,8 +4,38 @@
 <?php include('functions/alert.php'); ?>
 
 <?php 
-  $query="SELECT clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', fname FROM clients ORDER BY fullName ASC";
-  $result = mysqli_query($conn,$query);
+  if(isset($_POST['search-client'])){
+    $search = mysqli_real_escape_string($conn,$_POST['string']);
+    $query = "
+    SELECT 
+	clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', 
+	fname 
+    FROM 
+        clients 
+    WHERE
+        clients.fName LIKE ?
+        OR
+        clients.mName LIKE ?
+        OR
+        clients.lName LIKE ?
+    ORDER BY 
+        fullName ASC
+    ";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $query)){
+        $alertmessage = urlencode("SQL error!");
+        header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+        exit();
+      }
+      else{
+        mysqli_stmt_bind_param($stmt, "sss", $search, $search, $search);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+      }
+  }else{
+    $query="SELECT clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', fname FROM clients ORDER BY fullName ASC";
+    $result = mysqli_query($conn,$query);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +54,10 @@
                         <div class="container text-center pt-3">
                             <h2>Client Records</h2>
                             <div class="container-fluid d-flex justify-content-center text-center">
-                                <form class="w-50 d-flex justify-content-center" action="">
+                                <form class="w-50 d-flex justify-content-center" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                     <div class="w-100 d-flex justify-content-center bg-white border border-secondary rounded-pill">
-                                        <input class="form-control rounded-pill bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for client...">
-                                        <button class="btn btn-transparent text-secondary" type="submit" name="search" id="search"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                                        <input class="form-control search bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for client...">
+                                        <button class="btn btn-secondary text-light searchbtn border" type="submit" name="search-client" id="search-client"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </form>
                             </div>

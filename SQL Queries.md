@@ -125,3 +125,28 @@ WHERE
 ORDER BY client.barangay ASC
 ```
 
+## Charts
+
+### Number of Registered Animals per Barangay
+
+```mysql
+SELECT 
+	barangays.brgy_name,
+    COUNT(animals.animalID)
+FROM
+	clients,
+    clients_addresses,
+    barangays,
+    animals
+WHERE
+	clients.addressID = clients_addresses.addressID
+    AND
+    clients_addresses.barangayID = barangays.barangayID
+    AND
+    clients.clientID = animals.clientID
+    AND
+    animals.regNumber IS NOT NULL
+GROUP BY
+	barangays.brgy_name
+```
+

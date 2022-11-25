@@ -4,18 +4,17 @@
 <?php include('functions/alert.php'); ?>
 
 <?php 
-    $clientID = $_GET['clientID'];
-    $clientname = $_GET['clientname'];
+    $clientID = mysqli_real_escape_string($conn,$_GET['clientID']);
+    $clientname = mysqli_real_escape_string($conn,$_GET['clientname']);
     if(empty($clientID) || empty($clientname)){
         $alertmessage = urlencode("Invalid link! Logging out...");
         header('Location: functions/logout.php?alertmessage='.$alertmessage);
         exit();
     }
     else{
-        //input
-        $clientID=mysqli_real_escape_string($conn,$clientID);
-        //prepare sql statement before execution
-        $query="
+        if(isset($_POST['search-client'])){
+            $search = mysqli_real_escape_string($conn,$_POST['string']);
+            $query="
             SELECT 
                 animals.name as 'name', 
                 classifications.species  as 'species', 
@@ -33,22 +32,63 @@
                 animals, 
                 classifications
             WHERE 
+                animals.name LIKE ?
+                AND
+                clients.clientID = ?
+                AND
                 animals.clientID  = ?
                 AND 
                 animals.classificationID = classifications.classificationID
-        ";
-        $stmt = mysqli_stmt_init($conn);
-        if(!mysqli_stmt_prepare($stmt, $query)){
-            $alertmessage = urlencode("SQL error!");
-            header('Location: View-Client-List.php?alertmessage='.$alertmessage);
-            exit();
+            ";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $query)){
+                $alertmessage = urlencode("SQL error!");
+                header('Location: View-Client-List.php?alertmessage='.$alertmessage);
+                exit();
+            }
+            else{
+                mysqli_stmt_bind_param($stmt, "sii", $search, $clientID, $clientID);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+            }
+        }else{
+            //prepare sql statement before execution
+            $query="
+            SELECT 
+                animals.name as 'name', 
+                classifications.species  as 'species', 
+                classifications.breed  as 'breed',
+                animals.color as 'color',
+                animals.sex as 'sex',
+                animals.birthdate as 'birthdate',
+                animals.noHeads as 'noHeads',
+                animals.regDate as 'regDate',
+                animals.regNumber as 'regNumber',
+                animals.animalID as 'animalID',
+                animals.clientID as 'clientID'
+            FROM 
+                clients, 
+                animals, 
+                classifications
+            WHERE 
+                clients.clientID = ?
+                AND
+                animals.clientID  = ?
+                AND 
+                animals.classificationID = classifications.classificationID
+            ";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $query)){
+                $alertmessage = urlencode("SQL error!");
+                header('Location: View-Client-List.php?alertmessage='.$alertmessage);
+                exit();
+            }
+            else{
+                mysqli_stmt_bind_param($stmt, "ii", $clientID, $clientID);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+            }
         }
-        else{
-            mysqli_stmt_bind_param($stmt, "i", $clientID);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-        }
-        
     } 
 ?>
 
@@ -69,11 +109,11 @@
                             <div class="container-fluid text-center">
                                 <h2><i class="fa-solid fa-paw fa-lg"></i>  Animals owned by <?php echo $clientname; ?></h2>
                             </div>
-                            <div class="container-fluid mb-2">
-                                <form action="">
-                                    <div class="form-group d-flex justify-content-center">
-                                        <input class="form-control inputbox w-25 mx-1" type="search" name="search" id="search" placeholder="Search client name...">
-                                        <input class="btn btn-primary" type="submit" id="submit" value="Search">
+                            <div class="container-fluid d-flex justify-content-center text-center my-2">
+                                <form class="w-50 d-flex justify-content-center" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                    <div class="w-100 d-flex justify-content-center bg-white border border-secondary rounded-pill">
+                                        <input class="form-control search bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for client...">
+                                        <button class="btn btn-secondary text-light searchbtn border" type="submit" name="search-animal" id="search-animal"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </form>
                             </div>

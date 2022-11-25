@@ -1,6 +1,6 @@
 <?php require('functions/config/config.php'); ?>
 <?php require('functions/config/db.php'); ?>
-<?php include('functions/checksession-admin.php'); ?>
+<?php include('functions/checksession-personel.php') ?>
 <?php include('functions/alert.php'); ?>
 
 <?php 
@@ -21,6 +21,8 @@
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL error!");
+            header('Location: View-Users.php?alertmessage='.$alertmessage.'&userID='.$userID.'&type='.$type);
+            exit();
         }
         else{
             mysqli_stmt_bind_param($stmt, "is", $userID, $type);
@@ -39,6 +41,8 @@
             }
             else{
                 $alertmessage = urlencode("User does not exist! ");
+                header('Location: View-Users.php?alertmessage='.$alertmessage.'&type='.$type);
+                exit();
             }
         }
         mysqli_stmt_close($stmt);
@@ -56,10 +60,10 @@
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('inc\sidenav-admin.php'); ?>
+            <?php require('inc\sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
-                    <form method="POST" action="functions/update-user.php" class="container-fluid p-4 w-50 h-auto">
+                    <form method="POST" action="functions/update-user-personnel.php" class="container-fluid p-4 w-50 h-auto">
                         <div class="container text-center">
                             <h2>Update <?php echo $type; ?></h2>
                         </div>

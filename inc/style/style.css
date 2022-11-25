@@ -21,7 +21,7 @@ body{
     background-image: linear-gradient(#0f457a, #12569C, #fac236);
 }
 .login-logo{
-    width: 15vw;
+    width: 5vw;
     height: auto;
 }
 .sidebar-logo{
@@ -82,4 +82,15 @@ th,td{
 }
 .inputbox2{
     padding-left: 5px;
+}
+.search:active, .search:focus {
+    outline: 0;
+    border: 0;
+}
+.search{
+    border-radius: 15px 0 0 15px;
+}
+.searchbtn{
+    border-radius: 0 20px 20px 0;
+    width: 5vw;
 }

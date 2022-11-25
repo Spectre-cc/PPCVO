@@ -15,7 +15,6 @@
                             <li><a class="dropdown-item rounded-pill" href="View-Users.php?type=admin"><i class="fa-solid fa-user-tie"></i> Admin</a></li>
                         </ul>
                     </div>
-                    <a href="View-Personnel.php" class="btn btn-outline-light my-1 rounded-pill shadow"><i class="fa-solid fa-user-doctor"></i> Personnel</a>
                     <hr class="horizontal-rule p-0 my-3">
                     <a href="functions/logout.php" class="btn btn-outline-light my-1 rounded-pill shadow"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
                 </div>
