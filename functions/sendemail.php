@@ -34,15 +34,15 @@ if(isset($_POST['send'])){
     if($recepient == "Clients"){
 
         //retrieve email addresses
-        $query = "SELECT email FROM client;";
+        $query = "SELECT email FROM clients;";
         $result = mysqli_query($conn, $query);
 
         //send emails individualy
         if(mysqli_num_rows($result) > 0) {
             foreach ($result as $data):
                 $mail->addAddress($data['email']);
-                $mail->send();
             endforeach;
+            $mail->send();
             $alertmessage = urlencode("Emails Sent!");
             header('Location: ../Send-Email.php?alertmessage='.$alertmessage);
             exit();
@@ -57,9 +57,9 @@ if(isset($_POST['send'])){
         if(mysqli_num_rows($result) > 0) {
             foreach ($result as $data):
                 $mail->addAddress($data['email']);
-                $mail->send();
             endforeach;
-            $alertmessage = urlencode("Emails Sent!");
+            $mail->send();
+            $alertmessage = urlencode("Email Sent!");
             header('Location: ../Send-Email.php?alertmessage='.$alertmessage);
             exit();
         } 

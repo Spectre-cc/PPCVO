@@ -97,3 +97,12 @@ th,td{
     border-radius: 0 20px 20px 0;
     width: 5vw;
 }
+.textCenter{
+    text-align: center;
+}
+.textStart{
+    text-align: start;
+}
+.textEnd{
+    text-align: end;
+}
