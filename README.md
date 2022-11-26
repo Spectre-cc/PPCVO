@@ -7,8 +7,7 @@ Puerto Princesa City Veterinary Office Animal Records and Health History System
 - PHP MySQLi
 - PHP Password Hashing
 - PHPMailer
-- SheetJS?
-- PhpSpreadsheet?
+- Table2Excel
 - ChartJS
 
 ## Functions list:
@@ -54,5 +53,5 @@ Puerto Princesa City Veterinary Office Animal Records and Health History System
     - [x] Edit
     - [x] Delete
 - [x] Send Email Announcements
-- [ ] Download report as excel
+- [x] Download report as excel
 - [ ] Descriptive Analytics

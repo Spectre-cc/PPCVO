@@ -32,7 +32,6 @@ if(isset($_POST['send'])){
     $mail->Subject = $_POST['subject'];
     $mail->Body = $_POST['message'];
     if($recepient == "Clients"){
-
         //retrieve email addresses
         $query = "SELECT email FROM clients;";
         $result = mysqli_query($conn, $query);
