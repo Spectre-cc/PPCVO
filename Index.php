@@ -5,7 +5,7 @@
     <title>Log In</title>
 </head>
 <body class="ploginbg">
-    <nav class="navbar bg-info bg-gradient bg-opacity-75 shadow">
+    <nav class="navbar bg-light bg-gradient bg-opacity-50 shadow">
         <div class="container-fluid">
             <div class="navbar-brand">
                 <a class="navbar-brand topnav text-light fw-bold">
@@ -16,7 +16,7 @@
             <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#PersonnelLogIn" data-bs-whatever="@mdo"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
         </div>  
     </nav>
-    <div class="text-center h-100 bg-light bg-opacity-25" style="margin-top: 2vh; margin-bottom: 2vh;">
+    <div class="text-center h-100" style="margin-top: 2vh; margin-bottom: 2vh;">
             <h1 class="h1 text-light topnav">Follow us on Facebook <i class="fa-solid fa-flag fa-sm"></i></h1>
             <iframe class="rounded-5 shadow"  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100069074864948&tabs=timeline&width=500&height=550&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="550" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
