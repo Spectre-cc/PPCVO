@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="recepient">Recipient</label>
-                            <select class="form-control m-0 inputbox text-start" id="recipient" name="recipient" required>
+                            <select class="form-select m-0 inputbox text-start" id="recipient" name="recipient" required>
                                 <option value="Clients">Clients</option>
                                 <option value="Personnel">Personnel</option>                                                        
                             </select>
@@ -34,7 +34,7 @@
                             <textarea class="form-control m-0 inputbox" name="message" id="message" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group pt-3 container-fluid text-center">
-                            <input class="btn btn-primary w-50" type="submit" name="send" id="send" value="Send">
+                            <button class="btn btn-primary w-50" type="submit" name="send" id="send"><i class="fa-solid fa-envelope"></i> Send</button>
                         </div>
                     </form>
                 </div>
