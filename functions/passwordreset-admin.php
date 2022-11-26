@@ -20,7 +20,7 @@
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL Error");
-            header('Location: ../Password-Reset-Admin.php?alertmessage='.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
         }
         else{
@@ -32,7 +32,7 @@
             //check for a match
             if($row = mysqli_fetch_assoc($result)<1){
                 $alertmessage = urlencode("Email does not exist!");
-                header('Location: ../Password-Reset-Admin.php?alertmessage='.$alertmessage);
+                header('Location: ../Index.php?alertmessage='.$alertmessage);
                 exit();
             }
         }
@@ -52,7 +52,7 @@
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL Error");
-            header('Location: ../Password-Reset-Admin.php?alertmessage='.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
         }
         else{
@@ -67,7 +67,7 @@
 
             if(!mysqli_stmt_prepare($stmt, $query)){
                 $alertmessage = urlencode("SQL Error2");
-                header('Location: ../Password-Reset-Admin.php?alertmessage='.$alertmessage);
+                header('Location: ../Index.php?alertmessage='.$alertmessage);
                 exit();
             }
             else{
@@ -110,7 +110,7 @@
         $mail->send();
 
         $alertmessage = urlencode("Password Request Sent! Please check your email.");
-        header('Location: ../Password-Reset-Admin.php?alertmessage='.$alertmessage);
+        header('Location: ../Index.php?alertmessage='.$alertmessage);
         exit();
     }
     else if(isset($_POST['create-password'])){
@@ -148,7 +148,7 @@
             //check for a match
             if(!$row = mysqli_fetch_assoc($result)){
                 $alertmessage = urlencode("Token Expired! Please resubmit a request.");
-                header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
+                header('Location: ../Index.php?alertmessage='.$alertmessage);
                 exit();
             }
             else{
@@ -157,7 +157,7 @@
 
                 if($tokencheck === false){
                     $alertmessage = urlencode("Token does not match! Please resubmit a request.");
-                    header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
+                    header('Location: ../Index.php?alertmessage='.$alertmessage);
                     exit();
                 }
                 else{
@@ -181,7 +181,7 @@
                         //check for a match
                         if(!$row = mysqli_fetch_assoc($result)){
                             $alertmessage = urlencode("Account not found! Please resubmit a request!");
-                            header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
+                            header('Location: ../Index.php?alertmessage='.$alertmessage);
                             exit();
                         }
                         else{
@@ -213,7 +213,7 @@
                                     mysqli_stmt_bind_param($stmt, "s", $tokenemail);
                                     mysqli_stmt_execute($stmt);
                                     $alertmessage = urlencode("New admin password has been successfully created!");
-                                    header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
+                                    header('Location: ../Index.php?alertmessage='.$alertmessage);
                                     exit();
                                 }
                             }   
@@ -227,7 +227,7 @@
         mysqli_close($conn);
     }
     else{
-        header('Location: ../LogIn-Admin.php');
+        header('Location: ../Index.php');
         exit();
     }
 ?>
