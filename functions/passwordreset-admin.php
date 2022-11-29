@@ -161,7 +161,7 @@
                     exit();
                 }
                 else{
-                    $tokenemail = $row['pwdresetemail'];
+                    $tokenemail = $row['pwdresetEmail'];
 
                     //prepare statement before execution
                     $query="SELECT * FROM user WHERE email=?";

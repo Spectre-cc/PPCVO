@@ -171,7 +171,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-center align-items-center bg-success text-light">
-                    <h1 class="modal-title fs-3 " id="AddAnimalLabel"><i class="fa-solid fa-paw fa-lg"></i> Animal</h1>
+                    <h1 class="modal-title fs-3 " id="AddAnimalLabel"><i class="fa-solid fa-circle-info fa-lg"></i>  Animal Information</h1>
                 </div>
                 <form method="POST" action="functions/add-animal.php">
                     <div class="modal-body">

@@ -37,18 +37,18 @@
           }
           else if($passwordcheck == false){
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
           }
           else{
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
           }
         }
         else{
           $alertmessage = urlencode("User does not exist!");
-            header('Location: ../LogIn-Admin.php?alertmessage='.$alertmessage);
+            header('Location: ../Index.php?alertmessage='.$alertmessage);
             exit();
         }
     }

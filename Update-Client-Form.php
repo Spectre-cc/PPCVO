@@ -109,7 +109,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="sex">Sex</label>
-                            <select class="form-select m-0 inputbox" id="sex" name="sex">
+                            <select class="form-select m-0 inputbox" id="sex" name="sex" required>
                                 <?php if($sex=="Male"){?>
                                     <option value="Male" selected>Male</option>
                                     <option value="Female">Female</option>

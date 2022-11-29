@@ -84,7 +84,7 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="licenseNo">License Number</label>
-                            <input class="form-control m-0 inputbox" type="text" name="licenseNo" id="licenseNo" placeholder="Enter license number..." maxlength="45" required>
+                            <input class="form-control m-0 inputbox" type="text" name="licenseNo" id="licenseNo" placeholder="Enter license number..." maxlength="45">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="designation">Designation</label>

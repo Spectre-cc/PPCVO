@@ -94,7 +94,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-center align-items-center bg-success text-light">
-                    <h1 class="modal-title fs-5 " id="AddClientLabel">Add Client</h1>
+                    <h1 class="modal-title fs-5 " id="AddClientLabel"><i class="fa-solid fa-circle-info fa-lg"></i> Client Information</h1>
                 </div>
                 <form method="POST" action="functions/add-client.php">
                     <div class="modal-body">
@@ -145,11 +145,11 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="cNumber">Contact Number (Optional)</label>
-                            <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50" required>
+                            <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="contactnumber">Email (Optional)</label>
-                            <input class="form-control m-0 inputbox" type="email" id="email" name="email" placeholder="Enter email..." required>
+                            <input class="form-control m-0 inputbox" type="email" id="email" name="email" placeholder="Enter email...">
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">

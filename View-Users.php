@@ -177,7 +177,7 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label m-0" for="cNumber">Contact Number (Optional)</label>
-                            <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50" required>
+                            <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50">
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">

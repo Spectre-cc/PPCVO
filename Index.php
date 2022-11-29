@@ -1,3 +1,30 @@
+<?php 
+    if(!empty($_GET['alertmessage'])){
+        echo '
+        <script>
+        alert("'.$_GET['alertmessage'].'")
+        </script>
+        ';
+    }
+
+    session_start();
+    if(!empty($_SESSION['type'])){
+        if($_SESSION['type'] == "personnel"){
+            header('Location: View-Client-List.php');
+            exit();
+        }elseif($_SESSION['type'] == "admin"){
+            header('Location: Analytics.php');
+            exit();
+        }else{
+            echo '
+            <script>
+            alert("Invalid user type!")
+            </script>
+            ';
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

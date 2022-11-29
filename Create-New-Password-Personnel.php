@@ -36,7 +36,6 @@
             <div class="form-group was-validated pt-2">
                 <input type="hidden" name="selector" id="selector" value="<?php echo $selector; ?>">
                 <input type="hidden" name="validator" id="validator" value="<?php echo $validator; ?>">
-                <label class="form-label" for="newpassword">New Password</label>
                 <input class="form-control inputbox" type="password" id="newpassword" name="newpassword" placeholder="Enter new password..." required>
                 <div class="invalid-feedback">Please enter valid password...</div>
             </div>
