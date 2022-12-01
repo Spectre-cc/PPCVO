@@ -7,7 +7,7 @@
                 <hr class="horizontal-rule p-0 my-3">
                     <a href="Analytics.php" class="btn btn-outline-light my-1 rounded-pill shadow"><i class="fa-solid fa-chart-line"></i> Insights</a>
                     <div class="dropdown">
-                        <button class="btn btn-outline-light my-1 w-100 dropdown-toggle rounded-pill shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-light my-1 w-100 dropdown-toggle rounded-pill shadow text-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-users"></i> Users
                         </button>
                         <ul class="text-center dropdown-menu w-100 rounded">
