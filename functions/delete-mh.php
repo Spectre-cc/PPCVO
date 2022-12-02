@@ -1,7 +1,7 @@
 <?php
-  require('config/config.php');
-  require('config/db.php');
-  include('functions/checksession-personel.php');
+  require('./config/config.php');
+  require('./config/db.php');
+  include('./checksession-personel.php');
 
   $type = $_GET['type'];
   $animalID = $_GET['animalID'];
@@ -13,7 +13,7 @@
   $_SESSION["alert"]=true;
 
   if(empty($animalID) || empty($consultationID) || empty($animalname) || empty($type) || empty($transaction)){
-    $alertmessage = urlencode("Invalid link! Logging out...");
+    $alertmessage = urlencode("Invalid link! Logging out...".$animalID." ".$consultationID." ".$animalname." ".$type." ".$transaction." ");
     header('Location: logout.php?alertmessage='.$alertmessage);
     exit();
   }

@@ -1,7 +1,7 @@
-<?php require('functions/config/config.php'); ?>
-<?php require('functions/config/db.php'); ?>
-<?php include('functions/checksession-personel.php'); ?>
-<?php include('functions/alert.php'); ?>
+<?php require('./functions/config/config.php'); ?>
+<?php require('./functions/config/db.php'); ?>
+<?php include('./functions/checksession-personel.php'); ?>
+<?php include('./functions/alert.php'); ?>
 
 <?php 
     $clientID = mysqli_real_escape_string($conn,$_GET['clientID']);
@@ -95,13 +95,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title>Animals Owned</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('inc\sidenav.php'); ?>
+            <?php require('./inc/sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container pt-4 px-0">
@@ -220,7 +220,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">
                         <button class="btn btn-success w-25"  type="submit" id="add-animal" name="add-animal"><i class="fa-solid fa-plus"></i> Add</button>
-                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        <button type="reset" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
                     </div>
                 </form>
             </div>

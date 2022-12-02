@@ -2,9 +2,11 @@
 session_start();
 session_unset();
 session_destroy();
-if(empty($alert=$_GET['alertmessage'])){
-    header('Location: ../Index.php');
+$alert = $_GET['alertmessage'];
+if($alert == false){
+    header('Location: ../index.php');
 }else{
-    header('Location: ../Index.php?alertmessage='.urlencode($alert));
+    $alert = $_GET['alertmessage'];
+    header('Location: ../index.php?alertmessage='.urlencode($alert));
 }
 ?>

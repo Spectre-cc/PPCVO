@@ -1,7 +1,7 @@
 <?php
-  require('config/config.php');
-  require('config/db.php');
-  include('checksession-admin.php');
+  require('./config/config.php');
+  require('./config/db.php');
+  include('./checksession-admin.php');
 
       //input
       $personnelID=mysqli_real_escape_string($conn,$_GET['personnelID']);

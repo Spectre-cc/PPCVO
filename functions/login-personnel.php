@@ -14,7 +14,7 @@
 
     if(!mysqli_stmt_prepare($stmt, $query)){
         $alertmessage = urlencode("SQL Error!");
-        header('Location: ../Index.php?alertmessage='.$alertmessage);
+        header('Location: ../index.php?alertmessage='.$alertmessage);
         exit();
     }
     else{
@@ -38,12 +38,12 @@
           }
           else if($passwordcheck == false){
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../Index.php?alertmessage='.$alertmessage);
+            header('Location: ../index.php?alertmessage='.$alertmessage);
             exit();
           }
           else{
             $alertmessage = urlencode("Wrong password!");
-            header('Location: ../Index.php?alertmessage='.$alertmessage);
+            header('Location: ../index.php?alertmessage='.$alertmessage);
             exit();
           }
         }

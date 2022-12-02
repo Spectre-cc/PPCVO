@@ -2,9 +2,9 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-    require 'vendor/autoload.php';
-    require('config/config.php');
-    require('config/db.php');
+    require './vendor/autoload.php';
+    require('./config/config.php');
+    require('./config/db.php');
 
     if(isset($_POST['password-reset'])){
         //database connectionn
@@ -20,7 +20,7 @@
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL Error");
-            header('Location: ../Index.php?alertmessage='.$alertmessage);
+            header('Location: ../index.php?alertmessage='.$alertmessage);
             exit();
         }
         else{
@@ -32,7 +32,7 @@
             //check for a match
             if($row = mysqli_fetch_assoc($result)<1){
                 $alertmessage = urlencode("Email does not exist!");
-                header('Location: ../Index.php?alertmessage='.$alertmessage);
+                header('Location: ../index.php?alertmessage='.$alertmessage);
                 exit();
             }
         }
@@ -41,7 +41,7 @@
         $selector = bin2hex(random_bytes(8));
         $token = random_bytes(32);
 
-        $url = "http://localhost/PPCVO/Create-New-Password-Admin.php?selector=".$selector."&validator=".bin2hex($token);
+        $url = "https://ppcvo.000webhostapp.com/Create-New-Password-Admin.php?selector=".$selector."&validator=".bin2hex($token);
 
         //token expires in 1 hour
         $expires = date("U")+1800;
@@ -52,7 +52,7 @@
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $query)){
             $alertmessage = urlencode("SQL Error");
-            header('Location: ../Index.php?alertmessage='.$alertmessage);
+            header('Location: ../index.php?alertmessage='.$alertmessage);
             exit();
         }
         else{
@@ -67,7 +67,7 @@
 
             if(!mysqli_stmt_prepare($stmt, $query)){
                 $alertmessage = urlencode("SQL Error2");
-                header('Location: ../Index.php?alertmessage='.$alertmessage);
+                header('Location: ../index.php?alertmessage='.$alertmessage);
                 exit();
             }
             else{
@@ -110,7 +110,7 @@
         $mail->send();
 
         $alertmessage = urlencode("Password Request Sent! Please check your email.");
-        header('Location: ../Index.php?alertmessage='.$alertmessage);
+        header('Location: ../index.php?alertmessage='.$alertmessage);
         exit();
     }
     else if(isset($_POST['create-password'])){
@@ -148,7 +148,7 @@
             //check for a match
             if(!$row = mysqli_fetch_assoc($result)){
                 $alertmessage = urlencode("Token Expired! Please resubmit a request.");
-                header('Location: ../Index.php?alertmessage='.$alertmessage);
+                header('Location: ../index.php?alertmessage='.$alertmessage);
                 exit();
             }
             else{
@@ -157,7 +157,7 @@
 
                 if($tokencheck === false){
                     $alertmessage = urlencode("Token does not match! Please resubmit a request.");
-                    header('Location: ../Index.php?alertmessage='.$alertmessage);
+                    header('Location: ../index.php?alertmessage='.$alertmessage);
                     exit();
                 }
                 else{
@@ -181,7 +181,7 @@
                         //check for a match
                         if(!$row = mysqli_fetch_assoc($result)){
                             $alertmessage = urlencode("Account not found! Please resubmit a request!");
-                            header('Location: ../Index.php?alertmessage='.$alertmessage);
+                            header('Location: ../index.php?alertmessage='.$alertmessage);
                             exit();
                         }
                         else{
@@ -213,7 +213,7 @@
                                     mysqli_stmt_bind_param($stmt, "s", $tokenemail);
                                     mysqli_stmt_execute($stmt);
                                     $alertmessage = urlencode("New admin password has been successfully created!");
-                                    header('Location: ../Index.php?alertmessage='.$alertmessage);
+                                    header('Location: ../index.php?alertmessage='.$alertmessage);
                                     exit();
                                 }
                             }   
@@ -227,7 +227,7 @@
         mysqli_close($conn);
     }
     else{
-        header('Location: ../Index.php');
+        header('Location: ../index.php');
         exit();
     }
 ?>

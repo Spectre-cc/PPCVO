@@ -1,8 +1,8 @@
 <?php
   if(isset($_POST['add-animal'])){
     //database connectionn
-    require('config/config.php');
-    require('config/db.php');
+    require('./config/config.php');
+    require('./config/db.php');
   
     //input
     $name=mysqli_real_escape_string($conn,$_POST['name']);
@@ -13,6 +13,9 @@
     $birthdate=mysqli_real_escape_string($conn,$_POST['birthdate']);
     $noHeads=mysqli_real_escape_string($conn,$_POST['noHeads']);
     $regDate=mysqli_real_escape_string($conn,$_POST['regDate']);
+    if($regDate==false){
+      $regDate = null;
+    }
     $regNumber=mysqli_real_escape_string($conn,$_POST['regNumber']);
     $clientID=mysqli_real_escape_string($conn,$_POST['clientID']);
     $clientname=mysqli_real_escape_string($conn,$_POST['clientname']);
@@ -69,7 +72,7 @@
     mysqli_close($conn);
   }
   else{
-    header('Location: ../Index.php');
+    header('Location: logout.php?alertmessage='.$alertmessage);
     exit();
   }
 ?>

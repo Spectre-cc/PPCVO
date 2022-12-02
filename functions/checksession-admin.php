@@ -7,7 +7,7 @@ $email = $_SESSION['email'];
 
 if(empty($userID) || empty($type) || empty($email)){
     $alertmessage = urlencode("Please Log In!");
-    header('Location: Index.php?alertmessage='.$alertmessage);
+    header('Location: index.php?alertmessage='.$alertmessage);
     exit();
 }
 else{

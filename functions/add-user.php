@@ -1,13 +1,13 @@
 <?php
   if(isset($_POST['add-user'])){
     //database connectionn
-    require('config/config.php');
-    require('config/db.php');
+    require('./config/config.php');
+    require('./config/db.php');
 
     //input
     $fName=mysqli_real_escape_string($conn,$_POST['fName']);
-    $mName=mysqli_real_escape_string($conn,$_POST['lName']);
-    $lName=mysqli_real_escape_string($conn,$_POST['mName']);
+    $mName=mysqli_real_escape_string($conn,$_POST['mName']);
+    $lName=mysqli_real_escape_string($conn,$_POST['lName']);
     $email=mysqli_real_escape_string($conn,$_POST['email']);
     $password=mysqli_real_escape_string($conn,$_POST['password']);
     $type=mysqli_real_escape_string($conn,$_POST['type']);

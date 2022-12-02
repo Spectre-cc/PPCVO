@@ -9,8 +9,8 @@
   }
   else{
     //database connectionn
-    require('config/config.php');
-    require('config/db.php');
+    require('./config/config.php');
+    require('./config/db.php');
 
      //input
     $clientID=mysqli_real_escape_string($conn,$clientID);

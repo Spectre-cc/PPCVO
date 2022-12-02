@@ -28,7 +28,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title>Log In</title>
 </head>
 <body class="ploginbg">

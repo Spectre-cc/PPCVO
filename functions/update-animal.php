@@ -67,7 +67,7 @@
     mysqli_close($conn);
   }
   else{
-    header('Location: ../Index.php');
+    header('Location: ../index.php');
     exit();
   }
 ?>
