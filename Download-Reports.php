@@ -232,7 +232,7 @@
 <body>
 <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('./inc./sidenav.php'); ?>
+            <?php require('./inc/sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container">
@@ -360,13 +360,13 @@
                                         </tr>
                                         <tr>
                                             <th class="medcell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Date</th>
-                                            <th class="medcell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Barangay</th>
-                                            <th class="text-bg-dark textCenter" colspan="4" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Client Information</th>
+                                            <th class="text-bg-dark textCenter" colspan="5" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Client Information</th>
                                             <th class="text-bg-dark textCenter" colspan="7" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Animal Information</th>
                                             <th class="text-bg-dark" colspan="4" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Vaccine Information</th>
                                             <th class="largecell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Remarks</th>
                                         </tr>
                                         <tr>
+                                            <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Barangay</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Name</th> 
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Gender</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Birthdate</th> 

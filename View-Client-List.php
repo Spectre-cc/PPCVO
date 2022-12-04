@@ -5,21 +5,18 @@
 
 <?php 
   if(isset($_POST['search-client'])){
-    $search = mysqli_real_escape_string($conn,$_POST['string']);
+    $search = '%'.mysqli_real_escape_string($conn,$_POST['string']).'%';
     $query = "
     SELECT 
-	clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', 
-	fname 
+	    clientsA.clientID, 
+	    clientsA.fullName, 
+	    clientsA.fname 
     FROM 
-        clients 
+        (SELECT clients.clientID, CONCAT(clients.fName, ' ', clients.mName, ' ', clients.lName) as 'fullName', clients.fname FROM clients) as clientsA
     WHERE
-        clients.fName LIKE ?
-        OR
-        clients.mName LIKE ?
-        OR
-        clients.lName LIKE ?
+        clientsA.fullName LIKE ?
     ORDER BY 
-        fullName ASC
+        clientsA.fullName ASC;
     ";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $query)){
@@ -28,7 +25,7 @@
         exit();
       }
       else{
-        mysqli_stmt_bind_param($stmt, "sss", $search, $search, $search);
+        mysqli_stmt_bind_param($stmt, "s", $search);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
       }
@@ -36,6 +33,7 @@
     $query="SELECT clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', fname FROM clients ORDER BY fullName ASC";
     $result = mysqli_query($conn,$query);
   }
+        echo mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +73,7 @@
                                         <tr>
                                             <td class="largecell"><?php echo $data['fullName']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
-                                                <a href="View-Client-Record.php?clientID=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button></a>
+                                                <a href="View-Client-Record.php?clientID=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Information</button></a>
                                                 <a href="View-Animals-Owned.php?clientID=<?php echo $data['clientID']; ?>&clientname=<?php echo $data['fname']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
                                             </td>
                                         </tr>
