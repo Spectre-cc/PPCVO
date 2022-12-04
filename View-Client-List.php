@@ -33,7 +33,6 @@
     $query="SELECT clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', fname FROM clients ORDER BY fullName ASC";
     $result = mysqli_query($conn,$query);
   }
-        echo mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
