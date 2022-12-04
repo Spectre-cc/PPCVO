@@ -256,7 +256,7 @@
                                 <label class="form-label m-0" for="personnelID">Veterinarian</label>
                                 <select class="form-select m-0 inputbox" id="personnelID" name="personnelID">   
                                     <?php 
-                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                     $result = mysqli_query($conn,$query);
                                     foreach($result as $data) :
                                         if($data['vetID']==$vetID){
@@ -313,7 +313,7 @@
                                     <label class="form-label m-0" for="personnelID">Veterinarian</label>
                                     <select class="form-select m-0 inputbox" id="personnelID" name="personnelID">   
                                         <?php 
-                                        $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                        $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                         $result = mysqli_query($conn,$query);
                                         foreach($result as $data) :
                                             if($data['personnelID']==$vetID){
@@ -378,7 +378,7 @@
                                 <label class="form-label m-0" for="personnelID">Veterinarian</label>
                                 <select class="form-select m-0 inputbox" id="personnelID" name="personnelID">   
                                     <?php 
-                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                     $result = mysqli_query($conn,$query);
                                     foreach($result as $data) :
                                         if($data['personnelID']==$personnelID){

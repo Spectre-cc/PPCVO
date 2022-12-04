@@ -18,7 +18,8 @@
                     personnelID, 
                     CONCAT(fName,' ',mName,' ',lName) as 'name', 
                     licenseNo, 
-                    designation 
+                    designation,
+                    status
                 FROM 
                     personnel 
             ) AS personnelA 
@@ -41,7 +42,8 @@
             personnelID, 
             CONCAT(fName,' ',mName,' ',lName) as 'name', 
             licenseNo, 
-            designation 
+            designation,
+            status
         FROM 
             personnel;";
         $result = mysqli_query($conn,$query);
@@ -82,6 +84,7 @@
                                         <th class="largecell text-bg-dark">Name</th>
                                         <th class="medcell text-bg-dark">License Number</th>
                                         <th class="medcell text-bg-dark">Designation</th>
+                                        <th class="medcell text-bg-dark">Status</th>
                                         <th class="medcell bg-dark"></th>
                                     </thead>
                                     <tbody>
@@ -90,9 +93,14 @@
                                             <td class="largecell"><?php echo $data['name']; ?></td>
                                             <td class="medcell"><?php echo $data['licenseNo']; ?></td>
                                             <td class="medcell"><?php echo $data['designation']; ?></td>
+                                            <td class="medcell"><?php echo $data['status']; ?></td>
                                             <td class="med d-flex justify-content-center align-items-center" >
                                                 <a href="Update-Personnel-Form.php?personnelID=<?php echo $data['personnelID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                <a href="functions/delete-personnel.php?personnelID=<?php echo $data['personnelID']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
+                                                <?php if($data['status']=="active"){ ?>
+                                                    <a href="functions/personnel-status.php?personnelID=<?php echo $data['personnelID']; ?>&action=deactivate"><button class="btn btn-danger mx-1"><i class="fa-solid fa-x"></i> Deactivate</button></a>
+                                                <?php }else{ ?>
+                                                    <a href="functions/personnel-status.php?personnelID=<?php echo $data['personnelID']; ?>&action=activate"><button class="btn btn-success mx-1"><i class="fa-solid fa-check"></i> Activate</button></a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <?php 

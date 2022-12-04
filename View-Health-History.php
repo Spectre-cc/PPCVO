@@ -325,7 +325,7 @@
                             <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
                                 <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
@@ -384,7 +384,7 @@
                             <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
                                 <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
@@ -454,7 +454,7 @@
                             <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
                                 <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
