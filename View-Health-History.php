@@ -7,7 +7,6 @@
     $animalID = $_GET['animalID'];
     $animalname = $_GET['animalname'];
     $type = $_GET['type'];
-    $transaction = $_GET['transaction'];
 
     switch ($type) {
         case "Animal Health":

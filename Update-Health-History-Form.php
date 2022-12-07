@@ -80,7 +80,6 @@
                 }
             }
         }elseif($type=="Vaccination"){
-                $vaccineID=mysqli_real_escape_string($conn,$_GET['vaccineID']);
                 $query="
                 SELECT 
                     walk_in_transactions.consultationID,
