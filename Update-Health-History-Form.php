@@ -1,7 +1,7 @@
-<?php require('functions/config/config.php'); ?>
-<?php require('functions/config/db.php'); ?>
-<?php include('functions/alert.php'); ?>
-<?php include('functions/checksession-personel.php'); ?>
+<?php require('./functions/config/config.php'); ?>
+<?php require('./functions/config/db.php'); ?>
+<?php include('./functions/alert.php'); ?>
+<?php include('./functions/checksession-personel.php'); ?>
 
 <?php 
     $consultationID = $_GET['consultationID'];
@@ -80,7 +80,6 @@
                 }
             }
         }elseif($type=="Vaccination"){
-                $vaccineID=mysqli_real_escape_string($conn,$_GET['vaccineID']);
                 $query="
                 SELECT 
                     walk_in_transactions.consultationID,
@@ -210,13 +209,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title>Update Health History</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('inc\sidenav.php'); ?>
+            <?php require('./inc/sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <?php if($type=="Animal Health"){ ?>
@@ -256,7 +255,7 @@
                                 <label class="form-label m-0" for="personnelID">Veterinarian</label>
                                 <select class="form-select m-0 inputbox" id="personnelID" name="personnelID">   
                                     <?php 
-                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                     $result = mysqli_query($conn,$query);
                                     foreach($result as $data) :
                                         if($data['vetID']==$vetID){
@@ -313,7 +312,7 @@
                                     <label class="form-label m-0" for="personnelID">Veterinarian</label>
                                     <select class="form-select m-0 inputbox" id="personnelID" name="personnelID">   
                                         <?php 
-                                        $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                        $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                         $result = mysqli_query($conn,$query);
                                         foreach($result as $data) :
                                             if($data['personnelID']==$vetID){
@@ -378,7 +377,7 @@
                                 <label class="form-label m-0" for="personnelID">Veterinarian</label>
                                 <select class="form-select m-0 inputbox" id="personnelID" name="personnelID">   
                                     <?php 
-                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                    $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                     $result = mysqli_query($conn,$query);
                                     foreach($result as $data) :
                                         if($data['personnelID']==$personnelID){

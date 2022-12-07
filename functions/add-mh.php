@@ -1,8 +1,8 @@
 <?php
   if(isset($_POST['add-mh'])){
     //database connectionn
-    require('config/config.php');
-    require('config/db.php');
+    require('./config/config.php');
+    require('./config/db.php');
 
     $type = mysqli_real_escape_string($conn,$_POST['type']);
     session_start();

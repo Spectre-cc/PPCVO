@@ -1,25 +1,22 @@
-<?php require('functions/config/config.php'); ?>
-<?php require('functions/config/db.php'); ?>
-<?php include('functions/checksession-personel.php'); ?>
-<?php include('functions/alert.php'); ?>
+<?php require('./functions/config/config.php'); ?>
+<?php require('./functions/config/db.php'); ?>
+<?php include('./functions/checksession-personel.php'); ?>
+<?php include('./functions/alert.php'); ?>
 
 <?php 
   if(isset($_POST['search-client'])){
-    $search = mysqli_real_escape_string($conn,$_POST['string']);
+    $search = '%'.mysqli_real_escape_string($conn,$_POST['string']).'%';
     $query = "
     SELECT 
-	clientID, CONCAT(fName, ' ', mName, ' ', lName) as 'fullName', 
-	fname 
+	    clientsA.clientID, 
+	    clientsA.fullName, 
+	    clientsA.fname 
     FROM 
-        clients 
+        (SELECT clients.clientID, CONCAT(clients.fName, ' ', clients.mName, ' ', clients.lName) as 'fullName', clients.fname FROM clients) as clientsA
     WHERE
-        clients.fName LIKE ?
-        OR
-        clients.mName LIKE ?
-        OR
-        clients.lName LIKE ?
+        clientsA.fullName LIKE ?
     ORDER BY 
-        fullName ASC
+        clientsA.fullName ASC;
     ";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $query)){
@@ -28,7 +25,7 @@
         exit();
       }
       else{
-        mysqli_stmt_bind_param($stmt, "sss", $search, $search, $search);
+        mysqli_stmt_bind_param($stmt, "s", $search);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
       }
@@ -41,13 +38,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title>Client List</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('inc\sidenav.php'); ?>
+            <?php require('./inc/sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container">
@@ -75,7 +72,7 @@
                                         <tr>
                                             <td class="largecell"><?php echo $data['fullName']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
-                                                <a href="View-Client-Record.php?clientID=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Record</button></a>
+                                                <a href="View-Client-Record.php?clientID=<?php echo $data['clientID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-eye"></i> View Client Information</button></a>
                                                 <a href="View-Animals-Owned.php?clientID=<?php echo $data['clientID']; ?>&clientname=<?php echo $data['fname']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-paw"></i> View Animals Owned</button></a>
                                             </td>
                                         </tr>
@@ -154,7 +151,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">
                         <button class="btn btn-success w-25" type="submit" id="add-client" name="add-client"><i class="fa-solid fa-plus"></i> Add</button>
-                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        <button type="reset" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
                     </div>
                 </form>
             </div>

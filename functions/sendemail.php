@@ -65,7 +65,7 @@ if(isset($_POST['send'])){
     }
 }
 else{
-    header('Location: ../Index.php');
+    header('Location: logout.php?alertmessage='.$alertmessage);
     exit();
 }
 

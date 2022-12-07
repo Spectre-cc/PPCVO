@@ -1,4 +1,4 @@
-<?php include('functions/alert.php'); ?>
+<?php include('./functions/alert.php'); ?>
 <?php 
     $selector = $_GET['selector'];
     $validator = $_GET['validator'];
@@ -24,7 +24,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title>Create New Password</title>
 </head>
 <body>

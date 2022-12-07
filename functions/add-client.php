@@ -1,8 +1,8 @@
 <?php
   if(isset($_POST['add-client'])){
     //database connectionn
-    require('config/config.php');
-    require('config/db.php');
+    require('./config/config.php');
+    require('./config/db.php');
   
     //input
     $fName=mysqli_real_escape_string($conn,$_POST['fName']);

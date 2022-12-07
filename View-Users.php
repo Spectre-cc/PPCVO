@@ -1,99 +1,90 @@
-<?php require('functions/config/config.php'); ?>
-<?php require('functions/config/db.php'); ?>
-<?php include('functions/checksession-admin.php'); ?>
-<?php include('functions/alert.php'); ?>
+<?php require('./functions/config/config.php'); ?>
+<?php require('./functions/config/db.php'); ?>
+<?php include('./functions/checksession-admin.php'); ?>
+<?php include('./functions/alert.php'); ?>
 
 <?php 
-    $type = $_GET['type'];
-    if($type == 'personnel'){
-        if(isset($_POST['search-user'])){
-            $search = mysqli_real_escape_string($conn,$_POST['string']);
-            $query = "
-            SELECT 
-                user.userID,
-                user.type, 
-                CONCAT(user.fName,' ',mName,' ',user.lName) as 'name', 
-                user.email, 
-                user.cNumber 
-            FROM 
-                user 
-            WHERE 
-                user.fName LIKE ?
-                OR
-                user.mName LIKE ?
-                OR
-                user.lName LIKE ?
-                AND
-                user.type='personnel'
-            ";
-            $stmt = mysqli_stmt_init($conn);
-            if(!mysqli_stmt_prepare($stmt, $query)){
-                $alertmessage = urlencode("SQL error!");
-                header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
-                exit();
-            }else{
-                mysqli_stmt_bind_param($stmt, "sss", $search, $search, $search);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-            }
+    if(isset($_GET['type'])){
+        $type = mysqli_real_escape_string($conn,$_GET['type']);
+        $query="
+        SELECT 
+            user.userID,
+            user.type, 
+            CONCAT(user.fName,' ',user.mName,' ',user.lName) as 'name',
+            user.email, 
+            user.cNumber 
+        FROM 
+            user 
+        WHERE 
+            user.type= ?
+        ";
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $query)){
+            $alertmessage = urlencode("SQL error!");
+            header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+            exit();
         }else{
-            $query="SELECT user.userID,user.type, CONCAT(user.fName,' ',user.mName,' ',user.lName) as 'name', user.email, user.cNumber FROM user WHERE user.type='personnel'";
-            $result = mysqli_query($conn,$query);
-        }
-    }
-    elseif($type == 'admin'){
-        if(isset($_POST['search-user'])){
-            $search = mysqli_real_escape_string($conn,$_POST['string']);
-            $query = "
-            SELECT 
-                user.userID,
-                user.type, 
-                CONCAT(user.fName,' ',user.mName,' ',user.lName) as 'name', 
-                user.email, 
-                user.cNumber 
-            FROM 
-                user 
-            WHERE 
-                user.fName LIKE ?
-                OR
-                user.mName LIKE ?
-                OR
-                user.lName LIKE ?
-                AND
-                user.type='admin'
-            ";
-            $stmt = mysqli_stmt_init($conn);
-            if(!mysqli_stmt_prepare($stmt, $query)){
-                $alertmessage = urlencode("SQL error!");
-                header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
-                exit();
-            }else{
-                mysqli_stmt_bind_param($stmt, "sss", $search, $search, $search);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-            }
-        }else{
-            $query="SELECT user.userID,user.type, CONCAT(user.fName,' ',user.mName,' ',user.lName) as 'name', user.email, user.cNumber FROM user WHERE user.type='admin'";
-            $result = mysqli_query($conn,$query);
-        }
+            mysqli_stmt_bind_param($stmt, "s", $type);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+        }    
     }
     else{
-        $alertmessage = urlencode("Invalid link, Please Log In!");
-        header('Location: Index.php?alertmessage='.$alertmessage);
-        exit();
+        if(isset($_POST['search-user'])){
+            $type = mysqli_real_escape_string($conn,$_POST['type']);
+            $search = '%'.mysqli_real_escape_string($conn,$_POST['string']).'%';
+    
+            $query = "
+                SELECT 
+                    userA.userID,
+                    userA.type, 
+                    userA.name, 
+                    userA.email, 
+                    userA.cNumber  
+                FROM 
+                    (
+                    SELECT 
+                        user.userID,
+                        user.type, 
+                        CONCAT(user.fName,' ',mName,' ',user.lName) as 'name', 
+                        user.email, 
+                        user.cNumber  
+                    FROM 
+                        user
+                    ) as userA
+                WHERE 
+                    userA.name LIKE ?
+                    AND
+                    userA.type= ?
+                ";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $query)){
+                $alertmessage = urlencode("SQL error!");
+                header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+                exit();
+            }else{
+                mysqli_stmt_bind_param($stmt, "ss", $search, $type);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+            }    
+        }else{
+            $alertmessage = urlencode("Invalid link, Please Log In!");
+            header('Location: Index.php?alertmessage='.$alertmessage);
+            exit();
+        }
     }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title><?php echo ucfirst($type); ?> Users</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('inc\sidenav-admin.php'); ?>
+            <?php require('./inc/sidenav-admin.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container pt-4">
@@ -104,7 +95,8 @@
                             <div class="container-fluid d-flex justify-content-center text-center my-2">
                                 <form class="w-50 d-flex justify-content-center" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                     <div class="w-100 d-flex justify-content-center bg-white border border-secondary rounded-pill">
-                                        <input class="form-control search bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for client...">
+                                        <input class="form-control search bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for user...">
+                                        <input type="hidden" name="type" id="type" value="<?php echo $type; ?>">
                                         <button class="btn btn-secondary text-light searchbtn border" type="submit" name="search-user" id="search-user"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </form>
@@ -182,7 +174,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">
                         <button class="btn btn-success w-25" type="submit" name="add-user" id="add-user"><i class="fa-solid fa-plus"></i> Add</button>
-                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        <button type="reset" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
                     </div>
                 </form>
             </div>

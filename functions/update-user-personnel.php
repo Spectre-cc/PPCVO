@@ -124,7 +124,7 @@
     mysqli_close($conn);
   }
   else{
-    header('Location: ../Index.php');
+    header('Location: logout.php?alertmessage='.$alertmessage);
     exit();
   }
 ?>

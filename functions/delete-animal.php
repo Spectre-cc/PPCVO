@@ -1,4 +1,13 @@
 <?php
+  require('./config/config.php');
+  require('./config/db.php');
+  include('./checksession-personel.php');
+
+    $userID = $_GET['userID'];
+    $type = $_GET['type'];
+    session_start();
+    $_SESSION["alert"]=true;
+    
   if($_SESSION['type']='personnel' && $_SESSION['isloggedin']=true){
 
     $animalID = $_GET['animalID'];
@@ -13,8 +22,8 @@
     }
     else{
       //database connectionn
-      require('config/config.php');
-      require('config/db.php');
+      require('./config/config.php');
+      require('./config/db.php');
 
       //input
       $animalID=mysqli_real_escape_string($conn,$animalID);
@@ -44,7 +53,7 @@
   }
   else{
     $alertmessage = urlencode("Please Log In!");
-    header('Location: ../Index.php?alertmessage='.$alertmessage);
+    header('Location: logout.php?alertmessage='.$alertmessage);
     exit();
   }
 ?>

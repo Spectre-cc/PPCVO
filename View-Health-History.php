@@ -1,7 +1,7 @@
-<?php require('functions/config/config.php'); ?>
-<?php require('functions/config/db.php'); ?>
-<?php include('functions/checksession-personel.php'); ?>
-<?php include('functions/alert.php'); ?>
+<?php require('./functions/config/config.php'); ?>
+<?php require('./functions/config/db.php'); ?>
+<?php include('./functions/checksession-personel.php'); ?>
+<?php include('./functions/alert.php'); ?>
 
 <?php 
     $animalID = $_GET['animalID'];
@@ -12,10 +12,12 @@
         case "Animal Health":
             $modalSelect = "AH";
             $ctID=1;
+            $transaction="walk-in";
             break;
         case "Vaccination":
             $modalSelect = "V";
             $ctID=2;
+            $transaction="walk-in";
             break;
         case "Routine Service":
             $modalSelect = "RS";
@@ -133,7 +135,7 @@
             exit();
         }
         else{
-            mysqli_stmt_bind_param($stmt, "si", $type, $animalID,);
+            mysqli_stmt_bind_param($stmt, "si", $type, $animalID);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
         }
@@ -144,13 +146,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title>Health History</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('inc\sidenav.php'); ?>
+            <?php require('./inc/sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container pt-4">
@@ -161,9 +163,9 @@
                                     <?php echo $type?>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Animal%20Health">Animal Health</a></li>
-                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Vaccination">Vaccination</a></li>
-                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Routine%20Service">Routine Sevice</a></li>
+                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Animal%20Health&transaction=walk-in">Animal Health</a></li>
+                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Vaccination&transaction=walk-in">Vaccination</a></li>
+                                    <li><a class="dropdown-item" href="View-Health-History.php?animalID=<?php echo $animalID; ?>&animalname=<?php echo $animalname; ?>&type=Routine%20Service&transaction=field">Routine Sevice</a></li>
                                 </ul>
                             </div>
                             <div class="container-fluid text-center mb-2">
@@ -193,8 +195,8 @@
                                                 <td class="largecell celltextsmall"><?php echo $data['remarks']; ?></td>
                                                 <td class="medcell"><?php echo $data['veterinarian']; ?></td>
                                                 <td class="largecell d-flex justify-content-center align-items-center" >
-                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
+                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
                                             <?php 
@@ -227,8 +229,8 @@
                                                 <td class="largecell celltextsmall"><?php echo $data['remarks']; ?></td>
                                                 <td class="medcell"><?php echo $data['veterinarian']; ?></td>
                                                 <td class="largecell d-flex justify-content-center align-items-center" >
-                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&vaccineID=<?php echo $data['vaccineID']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&vaccineID=<?php echo $data['vaccineID']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
+                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -257,8 +259,8 @@
                                                 <td class="largecell celltextsmall"><?php echo $data['remarks']; ?></td>
                                                 <td class="medcell"><?php echo $data['veterinarian']; ?></td>
                                                 <td class="largecell d-flex justify-content-center align-items-center" >
-                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
-                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
+                                                    <a href="Update-Health-History-Form.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction; ?>"><button class="btn btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i> Update</button></a>
+                                                    <a href="functions/delete-mh.php?consultationID=<?php echo $data['consultationID']; ?>&animalID=<?php echo $data['animalID']; ?>&animalname=<?php echo $animalname; ?>&type=<?php echo $data['Type_Description']; ?>&transaction=<?php echo $transaction; ?>"><button class="btn btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -322,7 +324,7 @@
                             <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
                                 <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
@@ -333,7 +335,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">
                         <button class="btn btn-success w-25" type="submit" id="add-mh" name="add-mh"><i class="fa-solid fa-plus"></i> Add</button>
-                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        <button type="reset" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
                     </div>
                 </form>
             </div>
@@ -381,7 +383,7 @@
                             <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
                                 <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
@@ -391,7 +393,7 @@
                         </div>
                         <div class="modal-footer d-flex justify-content-center align-items-center">
                             <button class="btn btn-success w-25" type="submit" id="add-mh" name="add-mh"><i class="fa-solid fa-plus"></i> Add</button>
-                            <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                            <button type="reset" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -451,7 +453,7 @@
                             <select class="form-select m-0 inputbox" id="personnelID" name="personnelID" required>
                                 <option value="" disabled selected>Select your option</option>   
                                 <?php 
-                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel ORDER BY name ASC";
+                                $query="SELECT personnelID, CONCAT(fName, ' ', mName, ' ', lName) as name FROM personnel WHERE status = 'active' ORDER BY name ASC";
                                 $result = mysqli_query($conn,$query);
                                 foreach($result as $data) :
                                 ?>                             
@@ -462,7 +464,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">
                         <button class="btn btn-success w-25" type="submit" id="add-mh" name="add-mh"><i class="fa-solid fa-plus"></i> Add</button>
-                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        <button type="reset" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
                     </div>
                 </form>
             </div>

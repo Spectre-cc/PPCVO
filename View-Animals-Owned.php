@@ -1,19 +1,52 @@
-<?php require('functions/config/config.php'); ?>
-<?php require('functions/config/db.php'); ?>
-<?php include('functions/checksession-personel.php'); ?>
-<?php include('functions/alert.php'); ?>
+<?php require('./functions/config/config.php'); ?>
+<?php require('./functions/config/db.php'); ?>
+<?php include('./functions/checksession-personel.php'); ?>
+<?php include('./functions/alert.php'); ?>
 
 <?php 
-    $clientID = mysqli_real_escape_string($conn,$_GET['clientID']);
-    $clientname = mysqli_real_escape_string($conn,$_GET['clientname']);
-    if(empty($clientID) || empty($clientname)){
-        $alertmessage = urlencode("Invalid link! Logging out...");
-        header('Location: functions/logout.php?alertmessage='.$alertmessage);
-        exit();
-    }
-    else{
-        if(isset($_POST['search-client'])){
-            $search = mysqli_real_escape_string($conn,$_POST['string']);
+    if(isset($_GET['clientID']) && isset($_GET['clientname'])){
+        $clientID = mysqli_real_escape_string($conn,$_GET['clientID']);
+        $clientname = mysqli_real_escape_string($conn,$_GET['clientname']);
+        $query="
+            SELECT 
+                animals.name as 'name', 
+                classifications.species  as 'species', 
+                classifications.breed  as 'breed',
+                animals.color as 'color',
+                animals.sex as 'sex',
+                animals.birthdate as 'birthdate',
+                animals.noHeads as 'noHeads',
+                animals.regDate as 'regDate',
+                animals.regNumber as 'regNumber',
+                animals.animalID as 'animalID',
+                animals.clientID as 'clientID'
+            FROM 
+                clients, 
+                animals, 
+                classifications
+            WHERE 
+                clients.clientID = ?
+                AND
+                animals.clientID  = ?
+                AND 
+                animals.classificationID = classifications.classificationID
+            ";
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $query)){
+            $alertmessage = urlencode("SQL error!");
+            header('Location: View-Client-List.php?alertmessage='.$alertmessage);
+            exit();
+        }
+        else{
+            mysqli_stmt_bind_param($stmt, "ii", $clientID, $clientID);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+        }
+    }else{
+        if(isset($_POST['search-animal'])){
+            $clientID = mysqli_real_escape_string($conn,$_POST['clientID']);
+            $clientname = mysqli_real_escape_string($conn,$_POST['clientname']);
+            $search = "%".mysqli_real_escape_string($conn,$_POST['string'])."%";
             $query="
             SELECT 
                 animals.name as 'name', 
@@ -52,56 +85,23 @@
                 $result = mysqli_stmt_get_result($stmt);
             }
         }else{
-            //prepare sql statement before execution
-            $query="
-            SELECT 
-                animals.name as 'name', 
-                classifications.species  as 'species', 
-                classifications.breed  as 'breed',
-                animals.color as 'color',
-                animals.sex as 'sex',
-                animals.birthdate as 'birthdate',
-                animals.noHeads as 'noHeads',
-                animals.regDate as 'regDate',
-                animals.regNumber as 'regNumber',
-                animals.animalID as 'animalID',
-                animals.clientID as 'clientID'
-            FROM 
-                clients, 
-                animals, 
-                classifications
-            WHERE 
-                clients.clientID = ?
-                AND
-                animals.clientID  = ?
-                AND 
-                animals.classificationID = classifications.classificationID
-            ";
-            $stmt = mysqli_stmt_init($conn);
-            if(!mysqli_stmt_prepare($stmt, $query)){
-                $alertmessage = urlencode("SQL error!");
-                header('Location: View-Client-List.php?alertmessage='.$alertmessage);
-                exit();
-            }
-            else{
-                mysqli_stmt_bind_param($stmt, "ii", $clientID, $clientID);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-            }
+            $alertmessage = urlencode("Invalid link! Logging out...");
+            header('Location: functions/logout.php?alertmessage='.$alertmessage);
+            exit();
         }
-    } 
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('inc\links.php'); ?>
+    <?php require('./inc/links.php'); ?>
     <title>Animals Owned</title>
 </head>
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="wrapper d-flex m-2">
-            <?php require('inc\sidenav.php'); ?>
+            <?php require('./inc/sidenav.php'); ?>
             <div class="content container bg-light rounded-4 min-vh-100 px-0" style="max-width: 80vw;">
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container pt-4 px-0">
@@ -112,7 +112,9 @@
                             <div class="container-fluid d-flex justify-content-center text-center my-2">
                                 <form class="w-50 d-flex justify-content-center" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                     <div class="w-100 d-flex justify-content-center bg-white border border-secondary rounded-pill">
-                                        <input class="form-control search bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for client...">
+                                        <input class="form-control search bg-transparent" style="border:0;" type="search" name="string" id="string" placeholder="Search for animal...">
+                                        <input type="hidden" name="clientID" id="clientID" value="<?php echo $clientID; ?>">
+                                        <input type="hidden" name="clientname" id="clientname" value="<?php echo $clientname; ?>">
                                         <button class="btn btn-secondary text-light searchbtn border" type="submit" name="search-animal" id="search-animal"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </form>
@@ -220,7 +222,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">
                         <button class="btn btn-success w-25"  type="submit" id="add-animal" name="add-animal"><i class="fa-solid fa-plus"></i> Add</button>
-                        <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                        <button type="reset" class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
                     </div>
                 </form>
             </div>
