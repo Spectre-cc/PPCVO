@@ -65,7 +65,7 @@
                                 <table class="table table-condensed table-bordered table-hover text-start w-75">
                                     <thead>
                                         <th class="largecell text-bg-dark">Name</th>
-                                        <th class="autocell bg-dark"></th>
+                                        <th class="autocell bg-dark textCenter"></th>
                                     </thead>
                                     <tbody>
                                         <?php foreach($result as $data) : ?>
@@ -135,8 +135,6 @@
                                     <option value="<?php echo $data['brgy_name']; ?>">
                                 <?php 
                                     endforeach; 
-                                    mysqli_free_result($result);
-                                    mysqli_close($conn);
                                 ?>
                                 </datalist>
                         </div>

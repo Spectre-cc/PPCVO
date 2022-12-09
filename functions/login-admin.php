@@ -32,7 +32,7 @@
             $_SESSION['type'] = $row['type'];
             $_SESSION['email'] = $row['email'];
             $_SESSION["alert"]=false;
-            header('Location: ../Analytics.php');
+            header('Location: ../Insights.php');
             exit();
           }
           else if($passwordcheck == false){

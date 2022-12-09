@@ -13,7 +13,7 @@
             header('Location: View-Client-List.php');
             exit();
         }elseif($_SESSION['type'] == "admin"){
-            header('Location: Analytics.php');
+            header('Location: Insights.php');
             exit();
         }else{
             echo '

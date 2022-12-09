@@ -105,6 +105,7 @@
       mysqli_stmt_execute($stmt2);
        $alertmessage = urlencode("Client has been added!");
       header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+      exit();
     }
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
