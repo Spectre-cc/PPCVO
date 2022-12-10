@@ -100,6 +100,7 @@
                                     <h3 class="m-0">Number of Registered Animals</h3>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary btn-sm dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-file-export"></i>
                                             Export Graph...
                                         </button>
                                         <ul class="dropdown-menu">
@@ -285,6 +286,7 @@
                                     <h3 class="m-0">Dog and Cat Population</h3>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary btn-sm dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-file-export"></i>
                                             Export Graph...
                                         </button>
                                         <ul class="dropdown-menu">
@@ -466,6 +468,7 @@
                                     <h3 class="m-0">Number of Vaccinated Animals</h3>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary btn-sm dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-file-export"></i>
                                             Export Graph...
                                         </button>
                                         <ul class="dropdown-menu">
@@ -633,6 +636,7 @@
                                     <h3 class="m-0">Average number animals owned by clients</h3>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary btn-sm dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-file-export"></i>
                                             Export Graph...
                                         </button>
                                         <ul class="dropdown-menu">

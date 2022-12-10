@@ -93,7 +93,7 @@
                                         <th class="text-bg-dark textCenter" colspan="9" data-a-h="center" data-f-bold="true" data-b-a-s="thin" data-b-a-c="000000">Client List</th>
                                     </tr>
                                     <tr>
-                                        <th class="text-bg-dark textCenter" colspan="9" data-a-h="center" data-f-bold="true" data-b-a-s="thin" data-b-a-c="000000">As of: <?php echo date('F', strtotime($date)).', '.date('Y', strtotime($date));?></th>
+                                        <th class="text-bg-dark textCenter" colspan="9" data-a-h="center" data-f-bold="true" data-b-a-s="thin" data-b-a-c="000000">For the month of: <?php echo date('F', strtotime($date)).', '.date('Y', strtotime($date));?></th>
                                     </tr>
                                     <tr>
                                         <th class="text-bg-dark textCenter medcell" data-a-h="center" data-f-bold="true" data-b-a-s="thin" data-b-a-c="000000">First Name</th>

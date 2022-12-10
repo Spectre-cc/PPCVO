@@ -289,7 +289,7 @@
                                 <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
                                             <button class="btn btn-primary" onclick="ExportToExcel()"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
                                 </div>
-                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
+                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
                                             <th class="text-bg-dark textCenter" colspan="11" data-a-h="center" data-f-bold="true">Animal Health Monitoring Report</th>
@@ -320,7 +320,6 @@
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Species</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Sex</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Age</th>   
-                                            <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Population</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -334,7 +333,6 @@
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['species']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['sex']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['animalBirthdate']; ?></td>
-                                            <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true">0</td>
                                             <td class="largecell celltextsmall" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['clinicalSign']; ?></td>
                                             <td class="largecell celltextsmall" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['remarks']; ?></td>
                                         </tr>
