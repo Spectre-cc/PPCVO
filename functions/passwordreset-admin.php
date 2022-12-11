@@ -89,7 +89,7 @@
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'duenasmauie@gmail.com';
-        $mail->Password = 'xvlasglnlqqqnvdt';
+        $mail->Password = 'pooctfevajgyounx';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->setFrom('duenasmauie@gmail.com');
