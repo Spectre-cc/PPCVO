@@ -99,7 +99,7 @@
         mysqli_stmt_execute($stmt1);
         mysqli_stmt_execute($stmt2);
       $alertmessage = urlencode("Client record has been updated!");
-      header('Location: ../View-Client-List.php?alertmessage='.$alertmessage);
+      header('Location: ../View-Client-Record.php?alertmessage='.$alertmessage.'&clientID='.$clientID);
       exit();
     }
     mysqli_stmt_close($stmt);

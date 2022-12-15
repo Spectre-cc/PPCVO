@@ -22,7 +22,7 @@ if(isset($_POST['send'])){
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'duenasmauie@gmail.com';
-    $mail->Password = 'xvlasglnlqqqnvdt';
+    $mail->Password = 'pooctfevajgyounx';
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
     $mail->setFrom('duenasmauie@gmail.com');
@@ -39,7 +39,9 @@ if(isset($_POST['send'])){
         //send emails individualy
         if(mysqli_num_rows($result) > 0) {
             foreach ($result as $data):
-                $mail->addAddress($data['email']);
+                if($data['email']){
+                    $mail->addAddress($data['email']); 
+                }
             endforeach;
             $mail->send();
             $alertmessage = urlencode("Emails Sent!");
@@ -55,7 +57,9 @@ if(isset($_POST['send'])){
         //send emails individualy
         if(mysqli_num_rows($result) > 0) {
             foreach ($result as $data):
-                $mail->addAddress($data['email']);
+                if($data['email']){
+                    $mail->addAddress($data['email']); 
+                }
             endforeach;
             $mail->send();
             $alertmessage = urlencode("Email Sent!");

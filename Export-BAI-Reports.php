@@ -227,7 +227,7 @@
 <head>
     <?php require('./inc/links.php'); ?>
     <script type="text/javascript" src="functions/html2excel/tableToExcel.js"></script>
-    <title>Download Records</title>
+    <title>Export Report</title>
 </head>
 <body>
 <div class="container-fluid m-0 p-0">
@@ -237,7 +237,7 @@
                 <div class="containter-fluid d-flex justify-content-center align-items-center">
                     <div class="container">
                         <div class="container text-center pt-3">
-                            <h2>Download Report</h2>
+                            <h2>Export Report</h2>
                             <div class="container-fluid d-flex justify-content-center align-items-center text-center">
                                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="container-fluid justify-content-center align-items-center text-center m-0 p-0">
                                     <div class="container-fluid p-0 m-0">
@@ -247,7 +247,7 @@
                                                     <td class="text-end" style="width: 11%;">Report type:</td>
                                                     <td>
                                                         <select class="form-select m-0 inputbox text-center" id="type" name="type">
-                                                            <option value="" disabled selected>Select your report type...</option>   
+                                                            <option value="" disabled selected>Select report type...</option>   
                                                             <option value="Animal Health">Animal Health</option>
                                                             <option value="Vaccination">Vaccination</option>                                                        
                                                             <option value="Routine Service">Routine Service</option>
@@ -283,13 +283,13 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
-                                        <button class="btn btn-primary" onclick="ExportToExcel()"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
-                                    </div>
-                            <div class="container-fluid d-flex justify-content-start align-items-start overflow-scroll">
+                            <div class="container-fluid align-items-start overflow-scroll">
                                 
                                 <?php if($type=="Animal Health"){ ?>
-                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
+                                <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
+                                            <button class="btn btn-primary" onclick="ExportToExcel()"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
+                                </div>
+                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
                                             <th class="text-bg-dark textCenter" colspan="11" data-a-h="center" data-f-bold="true">Animal Health Monitoring Report</th>
@@ -320,7 +320,6 @@
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Species</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Sex</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Age</th>   
-                                            <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Population</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -334,7 +333,6 @@
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['species']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['sex']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['animalBirthdate']; ?></td>
-                                            <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true">0</td>
                                             <td class="largecell celltextsmall" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['clinicalSign']; ?></td>
                                             <td class="largecell celltextsmall" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['remarks']; ?></td>
                                         </tr>
@@ -342,6 +340,9 @@
                                     </tbody>
                                 </table>
                                 <?php }elseif($type=="Vaccination"){ ?>
+                                <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
+                                            <button class="btn btn-primary" onclick="ExportToExcel()"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
+                                </div>
                                 <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
@@ -410,6 +411,9 @@
                                     </tbody>
                                 </table>
                                 <?php }elseif($type=="Routine Service"){ ?>
+                                <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
+                                            <button class="btn btn-primary" onclick="ExportToExcel()"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
+                                </div>
                                 <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
