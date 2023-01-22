@@ -59,7 +59,7 @@
                                 </form>
                             </div>
                             <div class="container-fluid my-2">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddClient" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Add</button>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#DPDisclaimer" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Add</button>
                             </div>
                             <div class="container-fluid d-flex justify-content-center align-items-center text-center">
                                 <table class="table table-condensed table-bordered table-hover text-start w-75">
@@ -83,6 +83,24 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DPDisclaimer" tabindex="-1" aria-labelledby="DPDisclaimerLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center bg-warning text-light">
+                    <h1 class="modal-title fs-5 " id="DPDisclaimerLabel"><i class="fa-solid fa-circle-info fa-lg"></i> Data Privacy Disclaimer</h1>
+                </div>
+                <div class="modal-body">
+                    <p>Hi</p>
+                </div>
+                <div class="modal-footer d-flex justify-content-center align-items-center">
+                    <button class="btn btn-success w-25" data-bs-toggle="modal" data-bs-target="#AddClient" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Accept</button>
+                    <button class="btn btn-danger w-25" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                </div>
+                
             </div>
         </div>
     </div>

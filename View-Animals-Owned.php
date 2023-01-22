@@ -15,7 +15,6 @@
                 animals.color as 'color',
                 animals.sex as 'sex',
                 animals.birthdate as 'birthdate',
-                animals.noHeads as 'noHeads',
                 animals.regDate as 'regDate',
                 animals.regNumber as 'regNumber',
                 animals.animalID as 'animalID',
@@ -55,7 +54,6 @@
                 animals.color as 'color',
                 animals.sex as 'sex',
                 animals.birthdate as 'birthdate',
-                animals.noHeads as 'noHeads',
                 animals.regDate as 'regDate',
                 animals.regNumber as 'regNumber',
                 animals.animalID as 'animalID',
@@ -131,7 +129,6 @@
                                         <th class="medcell text-bg-dark">Color</th>
                                         <th class="smallcell text-bg-dark">Sex</th>
                                         <th class="medcell text-bg-dark">Birthdate</th>
-                                        <th class="medcell text-bg-dark">No. of Heads</th>
                                         <th class="medcell text-bg-dark">Registration Date</th>
                                         <th class="medcell text-bg-dark">Registration Number</th>
                                         <th class="autocell bg-dark"></th>
@@ -145,7 +142,6 @@
                                             <td class="medcell"><?php echo $data['color']; ?></td>
                                             <td class="smallcell"><?php echo $data['sex']; ?></td>
                                             <td class="medcell"><?php echo $data['birthdate']; ?></td>
-                                            <td class="medcell"><?php echo $data['noHeads']; ?></td>
                                             <td class="medcell"><?php echo $dateofregistration = $data['regDate']; ?></td>
                                             <td class="medcell"><?php echo $data['regNumber']; ?></td>
                                             <td class="autocell d-flex justify-content-center align-items-center" >
@@ -206,10 +202,6 @@
                         <div class="form-group">
                             <label class="form-label m-0" for="birthdate">Brthdate</label>
                             <input class="form-control m-0 inputbox" type="date" id="birthdate" name="birthdate" placeholder="Enter date of birth..." required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label m-0" for="noHeads">No.of Heads</label>
-                            <input class="form-control m-0 inputbox" type="number" id="noHeads" name="noHeads" placeholder="Enter number of heads...">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="regDate">Registration Date</label>

@@ -14,7 +14,6 @@
     $color=mysqli_real_escape_string($conn,$_POST['color']);
     $sex=mysqli_real_escape_string($conn,$_POST['sex']);
     $birthdate=mysqli_real_escape_string($conn,$_POST['birthdate']);
-    $noHeads=mysqli_real_escape_string($conn,$_POST['noHeads']);
     $regDate=mysqli_real_escape_string($conn,$_POST['regDate']);
     $regNumber=mysqli_real_escape_string($conn,$_POST['regNumber']);
     $clientID=mysqli_real_escape_string($conn,$_POST['clientID']);
@@ -44,7 +43,7 @@
 
     //prepare sql statement before execution
     $query1 = "UPDATE `classifications` SET species=?, breed=? WHERE classificationID=?";
-    $query2 = "UPDATE `animals` SET name=?, color=?, sex=?, birthdate=?, noHeads=?, regDate=?, regNumber=? WHERE animalID=? AND clientID=?;";
+    $query2 = "UPDATE `animals` SET name=?, color=?, sex=?, birthdate=?, regDate=?, regNumber=? WHERE animalID=? AND clientID=?;";
     $stmt1 = mysqli_stmt_init($conn);
     $stmt2 = mysqli_stmt_init($conn);
 
@@ -55,7 +54,7 @@
     }
     else{
       mysqli_stmt_bind_param($stmt1, "ssi", $species, $breed, $classificationID);
-      mysqli_stmt_bind_param($stmt2, "sssssssii", $name, $color, $sex, $birthdate, $noHeads, $regDate, $regNumber, $animalID, $clientID);
+      mysqli_stmt_bind_param($stmt2, "ssssssii", $name, $color, $sex, $birthdate, $regDate, $regNumber, $animalID, $clientID);
       mysqli_stmt_execute($stmt1);
       mysqli_stmt_execute($stmt2);
       $alertmessage = urlencode("Animal record has been updated!");

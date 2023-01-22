@@ -28,7 +28,6 @@
                 animals.color as 'color',
                 animals.sex as 'sex',
                 animals.birthdate as 'birthdate',
-                animals.noHeads as 'noHeads',
                 animals.regDate as 'regDate',
                 animals.regNumber as 'regNumber',
                 animals.animalID as 'animalID',
@@ -65,7 +64,6 @@
                     $color = $data['color'];
                     $sex = $data['sex'];
                     $birthdate = $data['birthdate'];
-                    $noHeads = $data['noHeads'];
                     $regDate = $data['regDate'];
                     $regNumber = $data['regNumber'];
                     $clientID = $data['clientID'];
@@ -145,10 +143,6 @@
                         <div class="form-group">
                             <label class="form-label m-0" for="birthdate">Brthdate</label>
                             <input class="form-control m-0 inputbox" type="date" id="birthdate" name="birthdate" value="<?php echo $birthdate; ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label m-0" for="noHeads">No. of Heads</label>
-                            <input class="form-control m-0 inputbox" type="number" id="noHeads" name="noHeads" value="<?php echo $noHeads; ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="regDate">Registration Date</label>

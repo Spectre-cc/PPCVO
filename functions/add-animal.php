@@ -11,7 +11,6 @@
     $color=mysqli_real_escape_string($conn,$_POST['color']);
     $sex=mysqli_real_escape_string($conn,$_POST['sex']);
     $birthdate=mysqli_real_escape_string($conn,$_POST['birthdate']);
-    $noHeads=mysqli_real_escape_string($conn,$_POST['noHeads']);
     $regDate=mysqli_real_escape_string($conn,$_POST['regDate']);
     if($regDate==false){
       $regDate = null;
@@ -48,8 +47,8 @@
       VALUES(?,?);
     ";
     $query2 = "
-    INSERT INTO `animals`(`name`,`classificationID`, `color`, `sex`, `birthdate`, `noHeads`, `regDate`, `regNumber`, `clientID`) 
-      VALUES(?,LAST_INSERT_ID(),?,?,?,?,?,?,?);
+    INSERT INTO `animals`(`name`,`classificationID`, `color`, `sex`, `birthdate`, `regDate`, `regNumber`, `clientID`) 
+      VALUES(?,LAST_INSERT_ID(),?,?,?,?,?,?);
     ";
     $stmt1 = mysqli_stmt_init($conn);
     $stmt2 = mysqli_stmt_init($conn);
@@ -60,7 +59,7 @@
     }
     else{
       mysqli_stmt_bind_param($stmt1, "ss", $species, $breed);
-      mysqli_stmt_bind_param($stmt2, "ssssissi", $name, $color, $sex, $birthdate, $noHeads, $regDate, $regNumber, $clientID);
+      mysqli_stmt_bind_param($stmt2, "ssssssi", $name, $color, $sex, $birthdate, $regDate, $regNumber, $clientID);
       mysqli_stmt_execute($stmt1);
       mysqli_stmt_execute($stmt2);
       $alertmessage = urlencode("Animal has been added!");
