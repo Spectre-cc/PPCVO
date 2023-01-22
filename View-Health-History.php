@@ -98,6 +98,8 @@
                     walk_in_transactions.vaccineID=vaccines.vaccineID
                     AND
                     walk_in_transactions.personnelID=personnel.personnelID
+                ORDER BY 
+                    walk_in_transactions.date DESC;
                 ";
         }elseif($type=="Routine Service"){
             $query="
@@ -300,23 +302,23 @@
                             <input class="form-control m-0 inputbox" type="date" id="date" name="date" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="clinicalSign">Clinical Sign</label>
+                            <label class="form-label m-0" for="clinicalSign">Clinical Sign (Optional)</label>
                             <textarea name="clinicalSign" id="clinicalSign" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="tentativeDiagnosis">Tentative Diagnosis</label>
+                            <label class="form-label m-0" for="tentativeDiagnosis">Tentative Diagnosis (Optional)</label>
                             <textarea name="tentativeDiagnosis" id="tentativeDiagnosis" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="prescription">Prescription</label>
+                            <label class="form-label m-0" for="prescription">Prescription (Optional)</label>
                             <textarea name="prescription" id="prescription" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="treatment">Treatment</label>
+                            <label class="form-label m-0" for="treatment">Treatment (Optional)</label>
                             <textarea name="treatment" id="treatment" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="remarks">Remarks</label>
+                            <label class="form-label m-0" for="remarks">Remarks (Optional)</label>
                             <textarea name="remarks" id="remarks" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
@@ -360,22 +362,22 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="disease">Disease</label>
-                            <input class="form-control m-0 inputbox" type="text" name="disease" id="disease" placeholder="...">
+                            <input class="form-control m-0 inputbox" type="text" name="disease" id="disease" placeholder="..."  required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="vaccineUsed">Vaccine Used</label>
-                            <input class="form-control m-0 inputbox" type="text" name="vaccineUsed" id="vaccineUsed" placeholder="...">
+                            <input class="form-control m-0 inputbox" type="text" name="vaccineUsed" id="vaccineUsed" placeholder="..."  required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="batchNumber">Batch/Lot No.</label>
-                            <input class="form-control m-0 inputbox" type="number" name="batchNumber" id="batchNumber" placeholder="...">
+                            <input class="form-control m-0 inputbox" type="number" name="batchNumber" id="batchNumber" placeholder="..."  required>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="vaccineSource">Vaccine Source</label>
-                            <input class="form-control m-0 inputbox" type="text" name="vaccineSource" id="vaccineSource" placeholder="...">
+                            <input class="form-control m-0 inputbox" type="text" name="vaccineSource" id="vaccineSource" placeholder="..."  required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="remarks">Remarks</label>
+                            <label class="form-label m-0" for="remarks">Remarks (Optional)</label>
                             <textarea name="remarks" id="remarks" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
@@ -433,19 +435,19 @@
                             <input class="form-control m-0 inputbox" type="date" id="date" name="date" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="clinicalSign">Clinical Sign</label>
+                            <label class="form-label m-0" for="clinicalSign">Clinical Sign (Optional)</label>
                             <textarea name="clinicalSign" id="clinicalSign" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="activty">Activity</label>
+                            <label class="form-label m-0" for="activty">Activity (Optional)</label>
                             <input class="form-control m-0 inputbox" type="text" id="activity" name="activity" placeholder="...">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="medication">Medication</label>
+                            <label class="form-label m-0" for="medication">Medication (Optional)</label>
                             <input class="form-control m-0 inputbox" type="text" id="medication" name="medication" placeholder="...">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="remarks">Remarks</label>
+                            <label class="form-label m-0" for="remarks">Remarks (Optional)</label>
                             <textarea name="remarks" id="remarks" cols="10" rows="2" class="form-control m-0 inputbox" placeholder="..."></textarea>
                         </div>
                         <div class="form-group">

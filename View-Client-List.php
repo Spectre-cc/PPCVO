@@ -138,7 +138,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="address">Address (Optional)</label>                            
+                            <label class="form-label m-0" for="address">Address</label>                            
                             <input class="form-control m-0 inputbox" type="text" id="address" name="address" placeholder="Enter address...">
                         </div>
                         <div class="form-group">
@@ -157,11 +157,11 @@
                                 </datalist>
                         </div>
                         <div class="form-group">
-                            <label for="" class="form-label m-0" for="cNumber">Contact Number (Optional)</label>
+                            <label for="" class="form-label m-0" for="cNumber">Contact Number</label>
                             <input class="form-control m-0 inputbox" type="text" name="cNumber" id="cNumber" placeholder="Enter contact number..." maxlength="50">
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="contactnumber">Email (Optional)</label>
+                            <label class="form-label m-0" for="contactnumber">Email</label>
                             <input class="form-control m-0 inputbox" type="email" id="email" name="email" placeholder="Enter email...">
                         </div>
                     </div>

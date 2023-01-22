@@ -290,19 +290,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label m-0" for="disease">Disease</label>
-                                    <input class="form-control m-0 inputbox" type="text" name="disease" id="disease" value="<?php echo $disease; ?>">
+                                    <input class="form-control m-0 inputbox" type="text" name="disease" id="disease" value="<?php echo $disease; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label m-0" for="vaccineUsed">Vaccine Used</label>
-                                    <input class="form-control m-0 inputbox" type="text" name="vaccineUsed" id="vaccineUsed" value="<?php echo $vaccineUsed; ?>">
+                                    <input class="form-control m-0 inputbox" type="text" name="vaccineUsed" id="vaccineUsed" value="<?php echo $vaccineUsed; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label m-0" for="batchNumber">Batch/Lot No.</label>
-                                    <input class="form-control m-0 inputbox" type="text" name="batchNumber" id="batchNumber" value="<?php echo $batchNumber; ?>">
+                                    <input class="form-control m-0 inputbox" type="text" name="batchNumber" id="batchNumber" value="<?php echo $batchNumber; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label m-0" for="vaccineSource">Vaccine Source</label>
-                                    <input class="form-control m-0 inputbox" type="text" name="vaccineSource" id="vaccineSource" value="<?php echo $vaccineSource; ?>">
+                                    <input class="form-control m-0 inputbox" type="text" name="vaccineSource" id="vaccineSource" value="<?php echo $vaccineSource; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label m-0" for="remarks">Remarks</label>

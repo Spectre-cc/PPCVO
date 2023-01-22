@@ -88,7 +88,7 @@
             SELECT
 
                 /*Record date*/
-                walk_in_transactions    .date AS 'date',
+                walk_in_transactions.date AS 'date',
 
                 /*Client Information*/
                 barangays.brgy_name AS 'barangay', 
@@ -101,8 +101,7 @@
                 classifications.species AS 'species', 
                 animals.sex AS 'sex', 
                 animals.birthdate AS 'animalBirthdate', 
-                animals.regNumber AS 'registrationNumber', 
-                animals.noHeads AS 'numberHeads', 
+                animals.regNumber AS 'registrationNumber',
                 animals.color AS 'color', 
                 animals.name AS 'animalName',
 
@@ -168,7 +167,6 @@
                 animals.sex AS 'sex', 
                 animals.birthdate AS 'animalBirthdate', 
                 animals.name AS 'animalName', 
-                animals.noHeads AS 'numberHeads', 
                 animals.regNumber AS 'registrationNumber', 
             
                 /*MH Information*/
@@ -292,22 +290,22 @@
                                 <table data-cols-width="13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
-                                            <th class="text-bg-dark textCenter" colspan="11" data-a-h="center" data-f-bold="true">Animal Health Monitoring Report</th>
+                                            <th class="text-bg-dark textCenter" colspan="10" data-a-h="center" data-f-bold="true">Animal Health Monitoring Report</th>
                                         </tr>
                                         <tr>
                                             <th class="text-bg-dark textStart" colspan="5" data-a-h="left" data-f-bold="true">Province: Palawan</th>
-                                            <th class="text-bg-dark textEnd" colspan="6" data-a-h="right" data-f-bold="true">City: Puerto Princesa</th>
+                                            <th class="text-bg-dark textEnd" colspan="5" data-a-h="right" data-f-bold="true">City: Puerto Princesa</th>
                                         </tr>
                                         <tr>
                                             <th class="text-bg-dark textStart" colspan="5" data-a-h="left" data-f-bold="true">Period: <?php echo $from; ?> to <?php echo $to; ?></th>
-                                            <th class="text-bg-dark textEnd" colspan="6" data-a-h="right" data-f-bold="true">Veterinarian: <?php echo $veterinarian; ?></th>
+                                            <th class="text-bg-dark textEnd" colspan="5" data-a-h="right" data-f-bold="true">Veterinarian: <?php echo $veterinarian; ?></th>
                                         </tr>
                                         <tr>
-                                            <th class="text-bg-dark textCenter" colspan="11" data-a-h="center"></th>
+                                            <th class="text-bg-dark textCenter" colspan="10" data-a-h="center"></th>
                                         </tr>
                                         <tr>
                                             <th class="text-bg-dark textCenter" colspan="5" data-a-h="center" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Client Information</th>
-                                            <th class="text-bg-dark textCenter" colspan="4" data-a-h="center" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Animal Information</th>
+                                            <th class="text-bg-dark textCenter" colspan="3" data-a-h="center" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Animal Information</th>
                                             <th class="largecell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Clinical Sign</th>
                                             <th class="largecell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Remarks</th>
                                         </tr>
@@ -343,26 +341,26 @@
                                 <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
                                             <button class="btn btn-primary" onclick="ExportToExcel()"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
                                 </div>
-                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
+                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
-                                            <th class="text-bg-dark textCenter" colspan="18" data-a-h="center" data-f-bold="true">Vaccination Report</th>
+                                            <th class="text-bg-dark textCenter" colspan="17" data-a-h="center" data-f-bold="true">Vaccination Report</th>
                                         </tr>
                                         <tr>
-                                            <th class="text-bg-dark textStart" colspan="9" data-a-h="left" data-f-bold="true">Province: Palawan</th>
+                                            <th class="text-bg-dark textStart" colspan="8" data-a-h="left" data-f-bold="true">Province: Palawan</th>
                                             <th class="text-bg-dark textEnd" colspan="9" data-a-h="right" data-f-bold="true">City: Puerto Princesa</th>
                                         </tr>
                                         <tr>
-                                            <th class="text-bg-dark textStart" colspan="9" data-a-h="left" data-f-bold="true">Period: <?php echo $from; ?> to <?php echo $to; ?></th>
+                                            <th class="text-bg-dark textStart" colspan="8" data-a-h="left" data-f-bold="true">Period: <?php echo $from; ?> to <?php echo $to; ?></th>
                                             <th class="text-bg-dark textEnd" colspan="9" data-a-h="right" data-f-bold="true">Veterinarian: <?php echo $veterinarian; ?></th>
                                         </tr>
                                         <tr>
-                                            <th class="text-bg-dark textCenter" colspan="18" data-a-h="center"></th>
+                                            <th class="text-bg-dark textCenter" colspan="17" data-a-h="center"></th>
                                         </tr>
                                         <tr>
                                             <th class="medcell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Date</th>
                                             <th class="text-bg-dark textCenter" colspan="5" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Client Information</th>
-                                            <th class="text-bg-dark textCenter" colspan="7" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Animal Information</th>
+                                            <th class="text-bg-dark textCenter" colspan="6" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Animal Information</th>
                                             <th class="text-bg-dark" colspan="4" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Vaccine Information</th>
                                             <th class="largecell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Remarks</th>
                                         </tr>
@@ -376,7 +374,6 @@
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Sex</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Age</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Animal Registered</th>
-                                            <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">No. of Heads</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Color</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Name</th>   
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Disease</th>
@@ -398,7 +395,6 @@
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['sex']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['animalBirthdate']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['registrationNumber']; ?></td>
-                                            <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['numberHeads']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['color']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['animalName']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['disease']; ?></td>
@@ -414,27 +410,27 @@
                                 <div class="container-fluid d-flex justify-content-center align-items-center text-center pt-2 mb-2">
                                             <button class="btn btn-primary" onclick="ExportToExcel()"><i class="fa-solid fa-file-export"></i> Export to Excel</button>
                                 </div>
-                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
+                                <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
-                                            <th class="text-bg-dark textCenter" colspan="15" data-a-h="center" data-f-bold="true">Routine Service Report</th>
+                                            <th class="text-bg-dark textCenter" colspan="14" data-a-h="center" data-f-bold="true">Routine Service Report</th>
                                         </tr>
                                         <tr>
                                             <th class="text-bg-dark textStart" colspan="7" data-a-h="left" data-f-bold="true">Province: Palawan</th>
-                                            <th class="text-bg-dark textEnd" colspan="8" data-a-h="right" data-f-bold="true">City: Puerto Princesa</th>
+                                            <th class="text-bg-dark textEnd" colspan="7" data-a-h="right" data-f-bold="true">City: Puerto Princesa</th>
                                         </tr>
                                         <tr>
                                             <th class="text-bg-dark textStart" colspan="7" data-a-h="left" data-f-bold="true">Period: <?php echo $from; ?> to <?php echo $to; ?></th>
-                                            <th class="text-bg-dark textEnd" colspan="8" data-a-h="right" data-f-bold="true">Veterinarian: <?php echo $veterinarian; ?></th>
+                                            <th class="text-bg-dark textEnd" colspan="7" data-a-h="right" data-f-bold="true">Veterinarian: <?php echo $veterinarian; ?></th>
                                         </tr>
                                         <tr>
-                                            <th class="text-bg-dark textCenter" colspan="15" data-a-h="center"></th>
+                                            <th class="text-bg-dark textCenter" colspan="14" data-a-h="center"></th>
                                         </tr>
                                         <tr>
                                             <th class="medcell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Date</th>
                                             <th class="medcell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Barangay</th>
                                             <th class="text-bg-dark textCenter" colspan="4" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Client Information</th>
-                                            <th class="text-bg-dark textCenter" colspan="6" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Animal Information</th>
+                                            <th class="text-bg-dark textCenter" colspan="5" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true" data-a-h="center">Animal Information</th>
                                             <th class="largecell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Activity</th>
                                             <th class="largecell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Medication</th>
                                             <th class="largecell text-bg-dark" rowspan="2" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Remarks</th>
@@ -448,7 +444,6 @@
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Sex</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Age</th>
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Name</th>
-                                            <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">No. of Heads</th>  
                                             <th class="medcell text-bg-dark" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true" data-f-bold="true">Animal Registered</th>
                                         </tr>
                                     </thead>
@@ -465,7 +460,6 @@
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['sex']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['animalBirthdate']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['animalName']; ?></td>
-                                            <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['numberHeads']; ?></td>
                                             <td class="medcell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['registrationNumber']; ?></td>
                                             <td class="largecell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['activity']; ?></td>
                                             <td class="largecell" data-b-a-s="thin" data-b-a-c="000000" data-a-wrap="true"><?php echo $data['medication']; ?></td>
