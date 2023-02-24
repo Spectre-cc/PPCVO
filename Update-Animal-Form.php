@@ -12,7 +12,7 @@
         header('Location: functions/logout.php?alertmessage='.$alertmessage);
         exit();
     }
-    else{
+    else{   
         //input
         $clientname=mysqli_real_escape_string($conn,$clientname);
         $animalID=mysqli_real_escape_string($conn,$animalID);

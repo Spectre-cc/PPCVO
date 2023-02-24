@@ -152,8 +152,6 @@
                                         </tr>
                                         <?php 
                                         endforeach;
-                                        mysqli_stmt_close($stmt);
-                                        mysqli_close($conn);
                                         ?>
                                     </tbody>
                                 </table>
@@ -180,12 +178,34 @@
                             <input class="form-control m-0 inputbox" type="text" id="name" name="name" placeholder="Enter full name..." required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="species">Species</label>
-                            <input class="form-control m-0 inputbox" type="text" id="species" name="species" placeholder="Enter species..." required>
+                            <label for="species" class="form-label m-0">Species</label>
+                            <input class="form-control m-0 inputbox" list="speciesList" id="species" name="species" placeholder="Enter Species..." required>
+                                <datalist id="speciesList">
+                                <?php 
+                                    $query="SELECT DISTINCT(species) as 'species' FROM `classifications` ORDER BY species ASC";
+                                    $result = mysqli_query($conn,$query);
+                                    foreach($result as $data) :
+                                ?>
+                                    <option value="<?php echo $data['species']; ?>">
+                                <?php 
+                                    endforeach; 
+                                ?>
+                                </datalist>
                         </div>
                         <div class="form-group">
-                            <label class="form-label m-0" for="breed">Breed</label>
-                            <input class="form-control m-0 inputbox" type="text" id="breed" name="breed" placeholder="Enter breed..." required>
+                            <label for="breed" class="form-label m-0">Breed</label>
+                            <input class="form-control m-0 inputbox" list="breedList" id="breed" name="breed" placeholder="Enter Breed..." required>
+                                <datalist id="breedList">
+                                <?php 
+                                    $query="SELECT DISTINCT(breed) as 'breed' FROM `classifications` ORDER BY breed ASC";
+                                    $result = mysqli_query($conn,$query);
+                                    foreach($result as $data) :
+                                ?>
+                                    <option value="<?php echo $data['breed']; ?>">
+                                <?php 
+                                    endforeach; 
+                                ?>
+                                </datalist>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="color">Color</label>
@@ -220,5 +240,9 @@
             </div>
         </div>
     </div>
+    <?php 
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    ?>
 </body>
 </html>

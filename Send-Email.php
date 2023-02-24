@@ -20,10 +20,26 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="recepient">Recipient</label>
-                            <select class="form-select m-0 inputbox text-start" id="recipient" name="recipient" required>
+                            <select class="form-select m-0 inputbox text-start" id="recipient" name="recipient" onchange="change()" required>
                                 <option value="Clients">Clients</option>
                                 <option value="Personnel">Personnel</option>                                                        
                             </select>
+                        </div>
+                        <div class="form-group" id="addressBlock">
+                            <label for="barangay" class="form-label m-0">Barangay</label>
+                            <input class="form-control m-0 inputbox" list="datalistOptions" id="barangay" name="barangay" placeholder="Enter barangay..." required>
+                                <datalist id="datalistOptions">
+                                    <option value="All">
+                                <?php 
+                                    $query="SELECT brgy_name FROM barangays ORDER BY brgy_name ASC";
+                                    $result = mysqli_query($conn,$query);
+                                    foreach($result as $data) :
+                                ?>
+                                    <option value="<?php echo $data['brgy_name']; ?>">
+                                <?php 
+                                    endforeach; 
+                                ?>
+                                </datalist>
                         </div>
                         <div class="form-group">
                             <label class="form-label m-0" for="subject">Subject</label>
@@ -41,5 +57,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let recipient = document.getElementById("recipient")
+        function change(){
+            if(recipient.value == "Clients"){
+                document.getElementById("addressBlock").style.display = "inline-block"
+            }else{
+                document.getElementById("addressBlock").style.display = "none"
+            }
+        }
+    </script>
 </body>
 </html>

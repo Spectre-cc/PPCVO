@@ -32,10 +32,37 @@ if(isset($_POST['send'])){
     $mail->Subject = $_POST['subject'];
     $mail->Body = $_POST['message'];
     if($recepient == "Clients"){
-        //retrieve email addresses
-        $query = "SELECT email FROM clients;";
-        $result = mysqli_query($conn, $query);
-
+        $barangay = $_POST['barangay'];
+        if($barangay == "All"){
+            //retrieve email addresses
+            $query = "SELECT email FROM clients;";
+            $result = mysqli_query($conn, $query);
+        }else{
+            $query = '
+                SELECT 
+                    clients.email
+                FROM 
+                    `clients`,
+                    `clients_addresses`,
+                    `barangays`
+                WHERE 
+                    clients.addressID = clients_addresses.addressID
+                    AND
+                    clients_addresses.barangayID = barangays.barangayID
+                    AND
+                    barangays.brgy_name = ?
+            ';
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $query)){
+                $alertmessage = urlencode("SQL error!");
+                header('Location: ../Send-Email.php?alertmessage='.$alertmessage);
+                exit();
+            }else{
+                mysqli_stmt_bind_param($stmt, "s", $barangay);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+            }
+        }
         //send emails individualy
         if(mysqli_num_rows($result) > 0) {
             foreach ($result as $data):
