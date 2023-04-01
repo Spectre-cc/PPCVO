@@ -94,7 +94,23 @@
                     <h1 class="modal-title fs-5 " id="DPDisclaimerLabel"><i class="fa-solid fa-circle-info fa-lg"></i> Data Privacy Disclaimer</h1>
                 </div>
                 <div class="modal-body">
-                    <p>Hi</p>
+                    <p>
+                    DATA PRIVACY DISCLAIMER <br><br>
+
+This data privacy disclaimer is provided in compliance with Republic Act No. 10173 or the Data Privacy Act of 2012 and its implementing rules and regulations.<br><br>
+
+The information that we collect from you may include your personal information such as your name, address, email address, and contact number. We collect this information solely for the purpose of providing you with the products and services that you have requested.<br><br>
+
+We respect your right to privacy and will only use your personal information for the purposes for which it was collected. We will not sell, rent, or disclose your personal information to third parties without your consent, except as required by law.<br><br>
+
+We implement reasonable and appropriate security measures to protect your personal information against unauthorized access, use, or disclosure. We retain your personal information for as long as necessary to fulfill the purposes for which it was collected, unless a longer retention period is required by law.<br><br>
+
+You have the right to access, modify, or erase your personal information that we have collected, subject to the limitations provided by law. You may also file a complaint if you believe that your personal information has been mishandled or improperly disclosed.<br><br>
+
+By using our products and services, you acknowledge that you have read and understood this data privacy disclaimer and consent to the collection, use, and disclosure of your personal information as described herein.<br><br>
+
+If you have any questions or concerns about our data privacy practices, please contact us at ppcvo@gmail.com.    
+                    </p>
                 </div>
                 <div class="modal-footer d-flex justify-content-center align-items-center">
                     <button class="btn btn-success w-25" data-bs-toggle="modal" data-bs-target="#AddClient" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i> Accept</button>

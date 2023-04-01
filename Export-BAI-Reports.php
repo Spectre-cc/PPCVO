@@ -290,6 +290,21 @@
                                 <table data-cols-width="13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
                                         <tr>
+                                            <th class="text-bg-dark" colspan="10" data-f-bold="true" data-a-wrap="true">PhilAHIS - SVUS2.1.10-AHM_RA</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="9" data-f-bold="true" data-a-wrap="true">Department of Agriculture</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="9" data-f-bold="true" data-a-wrap="true">BUREAU OF ANIMAL INDUSTRY</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="9" data-f-bold="true" data-a-wrap="true">Visayas Ave., Diliman Quezon City</th>
+                                        </tr>
+                                        <tr>
                                             <th class="text-bg-dark textCenter" colspan="10" data-a-h="center" data-f-bold="true">Animal Health Monitoring Report</th>
                                         </tr>
                                         <tr>
@@ -343,6 +358,21 @@
                                 </div>
                                 <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
+                                        <tr>
+                                            <th class="text-bg-dark" colspan="17" data-f-bold="true" data-a-wrap="true">PhilAHIS - SVUS2.1.10-AHM_RA</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="16" data-f-bold="true" data-a-wrap="true">Department of Agriculture</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="16" data-f-bold="true" data-a-wrap="true">BUREAU OF ANIMAL INDUSTRY</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="16" data-f-bold="true" data-a-wrap="true">Visayas Ave., Diliman Quezon City</th>
+                                        </tr>
                                         <tr>
                                             <th class="text-bg-dark textCenter" colspan="17" data-a-h="center" data-f-bold="true">Vaccination Report</th>
                                         </tr>
@@ -412,6 +442,21 @@
                                 </div>
                                 <table data-cols-width="13,13,13,13,13,13,13,13,13,13,13,13,13,13" class="table table-condensed table-bordered table-hover table-responsive text-start" id="tableExport">
                                     <thead>
+                                        <tr>
+                                            <th class="text-bg-dark" colspan="14" data-f-bold="true" data-a-wrap="true">PhilAHIS - SVUS2.1.10-AHM_RA</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="13" data-f-bold="true" data-a-wrap="true">Department of Agriculture</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="13" data-f-bold="true" data-a-wrap="true">BUREAU OF ANIMAL INDUSTRY</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bg-dark textCenter"></th>
+                                            <th class="text-bg-dark" colspan="13" data-f-bold="true" data-a-wrap="true">Visayas Ave., Diliman Quezon City</th>
+                                        </tr>
                                         <tr>
                                             <th class="text-bg-dark textCenter" colspan="14" data-a-h="center" data-f-bold="true">Routine Service Report</th>
                                         </tr>
